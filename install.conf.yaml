@@ -1,0 +1,18 @@
+- defaults:
+    link:
+        relink: true
+
+- clean: ['~']
+
+- link:
+        ~/.dotfiles: ''
+        ~/.tmux.conf: tmux.conf
+        ~/.vimrc: vimrc
+        ~/.emacs.d/init.el : emacs.d/init.el
+        ~/.emacs.d/lisp : emacs.d/lisp
+        ~/.bashrc : bashrc
+        ~/.Xresources : Xresources
+
+- shell:
+  - [ git submodule update --init --recursive, Installing submodules]
+

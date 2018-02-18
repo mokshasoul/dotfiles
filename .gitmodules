@@ -1,0 +1,10 @@
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+[submodule "emacs.d/lisp/yasnippet"]
+	path = emacs.d/lisp/yasnippet
+	url = https://github.com/joaotavora/yasnippet.git
+[submodule "emacs.d/lisp/django-mode"]
+	path = emacs.d/site-lisp/django-mode
+	url = https://github.com/myfreeweb/django-mode.git
+	branch = master

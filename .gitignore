@@ -1,0 +1,8 @@
+\#.*\#
+zsh/cache
+zsh/zsh-completions
+emacs.d/elpa
+emacs.d/init-mail.el
+\..*~$
+emacs.d/notes
+i3/__pycache__

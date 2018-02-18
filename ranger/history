@@ -1,0 +1,50 @@
+rename
+de
+shell 
+mkdir UniPDfs
+open_console 
+mkdir SecPapers
+mkdir Work
+mkdir EconPapers
+mkdir PhysicPapers
+mkdir MiscPapers
+mkdir NNPapers
+mkdir MathPapers
+mkdir CompSciPapers
+mkdir LinuxPDFs
+rename 
+rename MiscPCStuff
+rename TutorialsPC
+find g
+:
+find fk
+find f<
+mkdir Misc
+mkdir Financial
+mkdir
+mkdir Payed
+mkdir IT-Stuff
+mkdir SoftEng
+mkdir Template
+rename alexandra_rechnung.pdf
+rename alexandra_rechnung_20_06.pdf
+mkdir IDP
+rename z
+mkdir REAL
+mkdir HackerPack
+rename alexandra_stg_rechnung_20_06.pdf
+default_
+d
+open_with libreoffice
+rename PC
+mkdir Cheatsheet
+open_with vim
+open_with zathura
+mkdir Flying
+mkdir DataSci
+unrar
+mkdi
+mkdir trash
+open_with 
+delete 
+
