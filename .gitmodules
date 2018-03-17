@@ -8,3 +8,6 @@
 	path = emacs.d/site-lisp/django-mode
 	url = https://github.com/myfreeweb/django-mode.git
 	branch = master
+[submodule "prelude"]
+	path = prelude
+	url = git@github.com:mokshasoul/prelude.git
