@@ -8,8 +8,7 @@
         ~/.dotfiles: ''
         ~/.tmux.conf: tmux.conf
         ~/.vimrc: vimrc
-        ~/.emacs.d/init.el : emacs.d/init.el
-        ~/.emacs.d/lisp : emacs.d/lisp
+        ~/.emacs.d: prelude
         ~/.bashrc : bashrc
         ~/.Xresources : Xresources
 
