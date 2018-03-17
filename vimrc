@@ -213,7 +213,6 @@ autocmd FileType tex setlocal spell spelllang=en,de
 "let g:UltiSnipsJumpForwardTrigger = "<tab>"
 "let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 ""Abbrevations
-iabbrev @@ cng_it@posteo.net
 iabbrev cc Creative Common
 
 au BufNewFile,BufRead *.py 
