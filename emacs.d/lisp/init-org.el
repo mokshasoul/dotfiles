@@ -11,6 +11,12 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 (setq org-default-notes-file "~/Documents/_org/notes.org")
+(setq org-capture-templates
+      `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
+         "* NEXT %?\n%U\n" :clock-resume t)
+        ("n" "note" entry (file "")
+         "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
+        ))
 
 
 ;;; Set Org-Capture templates
@@ -70,7 +76,7 @@
 ;;; Log done state in TODOs
 (setq org-log-done t)
 
-;; Set agenda files location
+;; Set agenda files location 
 (setq org-agenda-files '("~/Documents/_org/"))
 
 ;;; integrate projectile todos with org-todos

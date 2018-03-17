@@ -8,6 +8,13 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
+
+# Set GPG TTY
+export GPG_TTY=$(tty)
+
+# Refresh gpg-agent tty in case user switches into an X session
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
 # Path to the bash it configuration
 export BASH_IT="/home/$USER/.bash_it"
 
@@ -63,7 +70,7 @@ export SCM_CHECK=false
 source "$BASH_IT"/bash_it.sh
 # Load command not found emulation
 
-export EDITOR="code"
+export EDITOR="emacsclient -c -a /usr/bin/emacs"
 # LOCALE
 export LC_CTYPE="en_US.UTF-8"
 
