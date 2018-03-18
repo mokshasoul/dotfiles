@@ -8,10 +8,10 @@
         ~/.dotfiles: ''
         ~/.tmux.conf: tmux.conf
         ~/.vimrc: vimrc
-        ~/.emacs.d: prelude
+        ~/.emacs.d : prelude
+        ~/.config/i3 : i3
         ~/.bashrc : bashrc
         ~/.Xresources : Xresources
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules]
-

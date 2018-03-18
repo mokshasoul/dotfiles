@@ -18,8 +18,7 @@
       ;; Force SSL for GNU ELPA
       (setcdr (assoc "gnu" package-archives) "https://elpa.gnu.org/packages/"))))
 (add-to-list 'package-archives
-             '("marmalade" . "https://marmalade-repo.org/packages/")
-             '("org" . "http://orgmode.org/elpa/"))
+             '("marmalade" . "https://marmalade-repo.org/packages/"))
 ;;; This is the proper order as in purcell git
 (setq package-enable-at-startup nil)
 (package-initialize)

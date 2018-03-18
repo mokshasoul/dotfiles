@@ -18,7 +18,7 @@
 ;;; Utilities for grabbing upstream libs
 
 (defun site-lisp-dir-for (name)
-  (expand-file-name (format "site-lisp/%s" name) user-emacs-directory))
+  (expand-file-name (format "site-lisp/%s" name) user-nemacs-directory))
 
 (defun site-lisp-library-el-path (name)
   (expand-file-name (format "%s.el" name) (site-lisp-dir-for name)))

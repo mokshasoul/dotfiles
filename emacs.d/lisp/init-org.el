@@ -76,7 +76,7 @@
 ;;; Log done state in TODOs
 (setq org-log-done t)
 
-;; Set agenda files location 
+;; Set agenda files location
 (setq org-agenda-files '("~/Documents/_org/"))
 
 ;;; integrate projectile todos with org-todos

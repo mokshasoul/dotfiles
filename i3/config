@@ -13,7 +13,7 @@ set $mod Mod4
 set $mod1 Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Ubuntu 7
+font pango: Hack 7
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -242,7 +242,7 @@ workspace $ws6 output HDMI3
 #### Container Assignments ####
 # Windows to workspace assignment
 # WM_CLASS(STRING) = "instance", "class")
-assign [class="^keepassx$"] $ws5
+assign [class="^keepassxc$"] $ws5
 assign [class="^jetbrains-pycharm$"] $ws4
 assign [class="^Thunderbird$"] $ws3
 assign [class="^Gpa$"] $ws5
@@ -309,7 +309,7 @@ for_window [class="^.*"] border pixel 0
 
 
 #set screens before startup so tray is fixed
-exec --no-startup-id ~/bin/setScreen.sh
+# exec --no-startup-id ~/bin/setScreen.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -324,21 +324,21 @@ exec --no-startup-id ~/bin/setScreen.sh
 # exec --no-startup-id dbus-launch nm-applet  <-- GENTOO
 # exec --no-startup-id unclutter
 # exec --no-startup-id pasystray
-exec --no-startup-id dropbox start
+# exec --no-startup-id dropbox start
 # exec --no-startup-id /usr/lib/polkit-gnome-authentication-agent-1
 # exec --no-startup-id gsynaptics-init --sm-disable
 # exec --no-startup-id compton -b --config ~/.config/compton/compton.conf
 # exec --no-startup-id parcellite
 # exec --no-startup-id dunst
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 # exec --no-startup-id udiskie -2 -t
 # exec --no-startup-id redshift
 # exec --no-startup-id urxvtc-256color -name vim -e vim ~/Documents/todo.txt
 # exec --no-startup-id urxvtc-256color -name ranger -e ranger 
 # exec --no-startup-id mpd
 # exec --no-startup-id ~/bin/setLayoutWorksapce3.sh
-exec --no-startup-id xfsettingsd
-exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id xfsettingsd
+# exec --no-startup-id xfce4-power-manager
 #exec --no-startup-id  syndaemon -i 1 -t -K -R 
-exec --no-startup-id xfce4-volumed
-exec --no-startup-id xfce4-panel --disable-wm-check
+# exec --no-startup-id xfce4-volumed
+# exec --no-startup-id xfce4-panel --disable-wm-check
