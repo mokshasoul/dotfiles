@@ -71,14 +71,15 @@ source "$BASH_IT"/bash_it.sh
 # Load command not found emulation
 
 export EDITOR="emacsclient -c -a /usr/bin/emacs"
-# LOCALE
-export LC_CTYPE="en_US.UTF-8"
 
-alias paci="pacaur -S"
-alias pacs="pacaur -Ss"
-alias pacr="pacaur -R"
+# LOCALE
+export LC_CTYPE="en_CY.UTF-8"
+
+alias paci="yaourt -S"
+alias pacs="yaourt -Ss"
+alias pacr="yaourt -R"
 alias pacsq="pacaur -Ssq"
-alias pacu="pacaur -Syu"
+alias pacu="yaourt -Syyu"
 alias xclip="xclip -selection clip-board"
 alias killemacs="emacsclient -e '(save-buffers-kill-emacs)'"
 alias delpyc="find . -name \"*.pyc\" -delete"
