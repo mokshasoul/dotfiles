@@ -11,6 +11,7 @@
         ~/.emacs.d : prelude
         ~/.config/i3 : i3
         ~/.bashrc : bashrc
+        ~/.config/rofi: rofi
         ~/.Xresources : Xresources
 
 - shell:
