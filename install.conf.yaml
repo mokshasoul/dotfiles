@@ -13,6 +13,7 @@
         ~/.bashrc : bashrc
         ~/.config/rofi: rofi
         ~/.Xresources : Xresources
+        ~/.tmux: tmux
 
 - shell:
   - [ git submodule update --init --recursive, Installing submodules]
