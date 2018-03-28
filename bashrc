@@ -1,5 +1,5 @@
-# !/bin/bash  -*- mode: conf-unix; -*-
-# 
+# !/bin/bash  -*- mode: sh; -*-
+#
 # ~/.bashrc
 #
 
@@ -102,4 +102,4 @@ function emacs {
         fi
     done
     setsid emacsclient -n -a /usr/bin/emacs ${args[*]}
-} 
+}
