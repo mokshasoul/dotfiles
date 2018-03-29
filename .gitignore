@@ -6,3 +6,4 @@ emacs.d/init-mail.el
 \..*~$
 emacs.d/notes
 i3/__pycache__
+tmux/plugins/tmux-resurrect
