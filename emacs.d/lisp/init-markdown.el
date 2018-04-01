@@ -1,7 +1,6 @@
-(when (maybe-require-package 'markdown-mode)
-  (add-auto-mode 'markdown-mode "\\.md\\.html\\'")
-  (after-load 'whitespace-cleanup-mode
-    (push 'markdown-mode whitespace-cleanup-mode-ignore-modes)))
-
-
+(use-package markdown-mode
+  :ensure t
+  :mode "\\.md\'")
+(after-load 'whitespace-cleanup-mode
+  (push 'markdown-mode whitespace-cleanup-mode-ignore-modes))
 (provide 'init-markdown)
