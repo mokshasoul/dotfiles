@@ -28,13 +28,12 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+(setq use-package-always-ensure t)
 
 (use-package fullframe
-  :ensure t
   :init
   (fullframe list-packages quit-window))
-(use-package cl-lib
-  :ensure t)
+(use-package cl-lib)
 
 (defun sanityinc/set-tabulated-list-column-width (col-name width)
   "Set any column with name COL-NAME to the given WIDTH."
