@@ -1,5 +1,7 @@
 (use-package unfill :ensure t)
-
+;;; visual line wrap
+(visual-line-mode t)
+(global-visual-line-mode t)
 (when (fboundp 'electric-pair-mode)
   (add-hook 'after-init-hook 'electric-pair-mode))
 (when (eval-when-compile (version< "24.4" emacs-version))
@@ -54,13 +56,13 @@
 (use-package mode-line-bell
   :ensure t
   :hook 'after-init-hook 'mode-line-bell-mode)
-
 (use-package beacon
   :ensure t
   :init
   (setq-default beacon-lighter "")
   (setq-default beacon-size 5)
   :hook 'after-init-hook 'beacon-mode)
+
 (global-set-key (kbd "RET") 'newline-and-indent)
 (defun sanityinc/newline-at-end-of-line ()
   "Move to end of line, enter a newline, and reindent."
@@ -74,15 +76,16 @@
   :config
   (diminish 'subword-mode))
 
-  (use-package nlinum :ensure t)
+(use-package nlinum :ensure t)
 (use-package rainbow-delimiters
   :ensure t
-  :hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  :hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (use-package undo-tree
   :ensure t
-  :hook 'after-init-hook 'global-undo-tree-mode)
-  (after-load 'undo-tree
-    (diminish 'undo-tree-mode))
+  :init
+  (global-undo-tree-mode))
+(after-load 'undo-tree
+  (diminish 'undo-tree-mode))
 ;;; todo figure out how to make it nice in use-package
 (when (maybe-require-package 'symbol-overlay)
   (dolist (hook '(prog-mode-hook html-mode-hook css-mode-hook))
@@ -130,6 +133,13 @@
 ;; Rectangle selections, and overwrite text when the selection is active
 ;;----------------------------------------------------------------------------
 (cua-selection-mode t)                  ; for rectangles, CUA is nice
+;;--------------------
+;;; Set CUA-Mode: Re-enable wif we want it
+;;--------------------
+;; (cua-mode 1)
+;; (setq cua-auto-tabify-rectangles nil) ;; on't tabify after rectangle command
+;; (transient-mark-mode 1) ;; no region when it is not highlighted
+;; (setq cua-keep-region-after-copy nil) ;; standard windows behavior
 
 ;;----------------------------------------------------------------------------
 ;; Handy key bindings
@@ -137,11 +147,14 @@
 (global-set-key (kbd "C-.") 'set-mark-command)
 (global-set-key (kbd "C-x C-.") 'pop-global-mark)
 
-(when (maybe-require-package 'avy)
-  (global-set-key (kbd "C-;") 'avy-goto-char-timer))
+(use-package avy
+  :ensure t
+  :commands avy-goto-word-1
+  :init
+  (global-set-key (kbd "C-;") 'avy-goto-char-timer)
+  :bind  ("M-s" . avy-goto-word-1))
 
 (use-package multiple-cursors
-  :ensure t
   :init
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -151,8 +164,7 @@
   (global-set-key (kbd "C-c m r") 'set-rectangular-region-anchor)
   (global-set-key (kbd "C-c m c") 'mc/edit-lines)
   (global-set-key (kbd "C-c m e") 'mc/edit-ends-of-lines)
-  (global-set-key (kbd "C-c m a") 'mc/edit-beginnings-of-lines)
-  )
+  (global-set-key (kbd "C-c m a") 'mc/edit-beginnings-of-lines))
 (defun kill-back-to-indentation ()
   "Kill from point back to the first non-whitespace character on the line."
   (interactive)
@@ -165,10 +177,9 @@
 ;; Page break lines
 ;;----------------------------------------------------------------------------
 (use-package page-break-lines
-  :ensure t
-:hook 'after-init-hook 'global-page-break-lines-mode)
-  (after-load 'page-break-lines
-    (diminish 'page-break-lines-mode))
+  :hook 'after-init-hook 'global-page-break-lines-mode)
+(after-load 'page-break-lines
+  (diminish 'page-break-lines-mode))
 ;;; Which-key Configuration (interactive key commands)
 (use-package which-key
   :ensure t 
