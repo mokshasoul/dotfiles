@@ -2,6 +2,6 @@
 (use-package docker-compose :ensure t)
 (use-package dockerfile-mode
   :ensure t
-  :mode "Dockerfile\\'")
+  :mode "\Dockerfile\\'")
 
 (provide 'init-docker)
