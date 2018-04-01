@@ -1,12 +1,30 @@
+;;; Code:
+(use-package org
+  :config
+  ;; Steve purcell org settings
+  ;; Various preferences
+  (setq org-log-done t
+	org-edit-timestamp-down-means-later t
+	org-archive-mark-done nil
+	org-hide-emphasis-markers t
+	org-catch-invisible-edits 'show
+	org-export-coding-system 'utf-8
+	org-fast-tag-selection-single-key 'expert
+	org-html-validation-link nil
+	org-export-kill-product-buffer-when-displayed t
+	org-tags-column 8
+	org-agenda-files '("~/Documents/_org/")))
 ;; inserts full filename at top of file to link different org files
 (use-package org-fstree
   :ensure t)
 ;; link from clip
 (use-package org-cliplink
-  :ensure t)
+  :no-require
+  :config
+  (define-key org-mode-map (kbd "C-c M-l") 'org-cliplink))
 
 ;;; Cool Bullets
- (use-package org-bullets
+(use-package org-bullets
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
@@ -27,18 +45,8 @@
 (define-key global-map (kbd "C-c c") 'org-capture)
 (define-key global-map (kbd "C-c a") 'org-agenda)
 
-;; Steve purcell org settings
-;; Various preferences
-(setq org-log-done t
-      org-edit-timestamp-down-means-later t
-      org-archive-mark-done nil
-      org-hide-emphasis-markers t
-      org-catch-invisible-edits 'show
-      org-export-coding-system 'utf-8
-      org-fast-tag-selection-single-key 'expert
-      org-html-validation-link nil
-      org-export-kill-product-buffer-when-displayed t
-      org-tags-column 8)
+
+
 ;; Lots of stuff from http://doc.norang.ca/org-mode.html
 
 ;; TODO: fail gracefully
@@ -73,11 +81,6 @@
     (unless (file-exists-p org-plantuml-jar-path)
       (url-copy-file url org-plantuml-jar-path))))
 
-;;; Log done state in TODOs
-(setq org-log-done t)
-
-;; Set agenda files location
-(setq org-agenda-files '("~/Documents/_org/"))
 
 ;;; integrate projectile todos with org-todos
 ;; (use-package org-projectile
@@ -93,5 +96,5 @@
 
 ;; Calendar packages for org
 (use-package calfw-org
-  :ensure t)
+  :ensure calfw)
 (provide 'init-org)
