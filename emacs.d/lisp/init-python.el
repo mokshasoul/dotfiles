@@ -1,12 +1,9 @@
+
 (use-package elpy
-  :ensure t
   :init
-  (elpy-enable)
-  )
-(use-package jedi
-  :ensure t)
-(use-package company-jedi
-  :ensure t)
+  (elpy-enable))
+(use-package jedi)
+(use-package company-jedi)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Django-Mode turned of cz you know tryin stuff
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

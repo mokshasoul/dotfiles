@@ -20,7 +20,7 @@
 
 (use-package whitespace-cleanup-mode
   :ensure t
-  :hook 'after-init-hook 'global-whitespace-cleanup-mode)
+  :hook (after-init . global-whitespace-cleanup-mode))
 
 (global-set-key [remap just-one-space] 'cycle-spacing)
 

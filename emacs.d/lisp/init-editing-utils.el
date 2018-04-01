@@ -55,13 +55,14 @@
 
 (use-package mode-line-bell
   :ensure t
-  :hook 'after-init-hook 'mode-line-bell-mode)
+  :hook (after-init . mode-line-bell-mode))
 (use-package beacon
   :ensure t
+  :hook(after-init . beacon-mode)
   :init
   (setq-default beacon-lighter "")
-  (setq-default beacon-size 5)
-  :hook 'after-init-hook 'beacon-mode)
+  (setq-default beacon-size 5))
+
 
 (global-set-key (kbd "RET") 'newline-and-indent)
 (defun sanityinc/newline-at-end-of-line ()
@@ -79,7 +80,7 @@
 (use-package nlinum :ensure t)
 (use-package rainbow-delimiters
   :ensure t
-  :hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  :hook (prog-mode . rainbow-delimiters-mode))
 (use-package undo-tree
   :ensure t
   :init
@@ -177,7 +178,7 @@
 ;; Page break lines
 ;;----------------------------------------------------------------------------
 (use-package page-break-lines
-  :hook 'after-init-hook 'global-page-break-lines-mode)
+  :hook (after-init . global-page-break-lines-mode))
 (after-load 'page-break-lines
   (diminish 'page-break-lines-mode))
 ;;; Which-key Configuration (interactive key commands)

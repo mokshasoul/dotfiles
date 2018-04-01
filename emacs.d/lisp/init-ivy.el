@@ -1,7 +1,8 @@
 ;;; Swiper Configuration wiht counsel and ivy
 ;;; Code:
+(use-package ivy)
+(use-package counsel)
 (use-package swiper
-  :ensure try
   :bind (("C-s" . swiper)
          ("C-r" . swiper)
          ("C-c C-r" . ivy-resume)
@@ -31,8 +32,8 @@
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     ))
+
 (use-package ivy-xref
-  :ensure t
   :config
   (setq xref-show-xrefs-function 'ivy-xref-show-xrefs))
 (provide 'init-ivy)

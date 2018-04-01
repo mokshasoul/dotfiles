@@ -2,7 +2,7 @@
 (use-package company
   :ensure t
   :config
-  :hook 'after-init-hook 'global-company-mode)
+  :hook (after-init . global-company-mode))
 
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)

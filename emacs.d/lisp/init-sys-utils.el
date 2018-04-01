@@ -7,4 +7,4 @@
 (use-package systemd
   :ensure t)
 
-(provide 'sys-utils)
+(provide 'init-sys-utils)

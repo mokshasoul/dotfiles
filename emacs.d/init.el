@@ -43,6 +43,7 @@
 (require 'init-hippie-expand)
 (require 'init-company)
 ;;; Require projectmanagement
+(require 'init-projectile)
 (require 'init-recentf)
 
 ;; (require 'init-smex) we use swiper and 
@@ -70,8 +71,8 @@
 (require 'init-yaml)
 (require 'init-markdown)
 ;; Misc
-(require init-sys-utils)
-(require init-misc)
+(require 'init-sys-utils)
+(require 'init-misc)
 ;; Extra packages which don't require any configuration purcell
 (use-package gnuplot)
 (use-package lua-mode)

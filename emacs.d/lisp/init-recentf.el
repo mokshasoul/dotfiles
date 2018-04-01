@@ -1,5 +1,5 @@
 (use-package recentf
-  :hook 'after-init-hook 'recentf-mode
+  :hook (after-init . recentf-mode)
   :init
   (setq-default
    recentf-max-saved-items 1000

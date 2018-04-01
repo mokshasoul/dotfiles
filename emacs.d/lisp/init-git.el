@@ -12,7 +12,7 @@
 ;; Snippets from gist
 (use-package yagist :ensure t)
 (use-package magit-gh-pulls
-  :hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+  :hook (magit-mode-hook . turn-on-magit-gh-pulls))
 
 (provide 'init-git)
 ;;; init-git.el Ends here

@@ -92,5 +92,5 @@
     (push (org-projectile-project-todo-entry) org-capture-templates)))
 ;; Calendar packages for org
 (use-package calfw)
-(use-package calfw-org)
+;; (use-package calfw-org)
 (provide 'init-org)
