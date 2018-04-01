@@ -1,4 +1,5 @@
 ;;; Swiper Configuration wiht counsel and ivy
+;;; Code:
 (use-package swiper
   :ensure try
   :bind (("C-s" . swiper)
@@ -9,8 +10,12 @@
   :config
   (progn
     (ivy-mode 1)
-    (setq
+    (setq-default
      ivy-use-virtual-buffers t
+     ivy-virtual-abbreviate 'fullpath
+     ivy-count-format ""
+     ivy-magic-tilde nil
+     ivy-dynamic-exhibit-delay-ms 150
      magit-completing-read-function 'ivy-completing-read
      enable-recursive-minibuffers t)
     (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -26,4 +31,9 @@
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     ))
+(use-package ivy-xref
+  :ensure t
+  :config
+  (setq xref-show-xrefs-function 'ivy-xref-show-xrefs))
 (provide 'init-ivy)
+;;; init-ivy.el Ends here
