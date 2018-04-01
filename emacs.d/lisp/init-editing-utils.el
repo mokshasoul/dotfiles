@@ -185,4 +185,8 @@
   :ensure t 
   :config
   (which-key-mode))
+;; Global line mode
+(global-linum-mode t)
+;; Remap
+(global-set-key [remap list-buffers] #'buffer-menu)
 (provide 'init-editing-utils)
