@@ -1,6 +1,8 @@
-(add-hook 'after-init-hook 'recentf-mode)
-(setq-default
- recentf-max-saved-items 1000
- recentf-exclude '("/tmp/" "/ssh:"))
+(use-package recentf
+  :hook 'after-init-hook 'recentf-mode
+  :init
+  (setq-default
+   recentf-max-saved-items 1000
+   recentf-exclue '("/tmp/" "/ssh:")))
 
 (provide 'init-recentf)
