@@ -23,10 +23,10 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
-(use-package wgrep :ensure t)
-(use-package diminish :ensure t)
-(use-package scratch :ensure t)
-(use-package command-log-mode :ensure t)
+(use-package wgrep)
+(use-package diminish)
+(use-package scratch)
+(use-package command-log-mode)
 ;; Configure interface
 (require 'init-theme)
 (require 'init-gui-frames)
@@ -46,11 +46,14 @@
 (require 'init-recentf)
 
 ;; (require 'init-smex) we use swiper and 
-
+;; Org mode
+(require 'init-org)
 (require 'init-sessions)
 (require 'init-editing-utils)
 ;;; CSV Mode settings
 (require 'init-csv)
+;;; Devops Stuff
+(require 'init-ansible)
 ;;; WebDev Stuff
 (require 'init-web)
 (require 'init-css)
@@ -62,59 +65,20 @@
 (require 'init-editing-utils)
 (require 'init-whitespace)
 (require 'init-yasnippet)
+(require 'init-git)
 ;; YAML, Markdown and latex support
 (require 'init-yaml)
 (require 'init-markdown)
-
+;; Misc
+(require init-sys-utils)
+(require init-misc)
 ;; Extra packages which don't require any configuration purcell
-(use-package gnuplot :ensure t)
-(use-package lua-mode :ensure t)
-(use-package htmlize :ensure t)
-(use-package dsvn :ensure t)
-;; WTF
-(global-linum-mode t)
-;; Remaps
-(global-set-key [remap list-buffers] #'buffer-menu)
-
-;;; QoS packages
-;;; Try Configuration
-(use-package try
-  :ensure t)
-
-;; Avy per character navigation
-
-
-(progn
-    (setq auto-save-file-name-transforms
-          `((".*" ,temporary-file-directory t)))
-  (setq-default save-place-mode 1)
-  (setq save-interprogram-paste-before-kill t
-        require-final-newline t
-        apropos-do-all t
-        visible-bell t
-        load-prefer-newer t
-
-        save-place-file (concat user-emacs-directory "places")
-        backup-directory-alist `(("." . ,(concat user-emacs-directory
-						 "backups")))))
-
-
-
-
-(setq auto-mode-alist
-      (append
-       (list
-        '("\\.\\(vcf\\|gpg\\)$" . sensitive-minor-mode)
-        )
-       auto-mode-alist))
-
-;; (defvar --backup-directory (concat user-emacs-directory "backups"))
-;; (if (not (file-exists-p --backup-directory))
-;;        (make-directory --backup-directory t))
-(use-package ggtags
-  :ensure t
-  )
-
+(use-package gnuplot)
+(use-package lua-mode)
+(use-package htmlize)
+(use-package dsvn)
+(use-package try) ;; test install packages
+(use-package ggtags)
 ;;; `server' for emacs
 (require 'server)
 (if (not (eq system-type 'windows-nt))
@@ -125,12 +89,10 @@
 ;;----------------------------------------------------------------------------
 (when (file-exists-p custom-file)
   (load custom-file))
-
 ;;----------------------------------------------------------------------------
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
-
 (provide 'init)
 ;; Local Variables:
 ;; coding: utf-8
