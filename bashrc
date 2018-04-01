@@ -8,6 +8,9 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
+# virtualenvwrapper
+source /usr/bin/virtualenvwrapper.sh
+export WORKON_HOME=~/python_envs/
 
 # Set GPG TTY
 export GPG_TTY=$(tty)
@@ -47,7 +50,7 @@ export SCM_CHECK=false
 # Set Xterm/screen/Tmux title with only a short hostname.
 # Uncomment this (or set SHORT_HOSTNAME to something else),
 # Will otherwise fall back on $HOSTNAME.
-#export SHORT_HOSTNAME=$(hostname -s)
+export SHORT_HOSTNAME=$(hostname -s)
 
 # Set Xterm/screen/Tmux title with only a short username.
 # Uncomment this (or set SHORT_USER to something else),
