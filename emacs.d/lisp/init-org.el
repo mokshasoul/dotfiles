@@ -15,8 +15,8 @@
 	org-tags-column 8
 	org-agenda-files '("~/Documents/_org/")))
 ;; inserts full filename at top of file to link different org files
-(use-package org-fstree
-  :ensure t)
+;; (use-package org-fstree
+;;   :ensure t)
 ;; link from clip
 (use-package org-cliplink
   :no-require
@@ -80,21 +80,17 @@
     (setq org-plantuml-jar-path (expand-file-name jar-name (file-name-directory user-init-file)))
     (unless (file-exists-p org-plantuml-jar-path)
       (url-copy-file url org-plantuml-jar-path))))
-
-
 ;;; integrate projectile todos with org-todos
-;; (use-package org-projectile
-;;   :bind (("C-c n p" . org-projectile-project-todo-completing-read)
-;;          ("C-c c" . org-capture))
-;;   :config
-;;   (progn
-;;     (setq org-projectile-projects-file
-;;           "~/Documents/_org/projects.org")
-;;     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-;;     (push (org-projectile-project-todo-entry) org-capture-templates))
-;;   :ensure t)
-
+(use-package org-projectile
+  :bind (("C-c n p" . org-projectile-project-todo-completing-read)
+         ("C-c c" . org-capture))
+  :config
+  (progn
+    (setq org-projectile-projects-file
+          "~/Documents/_org/projects.org")
+    (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+    (push (org-projectile-project-todo-entry) org-capture-templates)))
 ;; Calendar packages for org
-(use-package calfw-org
-  :ensure calfw)
+(use-package calfw)
+(use-package calfw-org)
 (provide 'init-org)
