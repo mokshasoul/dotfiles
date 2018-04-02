@@ -11,7 +11,7 @@ PS1='[\u@\h \W]\$ '
 # virtualenvwrapper
 source /usr/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/python_envs/
-
+export XCOMPOSEFILE=/usr/share/X11/locale/en_CY.UTF-8/Compose
 # Set GPG TTY
 export GPG_TTY=$(tty)
 
