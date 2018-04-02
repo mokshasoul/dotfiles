@@ -1,6 +1,6 @@
 ;;; Code:
 (use-package flycheck
-  :hook (prog-mod . global-flycheck-mode)
+  :hook (prog-mode . global-flycheck-mode)
   :init
   (setq flycheck-display-errors-function
         #'flycheck-display-error-messages-unless-error-list))

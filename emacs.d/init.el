@@ -1,3 +1,6 @@
+;;; init --- Summary
+;;; Commentary:
+;;; Code:
 ;;----------------------------------------------------------------------------
 ;; Adjust garbage collection thresholds during startup, and thereafter
 ;;----------------------------------------------------------------------------
@@ -8,7 +11,7 @@
             (lambda () (setq gc-cons-threshold (* 20 1024 1024)))))
 ;;; Follow simlinks to git controlled files
 (setq vc-follow-symlinks t)
-;;; Add lisp folder to path in order to load the init files  
+;;; Add lisp folder to path in order to load the init files
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-benchmarking)
 ;;----------------------------------------------------------------------------
@@ -46,13 +49,15 @@
 (require 'init-projectile)
 (require 'init-recentf)
 
-;; (require 'init-smex) we use swiper and 
+;; (require 'init-smex) we use swiper and ivy
 ;; Org mode
 (require 'init-org)
 (require 'init-sessions)
 (require 'init-editing-utils)
 ;;; CSV Mode settings
 (require 'init-csv)
+;;; Languages
+(require 'init-python)
 ;;; Devops Stuffnn
 (require 'init-ansible)
 ;;; WebDev Stuff
@@ -99,3 +104,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
+;;; init.el ends here

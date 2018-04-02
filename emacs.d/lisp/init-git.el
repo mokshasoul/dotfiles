@@ -2,7 +2,7 @@
 (use-package magit
   :ensure t
   :bind* (("<f8>" . magit-blame)
-          ("<f1>" . magit-status))
+          ("C-x g" . magit-status))
   :commands (magit-status
              magit-blame
              magit-checkout

@@ -1,17 +1,22 @@
+;;; init-python.el --- Personal configuration for python -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+(use-package virtualenvwrapper)
+(use-package pipenv)
+(use-package anaconda-mode
+  :hook ((python-mode . anaconda-mode)
+         (python-mode . anaconda-eldoc-mode)))
+(use-package company-anaconda
+  :config
+  (eval-after-load "company"
+    '(add-to-list 'company-backends 'company-anaconda)))
+;; (use-package company-jedi
+;;   :config
+;;   (progn
+;;     (defun my/python-mode-hook ()
+;;       (add-to-list 'company-backends  'company-jedi))
+;;     (add-hook 'python-mode-hook 'my/python-mode-hook)))
+(setq flycheck-flake8-maximum-line-length 80)
 
-(use-package elpy
-  :init
-  (elpy-enable))
-(use-package jedi)
-(use-package company-jedi)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Django-Mode turned of cz you know tryin stuff
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (use-package django-html-mode
-;;   :ensure t
-;;   :init
-;;     (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . django-html-mode)))
-;; (use-package django-mode
-;;   :ensure t)
-;; (yas/load-directory "~/.emacs.d/lisp/django-mode/snippets/")
 (provide 'init-python)
+;;; init-python.el Ends here
