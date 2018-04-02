@@ -9,9 +9,12 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 # virtualenvwrapper
-source /usr/bin/virtualenvwrapper.sh
+if [ -f /usr/bin/virtualenvwrapper ]; then
+    source /usr/bin/virtualenvwrapper.sh
+fi
 export WORKON_HOME=~/python_envs/
-export XCOMPOSEFILE=/usr/share/X11/locale/en_CY.UTF-8/Compose
+
+
 # Set GPG TTY
 export GPG_TTY=$(tty)
 
@@ -76,7 +79,12 @@ source "$BASH_IT"/bash_it.sh
 export EDITOR="emacsclient -c -a /usr/bin/emacs"
 
 # LOCALE
-export LC_CTYPE="en_CY.UTF-8"
+if grep -q en_CY "/etc/locale.conf"; then
+    export XCOMPOSEFILE=/usr/share/X11/locale/en_CY.UTF-8/Compose
+    export LC_CTYPE="en_CY.UTF-8"
+else
+    export LC_CTYPE="en_US.UTF-8"
+fi
 
 alias paci="yaourt -S"
 alias pacs="yaourt -Ssa"
