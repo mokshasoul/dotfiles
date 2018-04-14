@@ -54,10 +54,13 @@
 (require 'init-org)
 (require 'init-sessions)
 (require 'init-editing-utils)
+(require 'init-flyspell)
 ;;; CSV Mode settings
 (require 'init-csv)
 ;;; Languages
 (require 'init-python)
+(require 'init-php)
+(require 'init-latex)
 ;;; Devops Stuffnn
 (require 'init-ansible)
 ;;; WebDev Stuff
@@ -75,7 +78,10 @@
 ;; YAML, Markdown and latex support
 (require 'init-yaml)
 (require 'init-markdown)
+
 ;; Misc
+(require 'init-docker)
+(require 'init-docmodes)
 (require 'init-sys-utils)
 (require 'init-misc)
 ;; Extra packages which don't require any configuration purcell
@@ -99,6 +105,7 @@
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
+
 (provide 'init)
 ;; Local Variables:
 ;; coding: utf-8
