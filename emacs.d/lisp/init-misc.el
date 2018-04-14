@@ -37,5 +37,7 @@
         save-place-file (concat user-emacs-directory "places")
         backup-directory-alist `(("." . ,(concat user-emacs-directory
 						 "backups")))))
+;;; Faster than default
+(setq tramp-default-method "ssh")
 (provide 'init-misc)
 ;;; init-misc.el Ends here
