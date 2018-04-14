@@ -1,19 +1,22 @@
 ;;; Code:
-(use-package org
-  :config
-  ;; Steve purcell org settings
-  ;; Various preferences
-  (setq org-log-done t
-	org-edit-timestamp-down-means-later t
-	org-archive-mark-done nil
-	org-hide-emphasis-markers t
-	org-catch-invisible-edits 'show
-	org-export-coding-system 'utf-8
-	org-fast-tag-selection-single-key 'expert
-	org-html-validation-link nil
-	org-export-kill-product-buffer-when-displayed t
-	org-tags-column 8
-	org-agenda-files '("~/Documents/_org/")))
+(require 'org)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+;; Steve purcell org settings
+;; Various preferences
+(setq org-log-done t
+      org-refile-targets '((nil :maxlevel . 4)
+                           (org-agenda-files :maxlevel . 4))
+      org-edit-timestamp-down-means-later t
+      org-archive-mark-done nil
+      org-hide-emphasis-markers t
+      org-catch-invisible-edits 'show
+      org-export-coding-system 'utf-8
+      org-fast-tag-selection-single-key 'expert
+      org-html-validation-link nil
+      org-export-kill-product-buffer-when-displayed t
+      org-tags-column 8
+      org-agenda-files '("~/Documents/_org/")
+      org-default-notes-file "~/Documents/_org/notes.org")
 ;; inserts full filename at top of file to link different org files
 ;; (use-package org-fstree
 ;;   :ensure t)
@@ -25,22 +28,17 @@
 
 ;;; Cool Bullets
 (use-package org-bullets
-  :ensure t
-  :config
+  :init
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 (setq org-default-notes-file "~/Documents/_org/notes.org")
-(setq org-capture-templates
-      `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
-         "* NEXT %?\n%U\n" :clock-resume t)
-        ("n" "note" entry (file "")
-         "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
-        ))
-
-
 ;;; Set Org-Capture templates
 (setq org-capture-templates
       `(("t" "todo" entry (file+headline "~/Documents/_org/tasks.org" "Tasks")
-         "** TODO %^{Task} %?")))
+         "** TODO %^{Task} %?")
+        ("n" "note" entry (file+headline "~/Documents/_org/notes.org")
+         "* %? :NOTE:\n%U\n%a\n" :clock-resume t)))
+
 (define-key global-map (kbd "C-c l") 'org-store-link)
 (define-key global-map (kbd "C-c c") 'org-capture)
 (define-key global-map (kbd "C-c a") 'org-agenda)
@@ -80,8 +78,10 @@
     (setq org-plantuml-jar-path (expand-file-name jar-name (file-name-directory user-init-file)))
     (unless (file-exists-p org-plantuml-jar-path)
       (url-copy-file url org-plantuml-jar-path))))
+
 ;;; integrate projectile todos with org-todos
 (use-package org-projectile
+  :after (org projectile)
   :bind (("C-c n p" . org-projectile-project-todo-completing-read)
          ("C-c c" . org-capture))
   :config
@@ -90,7 +90,10 @@
           "~/Documents/_org/projects.org")
     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
     (push (org-projectile-project-todo-entry) org-capture-templates)))
+
 ;; Calendar packages for org
 (use-package calfw)
-;; (use-package calfw-org)
+(use-package calfw-org
+  :after calfw)
+
 (provide 'init-org)
