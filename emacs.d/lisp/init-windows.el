@@ -90,14 +90,12 @@ Call a second time to restore the original window configuration."
 (unless (memq window-system '(nt w32))
   (windmove-default-keybindings 'control))
 ;;; Ace-Window Configuration
-;; (use-package ace-window
-;;   :ensure t
-;;   :init
-;;   (progn
-;;     (global-set-key [remap other-window] 'ace-window)
-;;     (setq aw-dispatch-always t)
-;;     (custom-set-faces
-;;      '(aw-leading-char-face
-;;        ((t (:inherit ace-jump-face-foreground :height 2.0)))))
-;;     ))
+(use-package ace-window
+  :bind ("C-x o" . ace-window)
+  :config
+  (setq aw-dispatch-always nil
+        aw-keys '(?a ?s ?d ?f ?g ?j ?k ?l))
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 2.0))))))
 (provide 'init-windows)
