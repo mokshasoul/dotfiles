@@ -52,19 +52,23 @@
     (unless (file-exists-p file)
       (error "File does not exist: %s" file))
     (vlf file)))
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 (use-package mode-line-bell
-  :ensure t
   :hook (after-init . mode-line-bell-mode))
+
 (use-package beacon
-  :ensure t
-  :hook(after-init . beacon-mode)
+  :diminish
+  :hook (after-init . beacon-mode)
   :init
   (setq-default beacon-lighter "")
   (setq-default beacon-size 5))
 
 
 (global-set-key (kbd "RET") 'newline-and-indent)
+
 (defun sanityinc/newline-at-end-of-line ()
   "Move to end of line, enter a newline, and reindent."
   (interactive)
@@ -72,32 +76,29 @@
   (newline-and-indent))
 (global-set-key (kbd "S-<return>") 'sanityinc/newline-at-end-of-line)
 
-(use-package subword
-  :ensure t
-  :config
-  (diminish 'subword-mode))
+(use-package subword  :diminish)
 
-(use-package nlinum :ensure t)
+(use-package nlinum)
 (use-package rainbow-delimiters
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
+
 (use-package undo-tree
-  :ensure t
+  :diminish
   :init
   (global-undo-tree-mode))
-(after-load 'undo-tree
-  (diminish 'undo-tree-mode))
+
 ;;; todo figure out how to make it nice in use-package
-(when (maybe-require-package 'symbol-overlay)
-  (dolist (hook '(prog-mode-hook html-mode-hook css-mode-hook))
-    (add-hook hook 'symbol-overlay-mode))
-  (after-load 'symbol-overlay
-    (diminish 'symbol-overlay-mode)
-    (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
-    (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)))
+(use-package symbol-overlay
+  :diminish
+  :hook ((prog-mode . symbol-overlay-mode)
+        (html-mode . symbol-overlay-mode)
+        (css-mode . symbol-overlay-mode))
+  :config
+  (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
+  (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
 
 (use-package browse-kill-ring
-  :ensure t
   :init
   (setq browse-kill-ring-separator "\f")
   (global-set-key (kbd "M-Y") 'browse-kill-ring))
@@ -120,7 +121,6 @@
 ;; Expand region
 ;;----------------------------------------------------------------------------
 (use-package expand-region
-  :ensure t
   :init
   (global-set-key (kbd "C-=") 'er/expand-region))
 
@@ -149,7 +149,6 @@
 (global-set-key (kbd "C-x C-.") 'pop-global-mark)
 
 (use-package avy
-  :ensure t
   :commands avy-goto-word-1
   :init
   (global-set-key (kbd "C-;") 'avy-goto-char-timer)
@@ -181,13 +180,22 @@
   :hook (after-init . global-page-break-lines-mode))
 (after-load 'page-break-lines
   (diminish 'page-break-lines-mode))
+
+;; (use-package smartparens-config
+;;   :commands smartparens-mode)
+
 ;;; Which-key Configuration (interactive key commands)
 (use-package which-key
-  :ensure t 
+  :defer 5
+  :diminish
+  :commands which-key-mode
   :config
   (which-key-mode))
 ;; Global line mode
 (global-linum-mode t)
-;; Remap
+
+;;; Remap list-buffers to buffer menu
 (global-set-key [remap list-buffers] #'buffer-menu)
+
 (provide 'init-editing-utils)
+;; init-editing-utils.el Ends here
