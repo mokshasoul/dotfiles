@@ -8,6 +8,6 @@
              projectile-enable-caching nil))
 ;; Projectile support for counsel
 (use-package counsel-projectile
-  :ensure t
+  :after (counsel projectile)
   :hook (projectile-mode . counsel-projectile-mode))
 (provide 'init-projectile);;; init-projectile.el ends here
