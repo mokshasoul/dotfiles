@@ -1,7 +1,7 @@
-(use-package docker :ensure t)
-(use-package docker-compose :ensure t)
+;;; TODO: jwiegly config
+(use-package docker)
+(use-package docker-compose-mode)
 (use-package dockerfile-mode
-  :ensure t
   :mode "\Dockerfile\\'")
 
 (provide 'init-docker)
