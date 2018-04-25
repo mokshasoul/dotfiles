@@ -39,5 +39,10 @@
 						 "backups")))))
 ;;; Faster than default
 (setq tramp-default-method "ssh")
+;;; Default is org
+(setq-default major-mode 'org-mode)
+
+;;; CruX
+(use-package crux)
 (provide 'init-misc)
 ;;; init-misc.el Ends here
