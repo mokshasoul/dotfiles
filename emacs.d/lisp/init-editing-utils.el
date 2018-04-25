@@ -116,6 +116,8 @@
 ;; Show matching parens
 ;;----------------------------------------------------------------------------
 (add-hook 'after-init-hook 'show-paren-mode)
+(setq show-paren-delay 0)
+(setq show-paren-when-point-inside-paren t)
 
 ;;----------------------------------------------------------------------------
 ;; Expand region
