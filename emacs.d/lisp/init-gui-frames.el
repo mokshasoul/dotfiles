@@ -30,6 +30,6 @@
           (lambda ()
             (setq line-spacing 0)))
 
-
+(setq scroll-step 1)
 
 (provide 'init-gui-frames)
