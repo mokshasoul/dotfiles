@@ -11,6 +11,7 @@
             (lambda () (setq gc-cons-threshold (* 20 1024 1024)))))
 ;;; Follow simlinks to git controlled files
 (setq vc-follow-symlinks t)
+
 ;;; Add lisp folder to path in order to load the init files
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-benchmarking)
@@ -105,7 +106,10 @@
 ;; Locales (setting them earlier in this file doesn't work in X)
 ;;----------------------------------------------------------------------------
 (require 'init-locales)
-
+;;----------------------------------------------------------------------------
+;; Personal settings
+;;----------------------------------------------------------------------------
+(require 'init-personal)
 (provide 'init)
 ;; Local Variables:
 ;; coding: utf-8
