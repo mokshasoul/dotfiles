@@ -41,7 +41,11 @@
 (setq tramp-default-method "ssh")
 ;;; Default is org
 (setq-default major-mode 'org-mode)
-
+;;; Backup and autosave to temp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 ;;; CruX
 (use-package crux)
 (provide 'init-misc)
