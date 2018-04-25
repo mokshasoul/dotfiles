@@ -18,11 +18,13 @@
   (ivy-set-occur 'ivy-switch-buffer 'ivy-switch-buffer-occur))
 (use-package counsel
   :after ivy
-  :demand t
   :diminish
-  :bind (("C-*" . counsel-org-agenda-headlines)
+  :bind (
+         ("C-*" . counsel-org-agenda-headlines)
+         ("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file)
          ("C-x C-f" . counsel-find-file))
-  :commands counse-minibuffer-history
+  :commands counsel-minibuffer-history
   :custom
   (global-set-key (kbd "<f1> f") 'counsel-describe-function)
   (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
@@ -33,17 +35,14 @@
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (global-set-key (kbd "C-x l") 'counsel-locate)
-  (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
 
-(use-package counsel-tramp
-  :commands counsel-tramp)
+;; (use-package counsel-tramp
+;;   :commands counsel-tramp)
 
 (use-package swiper
   :bind (("C-s" . swiper)
-         ("C-r" . swiper)
-         ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file))
+         ("C-r" . swiper))
   :config
   (progn
     (setq-default
