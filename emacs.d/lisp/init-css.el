@@ -1,3 +1,4 @@
+;;; Code:
 (use-package sass-mode
   :ensure t
   :mode "\\.sass\\.erb"
@@ -10,3 +11,4 @@
   (setq-default scss-compile-at-save nil))
 ;; Install SASS-Mode, assign to extensions, set indent on init
 (provide 'init-css)
+;;; init-css.el Ends here
