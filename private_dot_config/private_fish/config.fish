@@ -13,8 +13,8 @@ set -x BAT_THEME GitHub
 set -x NNN_COLORS 11112
 set -x NNN_FCOLORS 0B0B04060006060009060B06
 set -x RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
-
 set -x EDITOR "nvim -f"
+
 if test -f "$HOME/Applications/Neovide.app/Contents/MacOS/neovide"
     set -x VISUAL "$HOME/Applications/Neovide.app/Contents/MacOS/neovide --nofork"
 end
@@ -73,7 +73,9 @@ if type -q exa
     function ll
         command exa -lFh --icons --octal-permissions $argv
     end
+    alias l 'exa -l -g --git'
 end
+
 
 if type -q dog
     function dig
@@ -88,6 +90,12 @@ function vp
     else
         fzf -m | xargs $EDITOR
     end
+end
+
+if status is-login
+    pyenv init --path | source
+    # brew is already set using conf.d/brew
+    set -x NVIM_BIN /opt/homebrew/bin/nvim
 end
 
 if status is-interactive
@@ -115,17 +123,21 @@ if status is-interactive
     if type -q pyenv
         pyenv init - | source
         pyenv virtualenv-init - | source
+        if not set -q PYENV_ROOT
+           set -U PYENV_ROOT $HOME/.pyenv 
+        end
     end
+
     if type -q brew
-        if test -d (brew --prefix)"/share/fish/completions"
-            if not contains "(brew --prefix)/share/fish/completions" $fish_complete_path
-                set -x fish_complete_path $fish_complete_path (brew --prefix)/share/fish/completions
+        if test -d "$HOMEBREW_PREFIX/share/fish/completions"
+            if not contains "$HOMEBREW_PREFIX/share/fish/completions" (string split " " $fish_complete_path[1])
+                set -x --path fish_complete_path $fish_complete_path (brew --prefix)/share/fish/completions
             end
         end
 
-        if test -d (brew --prefix)"/share/fish/vendor_completions.d"
-            if not contains "(brew --prefix)/share/fish/vendor_completions.d" $fish_complete_path
-                set -x fish_complete_path $fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
+        if test -d "$HOMEBREW_PREFIX/share/fish/vendor_completions.d"
+            if not contains "$HOMEBREW_PREFIX/share/fish/vendor_completions.d" (string split " " $fish_complete_path[1])
+                set -x --path fish_complete_path $fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
             end
         end
 
@@ -137,10 +149,4 @@ if status is-interactive
     end
 
     test -e {$HOME}/.iterm2_shell_integration.fish; and source {$HOME}/.iterm2_shell_integration.fish
-end
-
-if status is-login
-    pyenv init --path | source
-    # brew is already set using conf.d/brew
-    set -x NVIM_BIN /opt/homebrew/bin/nvim
 end
