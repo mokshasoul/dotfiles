@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 
 -- This table will hold the configuration.
 local config = {}
@@ -13,6 +14,7 @@ end
 -- This is where you actually apply your config choices
 config.term = "wezterm"
 -- For example, changing the color scheme:
+-- config.color_scheme = "Github Primer Theme"
 config.color_scheme = "Google (light) (terminal.sexy)"
 config.font = wezterm.font("FiraCode Nerd Font Mono")
 config.font_size = 15.0
@@ -33,4 +35,11 @@ config.window_close_confirmation = "NeverPrompt"
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 -- and finally, return the configuration to wezterm
+
+wezterm.on(
+'gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
+
 return config

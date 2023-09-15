@@ -18,9 +18,13 @@ set -x BAT_THEME GitHub
 # nnn-Configuration
 set -x NNN_COLORS 11112
 set -x NNN_FCOLORS 0B0B04060006060009060B06
+set -x NNN_USE_EDITOR 1
 
 set -x RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 set -x EDITOR "nvim -f"
+
+# Pure configs
+set -g async_prompt_functions _pure_prompt_git  # run this async! dope.
 
 if test -f "$HOME/Applications/Neovide.app/Contents/MacOS/neovide"
     # set -x VISUAL "$HOME/Applications/Neovide.app/Contents/MacOS/neovide --nofork"
@@ -59,14 +63,17 @@ if type -q fd
     set -x FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 end
 
-if type -q exa
+if type -q lsd
     function ls
-        command exa $argv
+        command lsd $argv
     end
     function ll
-        command exa -lFh --icons --octal-permissions $argv
+        command lsd -lFh --icon auto $argv
     end
-    alias l 'exa -l -g --git'
+		function la
+			command lsd -la $argv
+		end
+    alias l 'lsd -l -g --git'
 end
 
 
@@ -107,7 +114,7 @@ if status is-interactive
         if not set -q PYENV_ROOT
             set -U PYENV_ROOT $HOME/.pyenv
         end
-        set -x PIPX_DEFAULT_PYTHON "/Users/charis/.pyenv/shims/python3"
+        set -x PIPX_DEFAULT_PYTHON "$HOME/.pyenv/shims/python3"
     end
 
     if type -q brew
@@ -126,8 +133,17 @@ if status is-interactive
         fish_add_path (brew --prefix ruby)/bin
     end
 
+    source $__fish_config_dir/aliases.fish
+
     if [ "$TERM_PROGRAM" = "iTerm.app" ]
         test -e "$HOME/.iterm2_shell_integration.fish"; and source "$HOME/.iterm2_shell_integration.fish"
     end
 
 end
+
+if type -q vivid
+	set -x LS_COLORS "$(vivid generate catppuccin-latte)"
+end
+
+# Theme from: gh repo clone projekt0n/github-theme-contrib
+# source $__fish_config_dir/themes/github_light.fish

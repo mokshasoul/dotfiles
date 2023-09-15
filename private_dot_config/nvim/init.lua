@@ -2,6 +2,7 @@
 -- Neovim-specific configuration
 --
 local opt = vim.opt
+local o = vim.o
 local g = vim.g
 local fn = vim.fn
 local env = vim.env
@@ -10,20 +11,35 @@ local map = vim.keymap.set
 local api = vim.api
 local not_vscode = not vim.g.vscode
 
+-- Bootstrap LazyNvim: https://github.com/folke/lazy.nvim#-installation
+--
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+opt.rtp:prepend(lazypath)
+--
+
 opt.backup = false -- don't use backup files
 opt.writebackup = false -- don't backup the file while editing
 opt.swapfile = false -- don't create swap files for new buffers
 opt.updatecount = 0 -- don't write swap files after some number of updates
 opt.history = 1000 -- store the last 1000 commands entered
-opt.textwidth = 120 -- after configured number of characters, wrap line
 opt.rtp:append("/opt/homebrew/opt/fzf")
 
 opt.background = "light"
 opt.inccommand = "nosplit" -- show the results of substition as they're happening
 -- but don't open a split
 
-opt.backspace = { "indent", "eol,start" } -- make backspace behave in a sane manner
-opt.clipboard = { "unnamed", "unnamedplus" } -- use the system clipboard
+opt.backspace = { "indent", "eol", "start" } -- make backspace behave in a sane manner
+opt.clipboard:append("unnamedplus") -- use the system clipboard
 opt.mouse = "a" -- set mouse mode to all modes
 
 -- searching
@@ -80,13 +96,9 @@ opt.tabstop = 2 -- the visible width of tabs
 opt.softtabstop = 2 -- edit as if the tabs are 4 characters wide
 opt.shiftwidth = 2 -- number of spaces to use for indent and unindent
 opt.shiftround = true -- round indent to a multiple of 'shiftwidth'
-opt.guifont = "FiraCode Nerd Font Mono:10"
 -- HOWTO: set non native themes
 -- cmd [[colorscheme NeoSolarized]]
 -- best light theme IMO
-require("github-theme").setup({})
-
-vim.cmd.colorscheme("github_light")
 
 -- wildignore
 --
@@ -100,12 +112,18 @@ g.mapleader = " "
 g.maplocalleader = ","
 map("n", "<Leader>w", ":write<CR>", { noremap = true })
 
--- Plugins
-require("plugins")
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- SETUP
 
-vim.g.did_load_filetypes = 1
+-- Plugins
+require("lazy").setup("plugins-lazy")
 
+-- require("github-theme").setup({})
+vim.cmd.colorscheme("tokyonight")
+-- vim.cmd.colorscheme("github_light")
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -120,8 +138,7 @@ local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	-- Mappings. See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	map("n", "gD", vim.lsp.buf.declaration, bufopts)
 	map("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -171,8 +188,10 @@ end
 
 if not_vscode then
 	-- This inits plugins with default configuration
-	require("nvim-tree").setup()
-	require("lualine").setup()
+	-- require("nvim-tree").setup()
+	require("lualine").setup({
+		options = { theme = "tokyonight" },
+	})
 	require("Comment").setup()
 	require("neogit").setup()
 	require("telescope").setup()
@@ -236,15 +255,22 @@ if not_vscode then
 					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 					version = "LuaJIT",
 					-- Setup your lua path
-					path = runtime_path,
+					-- path = runtime_path,
 				},
 				diagnostics = {
 					-- Get the language server to recognize the `vim` global
 					globals = { "vim" },
 				},
 				workspace = {
+					checkThirdParty = false,
 					-- Make the server aware of Neovim runtime files
-					library = api.nvim_get_runtime_file("", true),
+					library = {
+						vim.env.VIMRUNTIME,
+						"${3rd}/luv/library",
+						"${3rd}/luassert/library",
+					},
+					-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+					-- library = api.nvim_get_runtime_file("", true),
 				},
 				-- Do not send telemetry data containing a randomized but unique identifier
 				telemetry = {
@@ -254,10 +280,14 @@ if not_vscode then
 			},
 		},
 	})
-
+	g.do_filetype_lua = true
 	g.neoformat_enabled_lua = { "stylua" }
 	g.neoformat_enabled_python = { "black" }
 	map("n", "<Leader>ff", ":Telescope find_files<CR>", { noremap = true })
 	map("n", "<Leader>pp", ":Telescope<CR>", { noremap = true })
 	map("n", "<Leader>nn", ":NnnPicker<CR>", { noremap = true })
+end
+
+if vim.g.neovide then
+	vim.o.guifont = "FiraCode Nerd Font Mono:h15" -- text below applies for VimScript
 end
