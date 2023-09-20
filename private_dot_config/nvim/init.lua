@@ -10,7 +10,6 @@ local cmd = vim.cmd
 local map = vim.keymap.set
 local api = vim.api
 local not_vscode = not vim.g.vscode
-
 -- Bootstrap LazyNvim: https://github.com/folke/lazy.nvim#-installation
 --
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -122,7 +121,7 @@ vim.g.loaded_netrwPlugin = 1
 require("lazy").setup("plugins-lazy")
 
 -- require("github-theme").setup({})
-vim.cmd.colorscheme("tokyonight")
+cmd.colorscheme("tokyonight")
 -- vim.cmd.colorscheme("github_light")
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -136,7 +135,7 @@ map("n", "<space>q", vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Mappings. See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -289,5 +288,5 @@ if not_vscode then
 end
 
 if vim.g.neovide then
-	vim.o.guifont = "FiraCode Nerd Font Mono:h15" -- text below applies for VimScript
+	o.guifont = "FiraCode Nerd Font Mono:h15" -- text below applies for VimScript
 end

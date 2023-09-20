@@ -146,4 +146,4 @@ if type -q vivid
 end
 
 # Theme from: gh repo clone projekt0n/github-theme-contrib
-# source $__fish_config_dir/themes/github_light.fish
+source $__fish_config_dir/themes/tokyonight_day.fish

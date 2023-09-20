@@ -15,7 +15,9 @@ end
 config.term = "wezterm"
 -- For example, changing the color scheme:
 -- config.color_scheme = "Github Primer Theme"
-config.color_scheme = "Google (light) (terminal.sexy)"
+-- config.color_scheme = "Google (light) (terminal.sexy)"
+config.color_scheme = "tokyonight_day"
+--
 config.font = wezterm.font("FiraCode Nerd Font Mono")
 config.font_size = 15.0
 
