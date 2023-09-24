@@ -1,0 +1,3 @@
+--glob=!*.min.map
+--glob=!*.min.js
+--glob=!*.pyc
