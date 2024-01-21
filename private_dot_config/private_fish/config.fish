@@ -24,7 +24,7 @@ set -x RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 set -x EDITOR "nvim -f"
 
 # Pure configs
-set -g async_prompt_functions _pure_prompt_git  # run this async! dope.
+set -g async_prompt_functions _pure_prompt_git # run this async! dope.
 
 if test -f "$HOME/Applications/Neovide.app/Contents/MacOS/neovide"
     # set -x VISUAL "$HOME/Applications/Neovide.app/Contents/MacOS/neovide --nofork"
@@ -41,7 +41,7 @@ alias brew="env PATH=(string replace (pyenv root)/shims '' \"\$PATH\") brew"
 # Paths
 if test -d "$HOME/bin/"
     if not contains "$HOME/bin" $PATH
-        fish_add_path "$HOME/bin/"
+        fish_add_path "$HOME/bin"
     end
 end
 
@@ -70,9 +70,9 @@ if type -q lsd
     function ll
         command lsd -lFh --icon auto $argv
     end
-		function la
-			command lsd -la $argv
-		end
+    function la
+        command lsd -la $argv
+    end
     alias l 'lsd -l -g --git'
 end
 
@@ -87,7 +87,7 @@ end
 if status is-login
     pyenv init --path | source
     # brew is already set using conf.d/brew
-    set -x NVIM_BIN /opt/homebrew/bin/nvim
+    set -x NVIM_BIN /run/current-system/sw/bin/nvim
 end
 
 if status is-interactive
@@ -110,7 +110,6 @@ if status is-interactive
 
     if type -q pyenv
         pyenv init - | source
-        pyenv virtualenv-init - | source
         if not set -q PYENV_ROOT
             set -U PYENV_ROOT $HOME/.pyenv
         end
@@ -133,6 +132,10 @@ if status is-interactive
         fish_add_path (brew --prefix ruby)/bin
     end
 
+    if type -q atuin
+        atuin init fish | source
+    end
+
     source $__fish_config_dir/aliases.fish
 
     if [ "$TERM_PROGRAM" = "iTerm.app" ]
@@ -142,8 +145,12 @@ if status is-interactive
 end
 
 if type -q vivid
-	set -x LS_COLORS "$(vivid generate catppuccin-latte)"
+    set -x LS_COLORS "$(vivid generate catppuccin-latte)"
 end
 
 # Theme from: gh repo clone projekt0n/github-theme-contrib
-source $__fish_config_dir/themes/tokyonight_day.fish
+# source $__fish_config_dir/themes/tokyonight_day.fish
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
