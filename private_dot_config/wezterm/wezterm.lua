@@ -68,6 +68,16 @@ config.keys = {
 		mods = "LEADER",
 		action = wezterm.action.ActivatePaneDirection("Right"),
 	},
+	{
+		key = "Space",
+		mods = "LEADER",
+		action = wezterm.action.ActivateTabRelative(1),
+	},
+	{
+		key = "Backspace",
+		mods = "LEADER",
+		action = wezterm.action.ActivateTabRelative(-1),
+	}
 }
 -- woop woop
 config.bypass_mouse_reporting_modifiers = "CMD"
@@ -82,6 +92,9 @@ wezterm.on("gui-startup", function(cmd)
 	local tab, pane, window = mux.spawn_window(cmd or {})
 	window:gui_window():maximize()
 end)
+
+-- Use WebGPU
+config.front_end = "WebGpu"
 
 -- and finally, return the configuration to wezterm
 return config
