@@ -10,6 +10,7 @@ return {
   "hrsh7th/cmp-cmdline",
   "hrsh7th/nvim-cmp",
   "imsnif/kdl.vim",
+  "nekowinston/wezterm-types",
   { "mtoohey31/cmp-fish", ft = "fish" },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -71,6 +72,7 @@ return {
   "lewis6991/impatient.nvim",
   "luukvbaal/nnn.nvim",
   "folke/neodev.nvim",
+	"folke/neoconf.nvim",
   {
     "phaazon/hop.nvim",
     branch = "v1", -- optional but strongly recommended

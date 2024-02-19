@@ -187,6 +187,7 @@ if vim.g.vscode then
 end
 
 if not_vscode then
+	require("neoconf").setup({})
   -- This inits plugins with default configuration
   require("nvim-tree").setup()
   require("catppuccin").setup({

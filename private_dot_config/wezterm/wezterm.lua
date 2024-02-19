@@ -1,15 +1,8 @@
--- Pull in the wezterm API
+---@type wezterm
 local wezterm = require("wezterm")
 local mux = wezterm.mux
-
--- This table will hold the configuration.
-local config = {}
-
--- In newer versions of wezterm, use the config_builder which will
--- help provide clearer error messages
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
+---@class WeztermConfig
+local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 config.term = "wezterm"
@@ -19,7 +12,8 @@ config.term = "wezterm"
 config.color_scheme = "Catppuccin Latte"
 -- config.color_scheme = "tokyonight_day"
 --
-config.font = wezterm.font("FiraCode Nerd Font Mono")
+config.font = wezterm.font({family="Fira Code"})
+config.bold_brightens_ansi_colors = false
 config.font_size = 15.0
 
 -- leader configuration
@@ -77,11 +71,13 @@ config.keys = {
 		key = "Backspace",
 		mods = "LEADER",
 		action = wezterm.action.ActivateTabRelative(-1),
-	}
+	},
+	{
+		key = "z",
+		mods = "LEADER",
+		action = wezterm.action.TogglePaneZoomState,
+	},
 }
--- woop woop
-config.bypass_mouse_reporting_modifiers = "CMD"
-
 config.quit_when_all_windows_are_closed = false
 config.window_close_confirmation = "NeverPrompt"
 config.hide_tab_bar_if_only_one_tab = true
@@ -97,4 +93,4 @@ end)
 config.front_end = "WebGpu"
 
 -- and finally, return the configuration to wezterm
-return config
+return config --[[@as wezterm]]
