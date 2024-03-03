@@ -10,7 +10,6 @@ config.term = "wezterm"
 -- config.color_scheme = "Github Primer Theme"
 -- config.color_scheme = "Google (light) (terminal.sexy)"
 config.color_scheme = "Catppuccin Latte"
--- config.color_scheme = "tokyonight_day"
 --
 config.font = wezterm.font({family="Fira Code"})
 config.bold_brightens_ansi_colors = false

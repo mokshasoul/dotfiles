@@ -57,6 +57,10 @@ if test -d "$(go env GOPATH)/bin"
     fish_add_path "$(go env GOPATH)/bin"
 end
 
+if test -d "$HOME/Library/Application Support/Coursier/bin"
+    fish_add_path "$HOME/Library/Application Support/Coursier/bin"
+end
+
 set -x FZF_DEFAULT_OPTS "--height 50% --layout=reverse --border"
 if type -q fd
     set -x FZF_DEFAULT_COMMAND "fd --type f --hidden -E 'bundles/' -E '.git/' -E '.cache/'"

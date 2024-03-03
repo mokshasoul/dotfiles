@@ -1,0 +1,85 @@
+# vim: ft=gitconfig
+[user]
+	name = Charis-Nicolas Georgiou
+	email = cng_it@posteo.net
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXF5yw1750Myuo7id6Wo0jRm6cGzmQ3Ps0GUR/hscdL
+
+[github]
+	user = mokshasoul
+
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore
+	pager = delta
+	# Make `git rebase` safer on macOS.
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
+
+[init]
+	defaultBranch = main
+
+[alias]
+	br = branch
+	ci = commit
+	co = checkout
+	df = diff
+	st = status
+	p = pull
+
+[color]
+	ui = auto
+
+[branch]
+	autosetuprebase = always
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[add.interactive]
+	useBuiltin = false
+
+[delta]
+	navigate = true
+	light = true
+	theme = Github
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	colorMoved = default
+	renames = copies
+	algorithm = histogram
+
+[diff "bin"]
+	# Use `hexdump` to diff binary files.
+	textconv = hexdump -v -C
+
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[rerere]
+	enabled = 1
+
+[rebase]
+	autosquash = true
+	autostash = true
+
+[commit]
+	gpgsign = true
+
+[protocol]
+	version = 2
+
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

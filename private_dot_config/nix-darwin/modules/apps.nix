@@ -2,73 +2,75 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    vim
-    grml-zsh-config
-		neovim
-    joshuto
-		fclones
-    atuin
-    zoxide
+    atool
+    fclones
+    ffmpegthumbnailer
+    neovim
+    ranger
+    # fishPlugins.fzf-fish
+    alejandra
     asciidoctor
-    chezmoi
+    atuin
     atuin
     bat
-    cmake
+    chezmoi
     clojure
+    cmake
+    coreutils
+    curl
+    direnv
+    dua
+    duf
+    exiftool
     fd
     fnm
-    exiftool
-    gh
-    htop
-    iperf
-    httpie
-    jq
-    yq
-    lazygit
-    leiningen
-    tmux
-    xsv
-    tree-sitter
-    tree
-    stylua
-    shellcheck
-    sd
-    ripgrep
-    pyenv
-    curl
-    duf
-    dua
-    zellij
-    coreutils
-    direnv
     fzf
-    # fishPlugins.fzf-fish
-    go
+    gh
     git-extras
     git-secrets
     glow
+    go
+    grml-zsh-config
     helix
+    htop
+    httpie
     imgcat
+    iperf
+    joshuto
+    jq
+    lazygit
+    leiningen
     lf
     lsd
     lua
-    # pkgs.luajit
     lua-language-server
     m-cli
-    nnn
     mas
     mosh
     navi
     ncdu
     neofetch
     nmap
+    nnn
     oha
     pipx
     procs
+    pyenv
+    ripgrep
+    sd
+    shellcheck
+    stylua
+    tmux
+    tree
+    tree-sitter
+    universal-ctags
+    vim
     wakeonlan
     wget
-    universal-ctags
-    alejandra
+    xsv
+    yq
+    zellij
+    zoxide
   ];
   # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
   #
