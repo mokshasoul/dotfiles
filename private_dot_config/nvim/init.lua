@@ -10,6 +10,7 @@ local cmd = vim.cmd
 local map = vim.keymap.set
 local api = vim.api
 local not_vscode = not vim.g.vscode
+vim.loader.enable()
 -- Bootstrap LazyNvim: https://github.com/folke/lazy.nvim#-installation
 --
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -187,7 +188,7 @@ if vim.g.vscode then
 end
 
 if not_vscode then
-	require("neoconf").setup({})
+  require("neoconf").setup({})
   -- This inits plugins with default configuration
   require("nvim-tree").setup()
   require("catppuccin").setup({
@@ -304,5 +305,5 @@ end
 
 if vim.g.neovide then
   o.guifont = "FiraCode Nerd Font Mono:h15" -- text below applies for VimScript
-	g.neovide_fullscreen = true
+  g.neovide_fullscreen = true
 end

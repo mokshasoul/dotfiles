@@ -6,30 +6,28 @@ set -q XDG_DATA_HOME; or set -U XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_CACHE_HOME; or set -U XDG_CACHE_HOME "$HOME/.cache"
 
 # Docker speed-ups
-set -x COMPOSE_DOCKER_CLI_BUILD 1
-set -x DOCKER_BUILDKIT 1
+set -gx COMPOSE_DOCKER_CLI_BUILD 1
+set -gx DOCKER_BUILDKIT 1
 
-set -x LANG en_IE.UTF-8
-set -x LC_ALL en_IE.UTF-8
+set -gx LANG en_IE.UTF-8
+set -gx LC_ALL en_IE.UTF-8
 
-set -x GOPATH "$HOME/.go"
-set -x BAT_THEME GitHub
+set -gx GOPATH "$HOME/.go"
+set -gx BAT_THEME "Catppuccin Latte"
 
 # nnn-Configuration
-set -x NNN_COLORS 11112
-set -x NNN_FCOLORS 0B0B04060006060009060B06
-set -x NNN_USE_EDITOR 1
+# https://github.com/catppuccin/catppuccin/discussions/1955
+set -gx NNN_COLORS "#04020301;4231"
+set -gx NNN_FCOLORS 030304020705050801060301
+set -gx NNN_USE_EDITOR 1
 
-set -x RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
-set -x EDITOR "nvim -f"
+set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
+set -gx EDITOR nvim
+set -gx VISUAL $EDITOR
+set -gx SUDO_EDITOR $EDITOR
 
 # Pure configs
 set -g async_prompt_functions _pure_prompt_git # run this async! dope.
-
-if test -f "$HOME/Applications/Neovide.app/Contents/MacOS/neovide"
-    # set -x VISUAL "$HOME/Applications/Neovide.app/Contents/MacOS/neovide --nofork"
-    set -x VISUAL $EDITOR
-end
 
 if test -e "$HOME/.1password/agent.sock"
     # on OSX run this first:
@@ -37,7 +35,6 @@ if test -e "$HOME/.1password/agent.sock"
     set -x SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
 end
 
-alias brew="env PATH=(string replace (pyenv root)/shims '' \"\$PATH\") brew"
 # Paths
 if test -d "$HOME/bin/"
     if not contains "$HOME/bin" $PATH
@@ -91,21 +88,12 @@ end
 if status is-login
     pyenv init --path | source
     # brew is already set using conf.d/brew
-    set -x NVIM_BIN /run/current-system/sw/bin/nvim
+    set -gx NVIM_BIN /run/current-system/sw/bin/nvim
 end
 
 if status is-interactive
-
-    if type -q direnv
-        direnv hook fish | source
-    end
-
     if type -q navi
         navi widget fish | source
-    end
-
-    if type -q zoxide
-        zoxide init fish | source
     end
 
     if type -q sh and type -q sed and type -q bat
@@ -122,14 +110,14 @@ if status is-interactive
 
     if type -q brew
         if test -d "$HOMEBREW_PREFIX/share/fish/completions"
-            if not contains "$HOMEBREW_PREFIX/share/fish/completions" (string split " " $fish_complete_path[1])
-                set -x --path fish_complete_path $fish_complete_path (brew --prefix)/share/fish/completions
+            if not contains "$HOMEBREW_PREFIX/share/fish/completions" (string split " " $fish_complete_path)
+                set -p fish_complete_path (brew --prefix)/share/fish/completions
             end
         end
 
         if test -d "$HOMEBREW_PREFIX/share/fish/vendor_completions.d"
-            if not contains "$HOMEBREW_PREFIX/share/fish/vendor_completions.d" (string split " " $fish_complete_path[1])
-                set -x --path fish_complete_path $fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
+            if not contains "$HOMEBREW_PREFIX/share/fish/vendor_completions.d" (string split " " $fish_complete_path)
+                set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
             end
         end
 
@@ -140,8 +128,6 @@ if status is-interactive
         atuin init fish | source
     end
 
-    source $__fish_config_dir/aliases.fish
-
     if [ "$TERM_PROGRAM" = "iTerm.app" ]
         test -e "$HOME/.iterm2_shell_integration.fish"; and source "$HOME/.iterm2_shell_integration.fish"
     end
@@ -151,6 +137,11 @@ end
 if type -q vivid
     set -x LS_COLORS "$(vivid generate catppuccin-latte)"
 end
+
+## Editor abbr
+abbr vim nvim
+abbr vi nvim
+abbr v nvim
 
 # Theme from: gh repo clone projekt0n/github-theme-contrib
 # source $__fish_config_dir/themes/tokyonight_day.fish

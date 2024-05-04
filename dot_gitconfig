@@ -1,4 +1,4 @@
-# vim: ft=gitconfig
+# vim:ft=gitconfig
 [user]
 	name = Charis-Nicolas Georgiou
 	email = cng_it@posteo.net
@@ -25,6 +25,7 @@
 	df = diff
 	st = status
 	p = pull
+  cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
 
 [color]
 	ui = auto
@@ -66,17 +67,28 @@
 	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [rerere]
-	enabled = 1
+	enabled = true
 
 [rebase]
-	autosquash = true
-	autostash = true
+	autoSquash = true
+	autoStash = true
 
 [commit]
+	verbose = true
 	gpgsign = true
 
 [protocol]
 	version = 2
+
+[credentials]
+	helper = cache
+
+[credential "https://github.com"]
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
 
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f

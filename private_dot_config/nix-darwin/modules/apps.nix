@@ -2,39 +2,47 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    atool
-    fclones
-    ffmpegthumbnailer
-    neovim
-    ranger
-    # fishPlugins.fzf-fish
+    autoconf
+    shfmt
+    gnupg
+    ipcalc
+    nix-du
+    vivid
+    #fishPlugins.fzf-fish
     alejandra
     asciidoctor
-    atuin
+    atool
     atuin
     bat
     chezmoi
     clojure
     cmake
     coreutils
+    coursier
     curl
     direnv
     dua
     duf
     exiftool
+    fclones
     fd
+    ffmpegthumbnailer
+    ffmpeg-full
     fnm
     fzf
     gh
     git-extras
     git-secrets
     glow
+    graphviz
     go
     grml-zsh-config
+    gnused
     helix
     htop
     httpie
     imgcat
+    imagemagick
     iperf
     joshuto
     jq
@@ -42,6 +50,7 @@
     leiningen
     lf
     lsd
+    libb2
     lua
     lua-language-server
     m-cli
@@ -50,15 +59,19 @@
     navi
     ncdu
     neofetch
+    neovim
     nmap
     nnn
     oha
     pipx
     procs
     pyenv
+    ranger
     ripgrep
+    rtmpdump
     sd
     shellcheck
+    streamlink
     stylua
     tmux
     tree

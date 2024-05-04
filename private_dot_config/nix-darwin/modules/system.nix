@@ -23,9 +23,9 @@
       # ......
     };
     keyboard = {
-			enableKeyMapping = true;
-			remapCapsLockToControl = true;
-		};
+      enableKeyMapping = true;
+      remapCapsLockToControl = true;
+    };
 
     # Set Git commit hash for darwin-version.
     # configurationRevision = self.rev or self.dirtyRev or null;
@@ -41,9 +41,9 @@
   # this is required if you want to use darwin's default shell - zsh
   programs.zsh = {
     enable = true;
-		enableFzfCompletion = true;
-		enableFzfHistory = true;
-		enableSyntaxHighlighting = true;
+    enableFzfCompletion = true;
+    enableFzfHistory = true;
+    enableSyntaxHighlighting = true;
   };
   programs.fish.enable = true;
 
