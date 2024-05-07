@@ -89,18 +89,6 @@ return {
       "kyazdani42/nvim-web-devicons", -- optional, for file icons
     },
   },
-  -- {
-  -- 	"ur4ltz/surround.nvim",
-  -- 	opts = {
-  -- 		mappings_style = "sandwhich",
-  -- 	},
-  -- 	event = "VeryLazy",
-  -- 	config = function()
-  -- 		require("surround").setup({
-  -- 			-- Configuration here, or leave empty to use defaults
-  -- 		})
-  -- 	end,
-  -- },
   "nvim-lua/plenary.nvim",
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {
@@ -137,10 +125,6 @@ return {
     "folke/trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
   },
-  {
-    "nvim-telescope/telescope.nvim",
-    tag = "0.1.0",
-  },
   "numToStr/Comment.nvim",
   {
     "nvim-telescope/telescope-fzf-native.nvim",
@@ -164,5 +148,19 @@ return {
         -- Configuration here, or leave empty to use defaults
       })
     end,
+  },
+  {
+    "xvzc/chezmoi.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("chezmoi").setup({
+        -- your configurations
+      })
+    end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.6",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
 }

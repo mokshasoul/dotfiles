@@ -8,7 +8,7 @@
 	user = mokshasoul
 
 [core]
-	editor = nvim
+	editor = nvim -f
 	excludesfile = ~/.gitignore
 	pager = delta
 	# Make `git rebase` safer on macOS.
@@ -25,7 +25,8 @@
 	df = diff
 	st = status
 	p = pull
-  cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
+	cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
+	browse = "!gh repo view -w"
 
 [color]
 	ui = auto
@@ -84,10 +85,8 @@
 	helper = cache
 
 [credential "https://github.com"]
-    helper = 
     helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-    helper = 
     helper = !/usr/bin/gh auth git-credential
 
 [filter "lfs"]

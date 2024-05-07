@@ -209,7 +209,8 @@ if not_vscode then
   })
   require("Comment").setup()
   require("neogit").setup()
-  require("telescope").setup()
+  local telescope = require("telescope")
+  telescope.setup({})
   require("nnn").setup()
   local cmp = require("cmp")
   cmp.setup({
@@ -301,6 +302,9 @@ if not_vscode then
   map("n", "<Leader>ff", ":Telescope find_files<CR>", { noremap = true })
   map("n", "<Leader>pp", ":Telescope<CR>", { noremap = true })
   map("n", "<Leader>e", ":NvimTreeOpen<CR>", { noremap = true })
+  -- allows managing dotfiles using chezmoi plugin + telescope
+  telescope.load_extension("chezmoi")
+  map("n", "<leader>cz", telescope.extensions.chezmoi.find_files, {})
 end
 
 if vim.g.neovide then

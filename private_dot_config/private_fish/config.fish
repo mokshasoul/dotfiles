@@ -4,6 +4,7 @@ set fish_greeting
 set -q XDG_CONFIG_HOME; or set -U XDG_CONFIG_HOME "$HOME/.config"
 set -q XDG_DATA_HOME; or set -U XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_CACHE_HOME; or set -U XDG_CACHE_HOME "$HOME/.cache"
+set -q WORKSPACE; or set -U WORKSPACE "$HOME/pws"
 
 # Docker speed-ups
 set -gx COMPOSE_DOCKER_CLI_BUILD 1
@@ -22,9 +23,14 @@ set -gx NNN_FCOLORS 030304020705050801060301
 set -gx NNN_USE_EDITOR 1
 
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
-set -gx EDITOR nvim
+set -gx EDITOR nvim -f
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
+
+# LS_COLORS
+if type -q vivid
+    set -x LS_COLORS "$(vivid generate catppuccin-latte)"
+end
 
 # Pure configs
 set -g async_prompt_functions _pure_prompt_git # run this async! dope.
@@ -58,23 +64,25 @@ if test -d "$HOME/Library/Application Support/Coursier/bin"
     fish_add_path "$HOME/Library/Application Support/Coursier/bin"
 end
 
-set -x FZF_DEFAULT_OPTS "--height 50% --layout=reverse --border"
+set -gx FZF_DEFAULT_OPTS "--height 50% --layout=reverse --border"
 if type -q fd
-    set -x FZF_DEFAULT_COMMAND "fd --type f --hidden -E 'bundles/' -E '.git/' -E '.cache/'"
-    set -x FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
+    set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden -E 'bundles/' -E '.git/' -E '.cache/'"
+    set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 end
 
 if type -q lsd
-    function ls
+    function ls --wraps lsd
         command lsd $argv
     end
-    function ll
+    function ll --wraps lsd
         command lsd -lFh --icon auto $argv
     end
-    function la
+    function la --wraps lsd
         command lsd -la $argv
     end
-    alias l 'lsd -l -g --git'
+    function l --wraps lsd
+        command lsd -l -g --git $argv
+    end
 end
 
 
@@ -96,7 +104,7 @@ if status is-interactive
         navi widget fish | source
     end
 
-    if type -q sh and type -q sed and type -q bat
+    if type -q sh; and type -q sed; and type -q bat
         set -x MANPAGER "sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
     end
 
@@ -134,9 +142,6 @@ if status is-interactive
 
 end
 
-if type -q vivid
-    set -x LS_COLORS "$(vivid generate catppuccin-latte)"
-end
 
 ## Editor abbr
 abbr vim nvim

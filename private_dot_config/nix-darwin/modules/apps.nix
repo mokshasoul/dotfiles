@@ -8,7 +8,6 @@
     ipcalc
     nix-du
     vivid
-    #fishPlugins.fzf-fish
     alejandra
     asciidoctor
     atool
