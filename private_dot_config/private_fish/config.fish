@@ -14,7 +14,6 @@ set -gx LANG en_IE.UTF-8
 set -gx LC_ALL en_IE.UTF-8
 
 set -gx GOPATH "$HOME/.go"
-set -gx BAT_THEME "Catppuccin Latte"
 
 # nnn-Configuration
 # https://github.com/catppuccin/catppuccin/discussions/1955
@@ -64,16 +63,19 @@ if test -d "$HOME/Library/Application Support/Coursier/bin"
     fish_add_path "$HOME/Library/Application Support/Coursier/bin"
 end
 
-set -gx FZF_DEFAULT_OPTS "--height 50% --layout=reverse --border"
+set -gx FZF_DEFAULT_OPTS "\
+	--height 50% --layout=reverse --border\
+	--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+	--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+	--color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
+	"
+
 if type -q fd
     set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden -E 'bundles/' -E '.git/' -E '.cache/'"
     set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 end
 
 if type -q lsd
-    function ls --wraps lsd
-        command lsd $argv
-    end
     function ll --wraps lsd
         command lsd -lFh --icon auto $argv
     end
