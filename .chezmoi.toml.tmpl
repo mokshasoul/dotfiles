@@ -1,0 +1,16 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+
+[data]
+	email = {{ $email | quote }}
+
+[diff]
+	pager = "delta"
+
+[merge]
+	command = "nvim"
+	args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+
+[[textconv]]
+	pattern = "**/*.plist"
+	command = "plutil"
+	args = ["-convert", "xml1", "-o", "-", "-"]
