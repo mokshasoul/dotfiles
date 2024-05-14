@@ -4,6 +4,7 @@ set fish_greeting
 set -q XDG_CONFIG_HOME; or set -U XDG_CONFIG_HOME "$HOME/.config"
 set -q XDG_DATA_HOME; or set -U XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_CACHE_HOME; or set -U XDG_CACHE_HOME "$HOME/.cache"
+set -q XDG_DATA_DIRS; or set --path -U XDG_DATA_DIRS "/usr/local/share/:/usr/share/"
 set -q WORKSPACE; or set -U WORKSPACE "$HOME/pws"
 
 # Docker speed-ups
@@ -76,6 +77,9 @@ if type -q fd
 end
 
 if type -q lsd
+    function ls --wraps lsd
+        command lsd $argv
+    end
     function ll --wraps lsd
         command lsd -lFh --icon auto $argv
     end
@@ -89,7 +93,7 @@ end
 
 
 if type -q dog
-    function dig
+    function dig --wraps dog
         command dog $argv
     end
 end

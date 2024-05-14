@@ -13,6 +13,7 @@
     atool
     atuin
     bat
+    bottom
     chezmoi
     clojure
     cmake
@@ -21,6 +22,7 @@
     curl
     direnv
     dua
+    dogdns
     duf
     exiftool
     fclones
@@ -100,7 +102,6 @@
     taps = [
       "homebrew/cask-fonts"
       "homebrew/services"
-      "homebrew/cask-versions"
     ];
 
     # `brew install`
