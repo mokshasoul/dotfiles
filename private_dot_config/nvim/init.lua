@@ -119,12 +119,20 @@ vim.g.loaded_netrwPlugin = 1
 -- SETUP
 
 -- Plugins
-require("lazy").setup("plugins")
+require("lazy").setup({
+  {
+    import = "plugins.user.plugins_notvscode",
+    cond = (function()
+      return not vim.g.vscode
+    end),
+  },
+  { import = "plugins.user.plugins_always", cond = true },
+  { import = "plugins.user.plugins_vscode", cond = (function()
+    return vim.g.vscode
+  end) }
+}
+)
 
--- require("github-theme").setup({})
-cmd.colorscheme("catppuccin")
--- cmd.colorscheme("tokyonight")
--- vim.cmd.colorscheme("github_light")
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
