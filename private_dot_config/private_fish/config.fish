@@ -100,7 +100,6 @@ end
 
 
 if status is-login
-    pyenv init --path | source
     # brew is already set using conf.d/brew
     set -gx NVIM_BIN /run/current-system/sw/bin/nvim
 end
@@ -119,7 +118,6 @@ if status is-interactive
         if not set -q PYENV_ROOT
             set -U PYENV_ROOT $HOME/.pyenv
         end
-        set -x PIPX_DEFAULT_PYTHON "$HOME/.pyenv/shims/python3"
     end
 
     if type -q brew
@@ -160,3 +158,8 @@ abbr v nvim
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# Setting PATH for Python 3.12
+# The original version is saved in /Users/moksha/.config/fish/config.fish.pysave
+fish_add_path --path  --prepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+set -x PIPX_DEFAULT_PYTHON "python3"

@@ -29,5 +29,14 @@ wezterm.on("gui-startup", function(cmd)
 	window:gui_window():maximize()
 end)
 
+-- making window titles more distinct
+wezterm.on('format-window-title', function()
+  local title = '[' .. wezterm.mux.get_active_workspace() .. ']'
+  title = title .. ' ' .. wezterm.mux.get_domain():name()
+  title = title .. ' - $W'
+  -- some logic here
+  return title
+end)
+
 -- and finally, return the configuration to wezterm
 return config --[[@as Wezterm]]

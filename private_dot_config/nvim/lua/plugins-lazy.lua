@@ -11,6 +11,10 @@ return {
   "hrsh7th/nvim-cmp",
   "imsnif/kdl.vim",
   "justinsgithub/wezterm-types",
+  {
+    "willothy/wezterm.nvim",
+    config = true,
+  },
   { "mtoohey31/cmp-fish", ft = "fish" },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -26,7 +30,6 @@ return {
         ensure_installed = {
           "bash",
           "c",
-          "cpp",
           "css",
           "diff",
           "dockerfile",
@@ -48,11 +51,8 @@ return {
           "markdown",
           "markdown_inline",
           "rust",
-          "scss",
           "sql",
           "toml",
-          "tsx",
-          "typescript",
           "vim",
           "vimdoc",
           "yaml",
@@ -71,7 +71,7 @@ return {
   },
   "luukvbaal/nnn.nvim",
   "folke/neodev.nvim",
-  "folke/neoconf.nvim",
+  { "folke/neoconf.nvim", cmd = "Neoconf" },
   {
     "phaazon/hop.nvim",
     branch = "v1", -- optional but strongly recommended
@@ -90,7 +90,16 @@ return {
     },
   },
   "nvim-lua/plenary.nvim",
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "catppuccin/nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    name = "catppuccin",
+    priority = 1000,
+    config = function()
+      -- load the colorscheme here
+      vim.cmd([[colorscheme catppuccin]])
+    end,
+  },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -132,7 +141,7 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "kyazdani42/nvim-web-devicons", opt = true },
+    dependencies = { "kyazdani42/nvim-web-devicons" },
   },
   {
     "kylechui/nvim-surround",

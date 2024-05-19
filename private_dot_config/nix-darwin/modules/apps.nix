@@ -61,12 +61,12 @@
     ncdu
     neofetch
     neovim
+    taplo
     nmap
     nnn
     oha
     pipx
     procs
-    pyenv
     ranger
     ripgrep
     rtmpdump
