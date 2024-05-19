@@ -119,7 +119,7 @@ vim.g.loaded_netrwPlugin = 1
 -- SETUP
 
 -- Plugins
-require("lazy").setup("plugins-lazy")
+require("lazy").setup("plugins")
 
 -- require("github-theme").setup({})
 cmd.colorscheme("catppuccin")
