@@ -156,10 +156,10 @@ abbr v nvim
 # source $__fish_config_dir/themes/tokyonight_day.fish
 
 # bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
+set -gx BUN_INSTALL "$HOME/.bun"
+fish_add_path --path $BUN_INSTALL/bin
 
 # Setting PATH for Python 3.12
 # The original version is saved in /Users/moksha/.config/fish/config.fish.pysave
 fish_add_path --path  --prepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
-set -x PIPX_DEFAULT_PYTHON "python3"
+set -gx PIPX_DEFAULT_PYTHON "python3"

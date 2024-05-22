@@ -17,9 +17,9 @@ config.color_scheme = "Catppuccin Latte"
 --
 config.font = wezterm.font({ family = "Fira Code" })
 config.bold_brightens_ansi_colors = false
-config.font_size = 15.0
+config.font_size = 16.0
 
-config.quit_when_all_windows_are_closed = false
+config.quit_when_all_windows_are_closed = true
 config.window_close_confirmation = "NeverPrompt"
 config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
