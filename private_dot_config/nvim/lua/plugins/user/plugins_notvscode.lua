@@ -1,18 +1,18 @@
 return {
 
   { "neovim/nvim-lspconfig" },
+  { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
-  { "hrsh7th/nvim-cmp" },
+  { "mtoohey31/cmp-fish", ft = "fish" },
   { "imsnif/kdl.vim" },
   { "justinsgithub/wezterm-types" },
   {
     "willothy/wezterm.nvim",
     config = true,
   },
-  { "mtoohey31/cmp-fish", ft = "fish" },
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
@@ -117,21 +117,6 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons" },
-  },
-  {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        keymaps = {
-          normal = "sa",
-          delete = "sd",
-          change = "sr",
-        },
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
   },
   {
     "xvzc/chezmoi.nvim",
