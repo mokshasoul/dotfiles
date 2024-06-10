@@ -135,7 +135,7 @@ require("lazy").setup({
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
-map("n", "<space>e", vim.diagnostic.open_float, opts)
+map("n", ",e", vim.diagnostic.open_float, opts)
 map("n", "[d", vim.diagnostic.goto_prev, opts)
 map("n", "]d", vim.diagnostic.goto_next, opts)
 map("n", "<space>q", vim.diagnostic.setloclist, opts)
@@ -144,7 +144,7 @@ map("n", "<space>q", vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  api.nvim_set_option_value("omnifunc","v:lua.vim.lsp.omnifunc", {buf=bufnr})
+  api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
   -- Mappings. See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -197,7 +197,7 @@ end
 if not_vscode then
   require("neoconf").setup({})
   -- This inits plugins with default configuration
-  require("nvim-tree").setup()
+  require("nvim-tree").setup({})
   require("catppuccin").setup({
     integrations = {
       cmp = true,
@@ -215,9 +215,6 @@ if not_vscode then
     },
   })
   require("Comment").setup()
-  require("neogit").setup({})
-  local telescope = require("telescope")
-  telescope.setup({})
   require("nnn").setup()
   local cmp = require("cmp")
   cmp.setup({
@@ -309,13 +306,34 @@ if not_vscode then
   map("n", "<Leader>ff", ":Telescope find_files<CR>", { noremap = true })
   map("n", "<Leader>pp", ":Telescope<CR>", { noremap = true })
   map("n", "<Leader>e", ":NvimTreeOpen<CR>", { noremap = true })
-	--
+  --
   -- allows managing dotfiles using chezmoi plugin + telescope
+  local telescope = require("telescope")
   telescope.load_extension("chezmoi")
   map("n", "<leader>cz", telescope.extensions.chezmoi.find_files, {})
+
+  require("noice").setup({
+    lsp = {
+      -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+      override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+        ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+      },
+    },
+    -- you can enable a preset for easier configuration
+    presets = {
+      bottom_search = true, -- use a classic bottom cmdline for search
+      command_palette = true, -- position the cmdline and popupmenu together
+      long_message_to_split = true, -- long messages will be sent to a split
+      inc_rename = false, -- enables an input dialog for inc-rename.nvim
+      lsp_doc_border = false, -- add a border to hover docs and signature help
+    },
+  })
 end
 
 if vim.g.neovide then
-  o.guifont = "FiraCode Nerd Font Mono:h15" -- text below applies for VimScript
-  g.neovide_fullscreen = true
+  o.guifont = "Fira Code,Symbols Nerd Font Mono:h34" -- text below applies for VimScript
+  g.neovide_scale_factor = 0.3
+  g.neovide_fullscreen = false
 end
