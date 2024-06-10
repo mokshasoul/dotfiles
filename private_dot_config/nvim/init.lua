@@ -34,9 +34,11 @@ opt.updatecount = 0 -- don't write swap files after some number of updates
 opt.history = 1000 -- store the last 1000 commands entered
 opt.rtp:append("/opt/homebrew/opt/fzf")
 
+opt.termguicolors = true
 opt.background = "light"
-opt.inccommand = "nosplit" -- show the results of substition as they're happening
--- but don't open a split
+-- show the results of substition as they're happening
+---- but don't open a split
+opt.inccommand = "nosplit"
 
 opt.backspace = { "indent", "eol", "start" } -- make backspace behave in a sane manner
 opt.clipboard:append("unnamedplus") -- use the system clipboard
@@ -63,7 +65,6 @@ opt.timeoutlen = 500
 
 -- Appearance
 ---------------------------------------------------------
-opt.termguicolors = true
 opt.number = true -- show line numbers
 opt.wrap = true -- turn on line wrapping
 opt.wrapmargin = 8 -- wrap lines when coming within n characters from side
@@ -78,8 +79,6 @@ table.insert(opt.diffopt, "hiddenoff")
 opt.laststatus = 2 -- show the status line all the time
 opt.scrolloff = 7 -- set 7 lines to the cursors - when moving vertical
 opt.wildmenu = true -- enhanced command line completion
-opt.hidden = true -- current buffer can be put into background
-opt.showcmd = true -- show incomplete commands
 opt.showmode = true -- don't show which mode disabled for PowerLine
 opt.wildmode = { "list", "longest" } -- complete files like a shell
 opt.shell = env.SHELL
@@ -96,10 +95,8 @@ opt.tabstop = 2 -- the visible width of tabs
 opt.softtabstop = 2 -- edit as if the tabs are 4 characters wide
 opt.shiftwidth = 2 -- number of spaces to use for indent and unindent
 opt.shiftround = true -- round indent to a multiple of 'shiftwidth'
--- HOWTO: set non native themes
--- cmd [[colorscheme NeoSolarized]]
--- best light theme IMO
 
+--
 -- wildignore
 --
 opt.wildignore:append({ ".git", ".hg", ".svn", "node_modules" })
@@ -116,22 +113,24 @@ map("n", "<Leader>w", ":write<CR>", { noremap = true })
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- SETUP
-
+----------
 -- Plugins
+----------
 require("lazy").setup({
   {
-    import = "plugins.user.plugins_notvscode",
-    cond = (function()
+    import = "plugins.plugins_notvscode",
+    cond = function()
       return not vim.g.vscode
-    end),
+    end,
   },
-  { import = "plugins.user.plugins_always", cond = true },
-  { import = "plugins.user.plugins_vscode", cond = (function()
-    return vim.g.vscode
-  end) }
-}
-)
+  { import = "plugins.plugins_always", cond = true },
+  {
+    import = "plugins.plugins_vscode",
+    cond = function()
+      return vim.g.vscode
+    end,
+  },
+})
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -216,7 +215,7 @@ if not_vscode then
     },
   })
   require("Comment").setup()
-  require("neogit").setup()
+  require("neogit").setup({})
   local telescope = require("telescope")
   telescope.setup({})
   require("nnn").setup()
