@@ -144,7 +144,7 @@ map("n", "<space>q", vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-  api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  api.nvim_set_option_value("omnifunc","v:lua.vim.lsp.omnifunc", {buf=bufnr})
 
   -- Mappings. See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -309,6 +309,7 @@ if not_vscode then
   map("n", "<Leader>ff", ":Telescope find_files<CR>", { noremap = true })
   map("n", "<Leader>pp", ":Telescope<CR>", { noremap = true })
   map("n", "<Leader>e", ":NvimTreeOpen<CR>", { noremap = true })
+	--
   -- allows managing dotfiles using chezmoi plugin + telescope
   telescope.load_extension("chezmoi")
   map("n", "<leader>cz", telescope.extensions.chezmoi.find_files, {})
