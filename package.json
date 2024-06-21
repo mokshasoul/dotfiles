@@ -1,0 +1,11 @@
+{
+  "name": "moksha-dotfiles",
+  "devDependencies": {
+    "cz-git": "^1.9.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  }
+}
