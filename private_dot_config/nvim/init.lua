@@ -170,22 +170,6 @@ table.insert(runtime_path, "?.lua")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
--- place this in one of your configuration file(s)
-local hop = require("hop")
-local directions = require("hop.hint").HintDirection
-vim.keymap.set("", "f", function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-end, { remap = true })
-vim.keymap.set("", "F", function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-end, { remap = true })
-vim.keymap.set("", "t", function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-end, { remap = true })
-vim.keymap.set("", "T", function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-end, { remap = true })
-
 if vim.g.vscode then
   map("x", "gc", "<Plug>VSCodeCommentary")
   map("n", "gc", "<Plug>VSCodeCommentary")
@@ -198,17 +182,6 @@ if not_vscode then
   require("neoconf").setup({})
   -- This inits plugins with default configuration
   require("nvim-tree").setup({})
-  require("catppuccin").setup({
-    integrations = {
-      cmp = true,
-      gitsigns = true,
-      nvimtree = true,
-      treesitter = true,
-      notify = false,
-      mini = false,
-      neogit = true,
-    },
-  })
   require("lualine").setup({
     options = {
       theme = "catppuccin",
