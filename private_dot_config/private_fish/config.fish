@@ -18,14 +18,26 @@ set -gx GOPATH "$HOME/.go"
 
 # nnn-Configuration
 # https://github.com/catppuccin/catppuccin/discussions/1955
+set -gx NNN_OPTS Ae
 set -gx NNN_COLORS "#04020301;4231"
 set -gx NNN_FCOLORS 030304020705050801060301
 set -gx NNN_USE_EDITOR 1
 
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
-set -gx EDITOR nvim -f
+set -gx EDITOR (which nvim) -f
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
+
+if test -z "$SSH_CONNECTION"
+    # Native gnome
+    # set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
+    # 1p
+		if test -e "$HOME/.1password/agent.sock"
+				# on OSX run this first:
+				# mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
+				set -x SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
+		end
+end
 
 # LS_COLORS
 if type -q vivid
@@ -90,7 +102,6 @@ if type -q lsd
         command lsd -l -g --git $argv
     end
 end
-
 
 if type -q dog
     function dig --wraps dog
@@ -157,7 +168,7 @@ abbr v nvim
 
 # bun
 set -gx BUN_INSTALL "$HOME/.bun"
-fish_add_path --path $BUN_INSTALL/bin
+fish_add_path --path --prepend $BUN_INSTALL/bin
 
 # Setting PATH for Python 3.12
 # The original version is saved in /Users/moksha/.config/fish/config.fish.pysave
