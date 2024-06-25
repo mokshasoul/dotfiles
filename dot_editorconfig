@@ -1,0 +1,53 @@
+# vi: ft=editorconfig
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+
+[*.{sh,bash,zsh}]
+indent_style = space
+indent_size = 2
+
+
+# shfmt options
+[[shell]]
+indent_style = space
+indent_size = 2
+binary_next_line = true
+switch_case_indent = true
+
+
+[*.ps1]
+indent_style = space
+indent_size = 2
+
+
+[{.vimrc,*.vim}]
+indent_style = space
+indent_size = 2
+
+
+[{*.lua,.luacheckrc}]
+indent_style = space
+indent_size = 2
+
+[*.py]
+indent_style = space
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+[*.{json,yml}]
+indent_size = 2
