@@ -107,11 +107,9 @@ opt.wildignore:append({ "*.aux", "*.out", "*.toc" })
 map("n", "<Space>", "<NOP>", { noremap = true })
 g.mapleader = " "
 g.maplocalleader = ","
-map("n", "<Leader>w", ":write<CR>", { noremap = true })
 
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+map("n", "<C-s>", "<cmd>w<cr><esc>", { noremap = true })
+
 
 ----------
 -- Plugins
@@ -181,12 +179,6 @@ end
 if not_vscode then
   require("neoconf").setup({})
   -- This inits plugins with default configuration
-  require("nvim-tree").setup({})
-  require("lualine").setup({
-    options = {
-      theme = "catppuccin",
-    },
-  })
   require("Comment").setup()
   require("nnn").setup()
   local cmp = require("cmp")
@@ -306,7 +298,7 @@ if not_vscode then
 end
 
 if vim.g.neovide then
-  o.guifont = "Fira Code,Symbols Nerd Font Mono:h34" -- text below applies for VimScript
-  g.neovide_scale_factor = 0.3
+  o.guifont = "Fira_Code:h34" -- text below applies for VimScript
+  g.neovide_scale_factor = 0.4
   g.neovide_fullscreen = false
 end

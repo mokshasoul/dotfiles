@@ -9,7 +9,9 @@ return {
     config = function()
       require("nvim-treesitter.configs").setup({
         highlight = {
-          enable = function() return not vim.g.vscode end,
+          enable = function()
+            return not vim.g.vscode
+          end,
         },
         -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
         ensure_installed = {
@@ -84,19 +86,19 @@ return {
     end,
   },
   {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        keymaps = {
-          normal = "sa",
-          delete = "sd",
-          change = "sr",
-        },
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
+    "echasnovski/mini.surround",
+    recommended = true,
+    opts = {
+      mappings = {
+        add = "gsa", -- Add surrounding in Normal and Visual modes
+        delete = "gsd", -- Delete surrounding
+        find = "gsf", -- Find surrounding (to the right)
+        find_left = "gsF", -- Find surrounding (to the left)
+        highlight = "gsh", -- Highlight surrounding
+        replace = "gsr", -- Replace surrounding
+        update_n_lines = "gsn", -- Update `n_lines`
+      },
+    },
   },
   -- makes some plugins dot-repeatable like leap
   { "tpope/vim-repeat", event = "VeryLazy" },
