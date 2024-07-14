@@ -1,0 +1,25 @@
+#
+# Executes commands at login pre-zshrc.
+#
+
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+if [[ -z "$LANG" ]]; then
+	export LANG='en_IE.UTF-8'
+fi
+
+{{ if stat "/opt/homebrew/bin/brew" -}}
+fpath+=("{{ output "/opt/homebrew/bin/brew" "--prefix" | trim }}/share/zsh/site-functions")
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export BROWSER='open'
+{{ end -}}
+
+#
+# Paths
+#
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
+
