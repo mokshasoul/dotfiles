@@ -3,6 +3,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     autoconf
+		rsync
     shfmt
     gnupg
     ipcalc
@@ -82,6 +83,7 @@
     wakeonlan
     wget
     xsv
+		yazi
     yq
     zellij
     zoxide
