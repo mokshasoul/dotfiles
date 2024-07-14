@@ -108,7 +108,7 @@ map("n", "<Space>", "<NOP>", { noremap = true })
 g.mapleader = " "
 g.maplocalleader = ","
 
-map("n", "<C-s>", "<cmd>w<cr><esc>", { noremap = true })
+map("n", "<C-S>", ":w<CR><ESC>")
 
 
 ----------
@@ -295,6 +295,14 @@ if not_vscode then
       lsp_doc_border = false, -- add a border to hover docs and signature help
     },
   })
+
+  local util = require('util')
+
+  util.wezterm()
+end
+
+if vim.g.vscode then
+  vim.g.clipboard = vim.g.vscode_clipboard
 end
 
 if vim.g.neovide then

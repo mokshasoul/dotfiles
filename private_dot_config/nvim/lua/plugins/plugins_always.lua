@@ -13,6 +13,7 @@ return {
             return not vim.g.vscode
           end,
         },
+        indent = { enable = true },
         -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
         ensure_installed = {
           "bash",
@@ -42,6 +43,8 @@ return {
           "markdown_inline",
           "printf",
           "nix",
+          "python",
+          "query",
           "regex",
           "rust",
           "sql",
