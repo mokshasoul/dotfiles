@@ -32,11 +32,11 @@ if test -z "$SSH_CONNECTION"
     # Native gnome
     # set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
     # 1p
-		if test -e "$HOME/.1password/agent.sock"
-				# on OSX run this first:
-				# mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
-				set -x SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
-		end
+    if test -e "$HOME/.1password/agent.sock"
+        # on OSX run this first:
+        # mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
+        set -x SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
+    end
 end
 
 # LS_COLORS
@@ -109,6 +109,11 @@ if type -q dog
     end
 end
 
+if type -q gem
+    set -gx GEM_HOME (gem env user_gemhome)
+    fish_add_path "$GEM_HOME/bin"
+end
+
 
 if status is-login
     # brew is already set using conf.d/brew
@@ -172,5 +177,5 @@ fish_add_path --path --prepend $BUN_INSTALL/bin
 
 # Setting PATH for Python 3.12
 # The original version is saved in /Users/moksha/.config/fish/config.fish.pysave
-fish_add_path --path  --prepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
-set -gx PIPX_DEFAULT_PYTHON "python3"
+fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+set -gx PIPX_DEFAULT_PYTHON python3

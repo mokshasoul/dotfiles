@@ -1,5 +1,4 @@
----@type Wezterm
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 

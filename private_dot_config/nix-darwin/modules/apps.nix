@@ -33,6 +33,7 @@
     fnm
     fzf
     gh
+    git
     git-extras
     git-secrets
     glow
@@ -71,6 +72,7 @@
     ranger
     ripgrep
     rtmpdump
+    ruby
     sd
     shellcheck
     streamlink
