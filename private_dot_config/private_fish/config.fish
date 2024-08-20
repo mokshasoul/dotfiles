@@ -77,14 +77,15 @@ if test -d "$HOME/Library/Application Support/Coursier/bin"
 end
 
 set -gx FZF_DEFAULT_OPTS "\
-	--height 50% --layout=reverse --border\
-	--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
-	--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
-	--color=marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
-	"
+--height 50% --layout=reverse --border \
+--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
+--color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
+--color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
+--color=selected-bg:#bcc0cc \
+--multi"
 
 if type -q fd
-    set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden -E 'bundles/' -E '.git/' -E '.cache/'"
+    set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/'"
     set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 end
 
@@ -179,3 +180,7 @@ fish_add_path --path --prepend $BUN_INSTALL/bin
 # The original version is saved in /Users/moksha/.config/fish/config.fish.pysave
 fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
 set -gx PIPX_DEFAULT_PYTHON python3
+
+# >>> JVM installed by coursier >>>
+set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.24%252B8/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.24_8.tar.gz/jdk-11.0.24+8/Contents/Home"
+# <<< JVM installed by coursier <<<
