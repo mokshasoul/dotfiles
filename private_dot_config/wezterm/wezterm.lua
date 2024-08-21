@@ -41,11 +41,28 @@ wezterm.on("format-window-title", function()
   return title
 end)
 
+local appearance = h.get_appearance
+
 if h.is_dark then
   config.color_scheme = theme
   config.set_environment_variables = {
     THEME_FLAVOUR = "mocha",
   }
+else
+  config.color_scheme = "Catppuccin Latte"
+  config.window_background_opacity = 1
+  config.set_environment_variables = {
+    THEME_FLAVOUR = "latte",
+  }
+end
+
+if wezterm.GLOBAL.appearance ~= appearance then
+  wezterm.GLOBAL.appearance = appearance
+  wezterm.background_child_process({
+    os.getenv("SHELL"), -- /usr/local/bin/fish
+    "-c",
+    "set --universal OS_APPEARANCE " .. appearance,
+  })
 end
 
 -- and finally, return the configuration to wezterm
