@@ -1,6 +1,10 @@
+local b = require("utils.background")
+local h = require("utils.helpers")
 local wezterm = require("wezterm") --[[@as Wezterm]]
 local config = wezterm.config_builder()
 local mux = wezterm.mux
+
+local theme = b.get_default_theme()
 
 wezterm.log_info("reloading")
 
@@ -24,18 +28,25 @@ config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 
 wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
 end)
 
 -- making window titles more distinct
-wezterm.on('format-window-title', function()
-  local title = '[' .. wezterm.mux.get_active_workspace() .. ']'
-  title = title .. ' ' .. wezterm.mux.get_domain():name()
-  title = title .. ' - $W'
+wezterm.on("format-window-title", function()
+  local title = "[" .. wezterm.mux.get_active_workspace() .. "]"
+  title = title .. " " .. wezterm.mux.get_domain():name()
+  title = title .. " - $W"
   -- some logic here
   return title
 end)
+
+if h.is_dark then
+  config.color_scheme = theme
+  config.set_environment_variables = {
+    THEME_FLAVOUR = "mocha",
+  }
+end
 
 -- and finally, return the configuration to wezterm
 return config --[[@as Wezterm]]
