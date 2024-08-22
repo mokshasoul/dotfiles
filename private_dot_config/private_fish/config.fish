@@ -164,9 +164,6 @@ abbr vim nvim
 abbr vi nvim
 abbr v nvim
 
-# Theme from: gh repo clone projekt0n/github-theme-contrib
-# source $__fish_config_dir/themes/tokyonight_day.fish
-
 # bun
 set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --path --prepend $BUN_INSTALL/bin
