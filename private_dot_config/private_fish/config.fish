@@ -39,11 +39,6 @@ if test -z "$SSH_CONNECTION"
     end
 end
 
-# LS_COLORS
-if type -q vivid
-    set -x LS_COLORS "$(vivid generate catppuccin-latte)"
-end
-
 # Pure configs
 set -g async_prompt_functions _pure_prompt_git # run this async! dope.
 
