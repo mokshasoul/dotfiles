@@ -1,6 +1,6 @@
 node_modules
 package.json
 bun.lockb
-{{ if ne .chezmoi.os "linux" }}
+{{ if ne .chezmoi.os "darwin" }}
 .config/nix-darwin/**
 {{ end }}
