@@ -1,9 +1,9 @@
 function update_theme --on-variable OS_APPEARANCE
-    set -gx ls_theme catppuccin-latte
+    set -f ls_theme catppuccin-latte
     fish_config theme choose "Catppuccin Latte"
     if test "$OS_APPEARANCE" = Dark
-        set -gx ls_theme catppuccin-mocha
-        fish_config theme choose "Catppuccin Mocha"
+        set -f ls_theme catppuccin-frappe
+        fish_config theme choose "Catppuccin Frappe"
     end
 
     # LS_COLORS
