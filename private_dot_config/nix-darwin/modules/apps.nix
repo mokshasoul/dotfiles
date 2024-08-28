@@ -14,6 +14,7 @@
     atool
     atuin
     bat
+    bun
     bottom
     chezmoi
     clojure
@@ -22,6 +23,7 @@
     coursier
     curl
     direnv
+    delta
     dua
     dogdns
     duf
@@ -31,6 +33,7 @@
     ffmpegthumbnailer
     ffmpeg-full
     fnm
+    tenv
     fzf
     gh
     git
@@ -56,6 +59,7 @@
     libb2
     lua
     lua-language-server
+    llvm
     m-cli
     mas
     mosh
@@ -68,10 +72,12 @@
     nnn
     oha
     pipx
+    pyenv
     procs
     ranger
     ripgrep
     rtmpdump
+    rbenv
     ruby
     sd
     shellcheck
@@ -104,7 +110,20 @@
     };
 
     taps = [
-      "homebrew/cask-fonts"
+"ankitpokhrel/jira-cli"
+"borkdude/brew"
+"clojure-lsp/brew"
+"clojure/tools"
+"confluentinc/tap"
+"coursier/formulas"
+"ellie/atuin"
+"homebrew/bundle"
+"jesseduffield/lazygit"
+"jondot/tap"
+"kudulab/dojo-osx"
+"neovim/neovim"
+"railwaycat/emacsmacport"
+"wez/wezterm"
       "homebrew/services"
     ];
 
