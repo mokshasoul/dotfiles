@@ -1,4 +1,8 @@
-{pkgs, ...}:
+{
+  config,
+  pkgs,
+  ...
+}:
 ###################################################################################
 #
 #  macOS's System configuration
@@ -36,6 +40,28 @@
   };
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = false;
+  #
+  # Shells -----------------------------------------------------------------------------------------
+
+  # Add shells installed by nix to /etc/shells file
+  environment.shells = with pkgs; [
+    bashInteractive
+    fish
+    zsh
+  ];
+  programs.fish.enable = true;
+  programs.fish.useBabelfish = true;
+  programs.fish.babelfishPackage = pkgs.babelfish;
+  # Needed to address bug where $PATH is not properly set for fish:
+  # https://github.com/LnL7/nix-darwin/issues/122
+  programs.fish.shellInit = ''
+    for p in (string split : ${config.environment.systemPath})
+      if not contains $p $fish_user_paths
+        set -g fish_user_paths $fish_user_paths $p
+      end
+    end
+  '';
+  environment.variables.SHELL = "${pkgs.fish}/bin/fish";
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   # this is required if you want to use darwin's default shell - zsh
@@ -45,8 +71,4 @@
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
   };
-  programs.fish.enable = true;
-	programs.fish.useBabelfish = true;
-
-  environment.shells = [pkgs.bashInteractive pkgs.zsh pkgs.fish];
 }

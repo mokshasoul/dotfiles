@@ -3,7 +3,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     autoconf
-		rsync
+    rsync
     shfmt
     gnupg
     ipcalc
@@ -74,7 +74,6 @@
     pipx
     pyenv
     procs
-    ranger
     ripgrep
     rtmpdump
     rbenv
@@ -91,52 +90,10 @@
     wakeonlan
     wget
     xsv
-		yazi
+    xz
+    yazi
     yq
     zellij
     zoxide
   ];
-  # TODO To make this work, homebrew need to be installed manually, see https://brew.sh
-  #
-  # The apps installed by homebrew are not managed by nix, and not reproducible!
-  # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
-  homebrew = {
-    enable = true;
-
-    onActivation = {
-      autoUpdate = false;
-      # 'zap': uninstalls all formulae(and related files) not listed here.
-      # cleanup = "zap";
-    };
-
-    taps = [
-"ankitpokhrel/jira-cli"
-"borkdude/brew"
-"clojure-lsp/brew"
-"clojure/tools"
-"confluentinc/tap"
-"coursier/formulas"
-"ellie/atuin"
-"homebrew/bundle"
-"jesseduffield/lazygit"
-"jondot/tap"
-"kudulab/dojo-osx"
-"neovim/neovim"
-"railwaycat/emacsmacport"
-"wez/wezterm"
-      "homebrew/services"
-    ];
-
-    # `brew install`
-    # TODO Feel free to add your favorite apps here.
-    brews = [
-      # "aria2"  # download tool
-    ];
-
-    # `brew install --cask`
-    # TODO Feel free to add your favorite apps here.
-    casks = [
-      # "google-chrome"
-    ];
-  };
 }
