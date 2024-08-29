@@ -11,8 +11,8 @@
     # Env system-management
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    darwin.url = "github:LnL7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
     _1password-shell-plugins.inputs.nixpkgs.follows = "nixpkgs-unstable";
     _1password-shell-plugins.inputs.flake-utils.follows = "flake-utils";
@@ -31,14 +31,14 @@
     prefmanager.inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = inputs @ {
+  outputs = {
     self,
-    nix-darwin,
+    darwin,
     home-manager,
     flake-utils,
     nixpkgs,
     ...
-  }: let
+  } @ inputs: let
     inherit (self.lib) attrValues makeOverridable mkForce optionalAttrs singleton;
 
     username = "moksha";
@@ -54,23 +54,8 @@
       overlays =
         attrValues self.overlays
         ++ [
-          inputs.cornelis.overlays.cornelis
           inputs.prefmanager.overlays.prefmanager
-        ]
-        ++ singleton (
-          final: prev:
-            (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-              # Sub in x86 version of packages that don't build on Apple Silicon.
-              inherit
-                (final.pkgs-x86)
-                agda
-                idris2
-                ;
-            })
-            // {
-              # Add other overlays here if needed.
-            }
-        );
+        ];
     };
 
     primaryUserDefaults = {
@@ -86,12 +71,19 @@
         inherit username hostname;
       };
   in {
+    darwinModules = {
+      nix-core = import ./modules/nix-core.nix;
+      system = import ./modules/system.nix;
+      homebrew = import ./modules/homebrew.nix;
+      apps = import ./modules/apps.nix;
+      host-users = import ./modules/host-users.nix;
+    };
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#fenrir-mbp
     # $ darwin-rebuild switch --flake .#fenrir-mbp
     darwinConfigurations = {
       # Minimal macOS configurations to bootstrap systems
-      bootstrap-x86 = makeOverridable nix-darwin.lib.darwinSystem {
+      bootstrap-x86 = makeOverridable darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         modules = [./darwin/bootstrap.nix {nixpkgs = nixpkgsDefaults;}];
       };
@@ -99,25 +91,52 @@
         system = "aarch64-darwin";
       };
 
-      fenrir-mbp = nix-darwin.lib.darwinSystem {
+      fenrir-mbp = inputs.darwin.lib.darwinSystem {
         inherit system specialArgs;
-        modules = [
-          ./modules/nix-core.nix
-          ./modules/system.nix
-          ./modules/homebrew.nix
-          ./modules/apps.nix
-          ./modules/host-users.nix
-        ];
+        modules =
+          [
+            ./modules/nix-core.nix
+            ./modules/system.nix
+            ./modules/apps.nix
+            ./modules/host-users.nix
+            ./modules/homebrew.nix
+            ./modules/defaults.nix
+          ]
+          ++ [
+            {
+              networking.computerName = "FENRIR";
+              networking.hostName = "fenrir-mbp";
+              system.defaults.smb.NetBIOSName = "FENRIR-MBP";
+              networking.knownNetworkServices = [
+                "Wi-Fi"
+                "USB 10/100/1000 LAN"
+              ];
+            }
+          ];
       };
 
-      soundcloud-mbp = nix-darwin.lib.darwinSystem {
+      soundcloud-mbp = darwin.lib.darwinSystem {
         inherit system specialArgs;
-        modules = [
-          ./modules/nix-core.nix
-          ./modules/system.nix
-          ./modules/apps.nix
-          ./modules/host-users.nix
-        ];
+        modules =
+          [
+            ./modules/nix-core.nix
+            ./modules/system.nix
+            ./modules/apps.nix
+            ./modules/host-users.nix
+            ./modules/homebrew.nix
+            ./modules/defaults.nix
+          ]
+          ++ [
+            {
+              networking.computerName = "charis@soundcloud-mbp";
+              networking.hostName = "soundcloud-mbp";
+              system.defaults.smb.NetBIOSName = "SOUNDCLOUDMBP";
+              networking.knownNetworkServices = [
+                "Wi-Fi"
+                "USB 10/100/1000 LAN"
+              ];
+            }
+          ];
       };
     };
 
