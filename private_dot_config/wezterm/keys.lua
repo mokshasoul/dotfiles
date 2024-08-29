@@ -97,7 +97,6 @@ function M.split_nav(resize_or_move, mods, key, dir)
   }
 end
 
-
 function M.is_nvim(pane)
   return pane:get_user_vars().IS_NVIM == "true" or pane:get_foreground_process_name():find("n?vim")
 end

@@ -28,41 +28,41 @@ config.hide_tab_bar_if_only_one_tab = true
 config.use_fancy_tab_bar = false
 
 wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
 end)
 
 -- making window titles more distinct
 wezterm.on("format-window-title", function()
-	local title = "[" .. wezterm.mux.get_active_workspace() .. "]"
-	title = title .. " " .. wezterm.mux.get_domain():name()
-	title = title .. " - $W"
-	-- some logic here
-	return title
+  local title = "[" .. wezterm.mux.get_active_workspace() .. "]"
+  title = title .. " " .. wezterm.mux.get_domain():name()
+  title = title .. " - $W"
+  -- some logic here
+  return title
 end)
 
 local appearance = h.get_appearance
 
 if h.is_dark then
-	config.color_scheme = theme
-	config.set_environment_variables = {
-		THEME_FLAVOUR = "mocha",
-	}
+  config.color_scheme = theme
+  config.set_environment_variables = {
+    THEME_FLAVOUR = "mocha",
+  }
 else
-	config.color_scheme = "Catppuccin Latte"
-	config.window_background_opacity = 1
-	config.set_environment_variables = {
-		THEME_FLAVOUR = "latte",
-	}
+  config.color_scheme = "Catppuccin Latte"
+  config.window_background_opacity = 1
+  config.set_environment_variables = {
+    THEME_FLAVOUR = "latte",
+  }
 end
 
 if wezterm.GLOBAL.appearance ~= appearance then
-	wezterm.GLOBAL.appearance = appearance
-	wezterm.background_child_process({
-		os.getenv("SHELL"), -- /usr/local/bin/fish
-		"-c",
-		"set --universal OS_APPEARANCE " .. appearance,
-	})
+  wezterm.GLOBAL.appearance = appearance
+  wezterm.background_child_process({
+    os.getenv("SHELL"), -- /usr/local/bin/fish
+    "-c",
+    "set --universal OS_APPEARANCE " .. appearance,
+  })
 end
 
 -- and finally, return the configuration to wezterm
