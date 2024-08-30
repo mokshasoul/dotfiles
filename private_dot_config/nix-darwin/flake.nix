@@ -123,7 +123,7 @@
             ./modules/system.nix
             ./modules/apps.nix
             ./modules/host-users.nix
-            ./modules/homebrew.nix
+            ./modules/homebrew-work.nix
             ./modules/defaults.nix
           ]
           ++ [
