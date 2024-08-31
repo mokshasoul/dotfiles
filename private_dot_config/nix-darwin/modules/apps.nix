@@ -2,97 +2,121 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    autoconf
-    rsync
-    shfmt
-    gnupg
-    ipcalc
-    nix-du
-    vivid
     alejandra
     asciidoctor
     atool
     atuin
+    autoconf
+    awscli2
+    bandwhich
     bat
-    bun
     bottom
+    broot
+    bun
     chezmoi
     clojure
     cmake
     coreutils
     coursier
+    ctop
     curl
-    direnv
     delta
-    dua
+    direnv
+    dive
     dogdns
+    dua
     duf
     exiftool
     fclones
     fd
-    ffmpegthumbnailer
     ffmpeg-full
+    ffmpegthumbnailer
+    findutils
     fnm
-    tenv
     fzf
+    gawk
     gh
     git
     git-extras
     git-secrets
     glow
-    graphviz
-    go
-    grml-zsh-config
+    gnupg
     gnused
+    go
+    graphviz
+    grml-zsh-config
     helix
     htop
     httpie
-    imgcat
     imagemagick
+    imgcat
+    ipcalc
     iperf
     joshuto
     jq
     lazygit
     leiningen
     lf
-    lsd
     libb2
+    libffi
+    libxml2
+    llvm
+    lsd
     lua
     lua-language-server
-    llvm
     m-cli
     mas
+    massren
+    maven
+    miller
     mosh
     navi
     ncdu
     neofetch
     neovim
-    taplo
+    neovim-remote
+    nix-du
     nmap
     nnn
     oha
+    openblas
+    openssl
+    pandoc
     pipx
-    pyenv
     procs
-    ripgrep
-    rtmpdump
+    protobuf
+    pyenv
     rbenv
+    readline
+    ripgrep
+    rsync
+    rtmpdump
     ruby
     sd
     shellcheck
+    shfmt
     streamlink
     stylua
+    taplo
+    tenv
+    terraform-ls
+    tflint
+    tflint-plugins.tflint-ruleset-aws
+    tflint-plugins.tflint-ruleset-google
     tmux
     tree
     tree-sitter
     universal-ctags
+    viddy
     vim
+    vivid
     wakeonlan
     wget
     xsv
     xz
     yazi
     yq
+    yt-dlp
     zellij
     zoxide
   ];
