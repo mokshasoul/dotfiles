@@ -1,0 +1,3 @@
+function code --wraps code -d "uses home profile"
+	command code --profile {{ if eq .chezmoi.hostname "soundcloud-mbp" }} work {{ else }} home {{ end }} $argv
+end
