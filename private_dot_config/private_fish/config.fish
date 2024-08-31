@@ -85,9 +85,6 @@ if type -q fd
 end
 
 if type -q lsd
-    function ls --wraps lsd
-        command lsd $argv
-    end
     function ll --wraps lsd
         command lsd -lFh --icon auto $argv
     end

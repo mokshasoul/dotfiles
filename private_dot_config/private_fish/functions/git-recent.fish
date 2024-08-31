@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function git-recent -d ""
+function git-recent -d "show recent branches to select from"
     # stolen from: https://github.com/nicknisi/dotfiles/blob/main/bin/git-recent
     # git-recent - checkout recent branches with a fuzzy finder (FZF) list
     # credit to https://gist.github.com/srsholmes/5607e26c187922878943c50edfb245ef
