@@ -85,7 +85,6 @@ in {
     # "WireGuard" = 145168502;
     # "Vinegar" = 159130322;
     # "Microsoft Outlook" = 985367838;
-    # "Kindle Classic" = 405399194;
     # "iMovie" = 408981434;
     # "JWT Inspector" = 155967016;
     "HazeOver" = 430798174;
@@ -113,40 +112,36 @@ in {
     "font-hack"
     "font-hack-nerd-font"
     "github"
+    "gpg-suite"
     "gog-galaxy"
     "google-chrome"
+    "hammerspoon"
     "iina"
     "jordanbaird-ice"
     "karabiner-elements"
     "keepassxc"
     "keka"
     "kextviewr"
+    "knockknock"
     "latest"
     "monitorcontrol"
     "motrix"
     "netnewswire"
+    "numi"
     "obs"
+    "postman"
     "rectangle-pro"
     "royal-tsx"
     "sloth"
     "syntax-highlight"
     "telegram"
-    "tunnelblick"
     "veracrypt"
     "visual-studio-code"
     "vlc"
     "wezterm"
     "whisky"
-    #"google-chrome"
-    #"google-drive"
-    #"gpg-suite"
-    #"hammerspoon"
-    #"postman"
-    #"transmit"
-    "visual-studio-code"
-    #"vlc"
-    "whisky"
     "zed"
+    #"transmit"
   ];
 
   # Configuration related to casks
