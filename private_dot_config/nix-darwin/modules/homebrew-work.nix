@@ -30,7 +30,7 @@ in {
   # But on macOS, homebrew has a much larger selection of apps than nixpkgs, especially for GUI apps!
   homebrew.enable = true;
   homebrew.onActivation.autoUpdate = true;
-  homebrew.onActivation.cleanup = "zap";
+  homebrew.onActivation.cleanup = "none";
   homebrew.global.brewfile = true;
 
   homebrew.taps = [
@@ -112,7 +112,6 @@ in {
     "font-hack"
     "font-hack-nerd-font"
     "github"
-    "gog-galaxy"
     "google-chrome"
     "hammerspoon"
     "iina"

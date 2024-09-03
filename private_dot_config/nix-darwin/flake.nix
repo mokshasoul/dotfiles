@@ -116,7 +116,9 @@
       };
 
       soundcloud-mbp = darwin.lib.darwinSystem {
-        inherit system specialArgs;
+        inherit system;
+        hostname = "soundcloud-mbp";
+        username = "charis";
         modules =
           [
             ./modules/nix-core.nix
@@ -128,7 +130,7 @@
           ]
           ++ [
             {
-              networking.computerName = "charis@soundcloud-mbp";
+              networking.computerName = "charis-soundcloud-mbp";
               networking.hostName = "soundcloud-mbp";
               system.defaults.smb.NetBIOSName = "SOUNDCLOUDMBP";
               networking.knownNetworkServices = [
