@@ -10,7 +10,6 @@ wezterm.log_info("reloading")
 
 require("keys").setup(config)
 -- Use WebGPU
-config.front_end = "WebGpu"
 config.term = "wezterm"
 config.window_decorations = "RESIZE"
 -- For example, changing the color scheme:
@@ -19,7 +18,7 @@ config.window_decorations = "RESIZE"
 config.color_scheme = "Catppuccin Latte"
 --
 config.font = wezterm.font("Fira Code")
-config.bold_brightens_ansi_colors = "No"
+config.bold_brightens_ansi_colors = "BrightAndBold"
 config.font_size = 16.0
 
 config.quit_when_all_windows_are_closed = true
