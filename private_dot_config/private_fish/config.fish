@@ -169,7 +169,3 @@ fish_add_path --path --prepend $BUN_INSTALL/bin
 # The original version is saved in /Users/moksha/.config/fish/config.fish.pysave
 fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
 set -gx PIPX_DEFAULT_PYTHON python3
-
-# >>> JVM installed by coursier >>>
-set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.24%252B8/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.24_8.tar.gz/jdk-11.0.24+8/Contents/Home"
-# <<< JVM installed by coursier <<<
