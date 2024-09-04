@@ -60,6 +60,7 @@
     libb2
     libffi
     libxml2
+    libmysqlclient
     llvm
     lsd
     lua
@@ -68,6 +69,7 @@
     mas
     massren
     maven
+    mariadb
     miller
     mosh
     navi
@@ -85,6 +87,7 @@
     pipx
     procs
     protobuf
+    pkg-config
     pyenv
     rbenv
     readline
