@@ -38,7 +38,7 @@
   # Trackpad
   system.defaults.trackpad = {
     Clicking = true;
-    TrackpadRightClick = false;
+    TrackpadRightClick = true;
   };
 
   # Finder
