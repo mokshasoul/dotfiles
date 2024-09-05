@@ -117,8 +117,12 @@
 
       soundcloud-mbp = darwin.lib.darwinSystem {
         inherit system;
-        hostname = "soundcloud-mbp";
-        username = "charis";
+        specialArgs =
+          inputs
+          // {
+            hostname = "soundcloud-mbp";
+            username = "charis";
+          };
         modules =
           [
             ./modules/nix-core.nix

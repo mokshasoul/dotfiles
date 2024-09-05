@@ -87,6 +87,8 @@
     procs
     protobuf
     pkg-config
+    python311
+    pyright
     pyenv
     rbenv
     readline

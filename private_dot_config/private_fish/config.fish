@@ -165,7 +165,4 @@ abbr v nvim
 set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --path --prepend $BUN_INSTALL/bin
 
-# Setting PATH for Python 3.12
-# The original version is saved in /Users/moksha/.config/fish/config.fish.pysave
-fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
-set -gx PIPX_DEFAULT_PYTHON python3
+set -gx PIPX_DEFAULT_PYTHON (which python3)
