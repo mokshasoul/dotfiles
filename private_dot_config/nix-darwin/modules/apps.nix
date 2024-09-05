@@ -107,6 +107,7 @@
     tflint-plugins.tflint-ruleset-google
     tree
     tree-sitter
+    tmux
     universal-ctags
     viddy
     vim

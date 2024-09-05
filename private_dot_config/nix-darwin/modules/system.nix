@@ -79,13 +79,4 @@
   programs.direnv = {
     enable = true;
   };
-
-  programs.tmux = {
-    enable = true;
-    enableSensible = true;
-    enableMouse = true;
-    enableFzf = true;
-    enableVim = true;
-    defaultCommand = "exec $SHELL -l";
-  };
 }
