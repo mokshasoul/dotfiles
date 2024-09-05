@@ -76,6 +76,8 @@
     enableSyntaxHighlighting = true;
   };
 
+  programs.nix-index.enable = true;
+
   programs.direnv = {
     enable = true;
   };
