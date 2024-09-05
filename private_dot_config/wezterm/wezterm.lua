@@ -17,7 +17,7 @@ config.window_decorations = "RESIZE"
 -- config.color_scheme = "Google (light) (terminal.sexy)"
 config.color_scheme = "Catppuccin Latte"
 --
-config.font = wezterm.font("Fira Code")
+config.font = wezterm.font("Fira Code", { weight = "Regular", stretch = "Normal", style = "Normal" })
 config.bold_brightens_ansi_colors = "BrightAndBold"
 config.font_size = 16.0
 
