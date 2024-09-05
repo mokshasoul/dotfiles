@@ -8,27 +8,19 @@
     atuin
     autoconf
     awscli2
-    bandwhich
-    bat
-    bottom
-    broot
     bun
     chezmoi
     clojure
     cmake
-    coreutils
     coursier
     ctop
-    curl
     delta
-    direnv
     dive
     dogdns
     dua
     duf
     exiftool
     fclones
-    fd
     ffmpeg-full
     ffmpegthumbnailer
     findutils
@@ -62,7 +54,6 @@
     libxml2
     llvm
     llvmPackages.bintools
-    lsd
     lua
     lua-language-server
     m-cli
@@ -70,7 +61,6 @@
     massren
     maven
     miller
-    mosh
     navi
     ncdu
     neofetch
@@ -92,7 +82,6 @@
     pyenv
     rbenv
     readline
-    ripgrep
     rsync
     rtmpdump
     ruby
@@ -115,13 +104,10 @@
     vim
     vivid
     wakeonlan
-    wget
     xsv
-    xz
     yazi
     yq
     yt-dlp
     zellij
-    zoxide
   ];
 }

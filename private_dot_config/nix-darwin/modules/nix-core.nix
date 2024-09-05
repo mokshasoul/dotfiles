@@ -34,6 +34,7 @@
 
   nix.package = pkgs.nixVersions.latest;
   nixpkgs.hostPlatform = "aarch64-darwin";
+  nixpkgs.config.allowUnfree = true;
   # Store management
   nix.gc.automatic = true;
   nix.gc.interval.Hour = 3;

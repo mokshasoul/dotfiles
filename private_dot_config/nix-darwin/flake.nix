@@ -71,12 +71,36 @@
         inherit username hostname;
       };
   in {
-    darwinModules = {
-      nix-core = import ./modules/nix-core.nix;
-      system = import ./modules/system.nix;
-      homebrew = import ./modules/homebrew.nix;
-      apps = import ./modules/apps.nix;
-      host-users = import ./modules/host-users.nix;
+    # Overlays --------------------------------------------------------------------------------{{{
+
+    overlays = {
+      # Overlays to add different versions `nixpkgs` into package set
+      pkgs-master = _: prev: {
+        pkgs-master = import inputs.nixpkgs-master {
+          inherit (prev.stdenv) system;
+          inherit (nixpkgsDefaults) config;
+        };
+      };
+      pkgs-stable = _: prev: {
+        pkgs-stable = import inputs.nixpkgs-stable {
+          inherit (prev.stdenv) system;
+          inherit (nixpkgsDefaults) config;
+        };
+      };
+      pkgs-unstable = _: prev: {
+        pkgs-unstable = import inputs.nixpkgs-unstable {
+          inherit (prev.stdenv) system;
+          inherit (nixpkgsDefaults) config;
+        };
+      };
+      apple-silicon = _: prev:
+        optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
+          # Add access to x86 packages system is running Apple Silicon
+          pkgs-x86 = import inputs.nixpkgs-unstable {
+            system = "x86_64-darwin";
+            inherit (nixpkgsDefaults) config;
+          };
+        };
     };
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#fenrir-mbp
@@ -101,9 +125,28 @@
             ./modules/host-users.nix
             ./modules/homebrew.nix
             ./modules/defaults.nix
+            home-manager.darwinModules.home-manager
+            {
+              # `home-manager` config
+              users.users.moksha.home = "/Users/moksha";
+              home-manager.useGlobalPkgs = true;
+              home-manager.backupFileExtension = "bak";
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = {
+                imports = [
+                  ./home/packages.nix
+                  ./home/git.nix
+                  inputs._1password-shell-plugins.hmModules.default
+                ];
+                home.stateVersion = homeStateVersion;
+                # home.user-info = primaryUserDefaults;
+              };
+            }
           ]
           ++ [
             {
+              # Support legacy workflows that use `<nixpkgs>` etc.
+              nix.nixPath.nixpkgs = "${inputs.nixpkgs-unstable}";
               networking.computerName = "FENRIR";
               networking.hostName = "fenrir-mbp";
               system.defaults.smb.NetBIOSName = "FENRIR-MBP";
@@ -147,7 +190,7 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
+    # darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
 
     # nix code-formatter
     formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
