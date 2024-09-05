@@ -13,12 +13,18 @@
     NSAutomaticPeriodSubstitutionEnabled = false;
   };
 
+  system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
+  system.defaults.WindowManager = {
+    EnableStandardClickToShowDesktop = false;
+  };
+
   # Dock and Mission Control
   system.defaults.dock = {
+    appswitcher-all-displays = true;
     autohide = true;
-    expose-group-by-app = false;
+    expose-group-by-app = true;
     mru-spaces = false;
-    tilesize = 32;
+    tilesize = 64;
     # Disable all hot corners
     wvous-bl-corner = 1;
     wvous-br-corner = 1;

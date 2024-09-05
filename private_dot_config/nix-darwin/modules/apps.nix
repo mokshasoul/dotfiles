@@ -60,8 +60,8 @@
     libb2
     libffi
     libxml2
-    libmysqlclient
     llvm
+    llvmPackages.bintools
     lsd
     lua
     lua-language-server
@@ -69,7 +69,6 @@
     mas
     massren
     maven
-    mariadb
     miller
     mosh
     navi
@@ -106,7 +105,6 @@
     tflint
     tflint-plugins.tflint-ruleset-aws
     tflint-plugins.tflint-ruleset-google
-    tmux
     tree
     tree-sitter
     universal-ctags

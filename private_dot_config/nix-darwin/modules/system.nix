@@ -61,14 +61,31 @@
       end
     end
   '';
-  environment.variables.SHELL = "${pkgs.fish}/bin/fish";
+  environment.variables = {
+    SHELL = "${pkgs.fish}/bin/fish";
+    EDITOR = "${pkgs.neovim}/bin/nvim";
+  };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  # this is required if you want to use darwin's default shell - zsh
+  # is required if you want to use darwin's default shell - zsh
   programs.zsh = {
     enable = true;
+    enableGlobalCompInit = true;
     enableFzfCompletion = true;
     enableFzfHistory = true;
     enableSyntaxHighlighting = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+  };
+
+  programs.tmux = {
+    enable = true;
+    enableSensible = true;
+    enableMouse = true;
+    enableFzf = true;
+    enableVim = true;
+    defaultCommand = "exec $SHELL -l";
   };
 }
