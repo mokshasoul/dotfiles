@@ -23,6 +23,16 @@ in {
   # https://github.com/sharkdp/bat
   # https://nix-community.github.io/home-manager/options.html#opt-programs.bat.enable
   programs.bat.enable = true;
+  programs.bat.theme = {
+    catppuccin-latte = {
+      src = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "bat"; # Bat uses sublime syntax for its themes
+        rev = "master";
+      };
+      file = "Catppuccin Latte.tmTheme";
+    };
+  };
   #
   # Btop, a fancy version of `top`.
   # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.btop.enable
