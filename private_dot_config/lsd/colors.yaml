@@ -13,9 +13,9 @@ date:
   older: 16
 size:
   none: 255
-  small: 232
-  medium: 0
-  large: 0
+  small: dark_yellow
+  medium: red
+  large: red
 inode:
   valid: 0
   invalid: 250
