@@ -24,7 +24,7 @@ set -gx NNN_FCOLORS 030304020705050801060301
 set -gx NNN_USE_EDITOR 1
 
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
-set -gx EDITOR (which nvim) -f
+set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 
@@ -41,12 +41,6 @@ end
 
 # Pure configs
 set -g async_prompt_functions _pure_prompt_git # run this async! dope.
-
-if test -e "$HOME/.1password/agent.sock"
-    # on OSX run this first:
-    # mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
-    set -x SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
-end
 
 # Paths
 if test -d "$HOME/bin/"
@@ -71,14 +65,6 @@ if test -d "$HOME/Library/Application Support/Coursier/bin"
     fish_add_path "$HOME/Library/Application Support/Coursier/bin"
 end
 
-set -gx FZF_DEFAULT_OPTS "\
---height 50% --layout=reverse --border \
---color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
---color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
---color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
---color=selected-bg:#bcc0cc \
---multi"
-
 if type -q fd
     set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/'"
     set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
@@ -93,12 +79,6 @@ if type -q lsd
     end
     function l --wraps lsd
         command lsd -l -g --git $argv
-    end
-end
-
-if type -q dog
-    function dig --wraps dog
-        command dog $argv
     end
 end
 
@@ -152,7 +132,7 @@ if status is-interactive
     if [ "$TERM_PROGRAM" = "iTerm.app" ]
         test -e "$HOME/.iterm2_shell_integration.fish"; and source "$HOME/.iterm2_shell_integration.fish"
     end
-
+    update_theme
 end
 
 

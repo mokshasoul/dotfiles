@@ -22,6 +22,7 @@ function update_theme --on-variable OS_APPEARANCE
 
     # LS_COLORS
     if type -q vivid
+        set -gx LS_THEME $ls_theme
         set -gx LS_COLORS "$(vivid generate $ls_theme)"
     end
 end
