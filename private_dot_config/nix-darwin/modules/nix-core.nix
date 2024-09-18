@@ -23,7 +23,7 @@
     keep-outputs = true;
 
     # TODO: https://github.com/LnL7/nix-darwin/issues/970
-    build-users-group = lib.mkForce "";
+    # build-users-group = lib.mkForce "";
   };
 
   # TODO: https://github.com/LnL7/nix-darwin/issues/970

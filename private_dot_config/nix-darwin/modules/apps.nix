@@ -8,6 +8,7 @@
     atuin
     autoconf
     awscli2
+    bat
     bun
     chezmoi
     clojure
@@ -39,7 +40,6 @@
     grml-zsh-config
     helix
     htop
-    httpie
     imagemagick
     imgcat
     ipcalc
@@ -105,6 +105,7 @@
     vivid
     wakeonlan
     xsv
+    xh
     yazi
     yq
     yt-dlp

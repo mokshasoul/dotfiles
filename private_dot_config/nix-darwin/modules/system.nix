@@ -36,7 +36,7 @@
 
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
-    stateVersion = 4;
+    stateVersion = 5;
   };
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = false;
