@@ -1,5 +1,4 @@
 local h = require("utils.helpers")
-local wezterm = require("wezterm")
 local M = {}
 
 M.get_default_theme = function()

@@ -10,7 +10,7 @@ local function get_appearance()
       return "Light"
     end
   end
-  return "Dark"
+  return "Light"
 end
 
 M.get_appearance = get_appearance()

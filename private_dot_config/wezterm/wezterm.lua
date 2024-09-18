@@ -15,9 +15,8 @@ config.window_decorations = "RESIZE"
 -- For example, changing the color scheme:
 -- config.color_scheme = "Github Primer Theme"
 -- config.color_scheme = "Google (light) (terminal.sexy)"
-config.color_scheme = "Catppuccin Latte"
---
-config.font = wezterm.font("Fira Code", { weight = "Regular", stretch = "Normal", style = "Normal" })
+
+config.font = wezterm.font("FiraCode Nerd Font Mono", { weight = 450, stretch = "Normal", style = "Normal" })
 config.bold_brightens_ansi_colors = "BrightAndBold"
 config.font_size = 16.0
 
@@ -31,27 +30,20 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
--- making window titles more distinct
-wezterm.on("format-window-title", function()
-  local title = "[" .. wezterm.mux.get_active_workspace() .. "]"
-  title = title .. " " .. wezterm.mux.get_domain():name()
-  title = title .. " - $W"
-  -- some logic here
-  return title
-end)
-
 local appearance = h.get_appearance
 
 if h.is_dark then
   config.color_scheme = theme
   config.set_environment_variables = {
     THEME_FLAVOUR = "mocha",
+    OS_APPEARANCE = appearance,
   }
 else
-  config.color_scheme = "Catppuccin Latte"
+  config.color_scheme = theme
   config.window_background_opacity = 1
   config.set_environment_variables = {
     THEME_FLAVOUR = "latte",
+    OS_APPEARANCE = appearance,
   }
 end
 
