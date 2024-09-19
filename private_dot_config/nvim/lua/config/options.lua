@@ -7,7 +7,7 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 0.5
 end
 
-if os.getenv("OS_APPERANCE") == "Dark" then
+if os.getenv("OS_APPEARANCE") == "Dark" then
   vim.o.background = "dark"
 else
   vim.o.background = "light"
