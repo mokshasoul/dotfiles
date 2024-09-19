@@ -4,3 +4,7 @@ bun.lockb
 {{ if ne .chezmoi.os "darwin" }}
 .config/nix-darwin/**
 {{ end }}
+{{- if eq .chezmoi.hostname "fenrir-mbp" }}
+.config/fish/functions/shibbo-*.fish
+{{- end }}
+
