@@ -12,6 +12,7 @@
       asciidoctor
       atool
       atuin
+      ast-grep
       autoconf
       awscli2
       bat

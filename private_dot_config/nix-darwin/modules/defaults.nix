@@ -1,7 +1,9 @@
 {
   system.defaults.NSGlobalDomain = {
     "com.apple.trackpad.scaling" = 3.0;
+    "com.apple.mouse.tapBehavior" = 1;
     AppleInterfaceStyleSwitchesAutomatically = false;
+    ApplePressAndHoldEnabled = false;
     AppleMeasurementUnits = "Centimeters";
     AppleMetricUnits = 1;
     AppleShowScrollBars = "Automatic";
