@@ -49,9 +49,7 @@
 
 [delta]
 	navigate = true
-	light = true
-	theme = Github
-	features = catppuccin-latte
+	features = catppuccin
 
 [merge]
 	conflictstyle = zdiff3
