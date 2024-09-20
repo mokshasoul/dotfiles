@@ -1,4 +1,5 @@
-[delta "catppuccin-latte"]
+[delta "catppuccin"]
+  light = true
 	blame-palette = "#eff1f5 #e6e9ef #dce0e8 #ccd0da #bcc0cc"
 	commit-decoration-style = "box ul"
 	dark = false
@@ -29,7 +30,7 @@
 		bold yellow => syntax "#ebd9bf"
 	# Should match the name of the bat theme
 	syntax-theme = "Catppuccin Latte"
-[delta "catppuccin-frappe"]
+[delta "catppuccin"]
 	blame-palette = "#303446 #292c3c #232634 #414559 #51576d"
 	commit-decoration-style = "box ul"
 	dark = true
