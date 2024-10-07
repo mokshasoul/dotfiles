@@ -12,3 +12,7 @@ if os.getenv("OS_APPEARANCE") == "Dark" then
 else
   vim.o.background = "light"
 end
+
+if vim.g.vscode then
+  vim.opt.incsearch = false
+end
