@@ -8,8 +8,10 @@ if vim.g.neovide then
 end
 
 if os.getenv("OS_APPEARANCE") == "Dark" then
+  vim.go.background = "dark"
   vim.o.background = "dark"
 else
+  vim.go.background = "light"
   vim.o.background = "light"
 end
 

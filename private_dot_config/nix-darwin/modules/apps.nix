@@ -81,6 +81,7 @@
       openblas
       openssl
       pandoc
+      php
       pipx
       procs
       protobuf
