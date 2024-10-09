@@ -118,6 +118,42 @@
       yq
       yt-dlp
       zellij
+      # from home-conf
+      bandwhich
+      bottom
+      coreutils
+      curl
+      du-dust
+      fd
+      lsd
+      mosh
+      parallel
+      ripgrep
+      unrar
+      wget
+      xz
+
+      cloc # source code line counter
+      github-copilot-cli
+      google-cloud-sdk
+      # idris2
+
+      jq
+      nodejs
+      s3cmd
+      stack
+      typescript
+
+      cachix # adding/managing alternative binary caches hosted by Cachix
+      comma # run software from without installing it
+      nix-output-monitor # get additional information while building packages
+      nix-tree # interactively browse dependency graphs of Nix derivations
+      nix-update # swiss-knife for updating nix packages
+      nixpkgs-review # review pull-requests on nixpkgs
+      statix # lints and suggestions for the Nix programming language
+
+      cocoapods
+      m-cli # useful macOS CLI commands
     ];
   };
 }
