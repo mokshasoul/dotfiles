@@ -154,6 +154,7 @@ in {
     "mysql-client"
     "swift-format"
     "swiftlint"
+    "jira-cli"
     "xz"
   ];
 }

@@ -50,6 +50,7 @@
       imagemagick
       imgcat
       ipcalc
+      ipmitool
       iperf
       joshuto
       jq
