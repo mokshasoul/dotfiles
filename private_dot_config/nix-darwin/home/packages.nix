@@ -10,7 +10,7 @@ in {
   # https://developer.1password.com/docs/cli/shell-plugins/nix
   programs._1password-shell-plugins.enable = true;
   programs._1password-shell-plugins.plugins = attrValues {
-    inherit (pkgs) gh cachix;
+    inherit (pkgs) gh;
   };
   home.shellAliases = {
     # Run `nixpkgs-review` in 1Password env to get `GITHUB_TOKEN` envvar.

@@ -146,7 +146,6 @@
       stack
       typescript
 
-      cachix # adding/managing alternative binary caches hosted by Cachix
       comma # run software from without installing it
       nix-output-monitor # get additional information while building packages
       nix-tree # interactively browse dependency graphs of Nix derivations
