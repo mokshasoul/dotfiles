@@ -70,7 +70,7 @@
       maven
       miller
       navi
-      ncdu
+      # ncdu
       ncurses
       neofetch
       neovim
