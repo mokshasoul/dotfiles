@@ -9,7 +9,7 @@ end
 --
 -- Check macOS light / dark user interface state and return theme accordingly
 local function getPreferredTheme()
-    local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
+    local handle = io.popen("osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode' 2>/dev/null")
 
     if not handle then
         return "light"
