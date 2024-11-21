@@ -64,6 +64,8 @@
       llvmPackages.bintools
       lua
       lua-language-server
+      luajitPackages.luarocks-nix
+      luajitPackages.tiktoken_core
       m-cli
       mas
       massren
@@ -155,6 +157,7 @@
 
       cocoapods
       m-cli # useful macOS CLI commands
+      zoxide
     ];
   };
 }

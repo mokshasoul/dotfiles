@@ -146,3 +146,7 @@ set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --path --prepend $BUN_INSTALL/bin
 
 set -gx PIPX_DEFAULT_PYTHON (which python3)
+
+if test -f "/private/etc/paths.d/hatch"
+    fish_add_path (cat /private/etc/paths.d/hatch)
+end
