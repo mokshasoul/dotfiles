@@ -6,26 +6,19 @@ if vim.g.neovide then
   vim.o.guifont = "FiraCode Nerd Font Mono:h34"
   vim.g.neovide_scale_factor = 0.5
 end
---
--- Check macOS light / dark user interface state and return theme accordingly
-local function getPreferredTheme()
-    local handle = io.popen("osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode' 2>/dev/null")
+PREFERRED_THEME = "light"
 
-    if not handle then
-        return "light"
-    end
+local handle = io.popen(
+  "osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode' 2>/dev/null"
+)
 
-    local result = handle:read("*a")
-    handle:close()
+if handle then
+  local result = handle:read("*a")
+  handle:close()
 
-    if result and result:match("Dark") then
-        return "dark" -- Dark theme
-    else
-        return "light" -- Light theme
-    end
+  if result and result:match("true") then
+    PREFERRED_THEME = "dark" -- Dark theme
+  end
 end
 
--- Apply the preferred theme
-local preferred_theme = getPreferredTheme()
-vim.cmd.set(string.format("bg=%s",preferred_theme))
-vim.print("setting colorscheme")
+vim.o.bg = PREFERRED_THEME

@@ -1,16 +1,15 @@
 function update_theme --on-variable OS_APPEARANCE
     set -f ls_theme catppuccin-latte
     if test "$OS_APPEARANCE" = Dark
-        set -f ls_theme catppuccin-frappe
-        set -gx BAT_THEME "Catppuccin Frappe"
-        fish_config theme choose "Catppuccin Frappe"
+        set -f ls_theme catppuccin-mocha
+        set -gx BAT_THEME "Catppuccin Mocha"
+        fish_config theme choose "Catppuccin Mocha"
         set -Ux FZF_DEFAULT_OPTS "\
-        --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
-        --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
-        --color=marker:#babbf1,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
-        --color=selected-bg:#51576d \
+        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+        --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+        --color=selected-bg:#45475a \
         --multi"
-
     else
         fish_config theme choose "Catppuccin Latte"
         set -gx BAT_THEME "Catppuccin Latte"
