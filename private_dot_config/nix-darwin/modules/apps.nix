@@ -75,8 +75,6 @@
       # ncdu
       ncurses
       neofetch
-      neovim
-      neovim-remote
       nix-du
       nmap
       nnn
