@@ -1,11 +1,11 @@
 set fish_greeting
 
 # XDG Stuff
-set -q XDG_CONFIG_HOME; or set -U XDG_CONFIG_HOME "$HOME/.config"
-set -q XDG_DATA_HOME; or set -U XDG_DATA_HOME "$HOME/.local/share"
-set -q XDG_CACHE_HOME; or set -U XDG_CACHE_HOME "$HOME/.cache"
-set -q XDG_DATA_DIRS; or set --path -U XDG_DATA_DIRS "/usr/local/share/:/usr/share/"
-set -q WORKSPACE; or set -U WORKSPACE "$HOME/pws"
+set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -q XDG_CACHE_HOME; or set -gx XDG_CACHE_HOME "$HOME/.cache"
+set -q XDG_DATA_DIRS; or set --path -gx XDG_DATA_DIRS "/usr/local/share/:/usr/share/"
+set -q WORKSPACE; or set -gx WORKSPACE "$HOME/pws"
 
 # Docker speed-ups
 set -gx COMPOSE_DOCKER_CLI_BUILD 1
@@ -94,6 +94,7 @@ if status is-login
 end
 
 if status is-interactive
+
     if type -q navi
         navi widget fish | source
     end
@@ -105,7 +106,7 @@ if status is-interactive
     if type -q pyenv
         pyenv init - | source
         if not set -q PYENV_ROOT
-            set -U PYENV_ROOT $HOME/.pyenv
+            set -gx PYENV_ROOT $HOME/.pyenv
         end
     end
 
@@ -133,6 +134,7 @@ if status is-interactive
         test -e "$HOME/.iterm2_shell_integration.fish"; and source "$HOME/.iterm2_shell_integration.fish"
     end
     update_theme
+
 end
 
 
@@ -150,3 +152,7 @@ set -gx PIPX_DEFAULT_PYTHON (which python3)
 if test -f "/private/etc/paths.d/hatch"
     fish_add_path (cat /private/etc/paths.d/hatch)
 end
+
+# >>> JVM installed by coursier >>>
+set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.24%252B8/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.24_8.tar.gz/jdk-11.0.24+8/Contents/Home"
+# <<< JVM installed by coursier <<<
