@@ -20,6 +20,7 @@ end)
 ---@param config Config
 function M.setup(config)
   config.disable_default_key_bindings = false
+  config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
   config.keys = {
     -- Scrollback
     { mods = M.mod, key = "k", action = act.ScrollByPage(-0.5) },
@@ -48,14 +49,15 @@ function M.setup(config)
     { mods = M.mod, key = "M", action = act.TogglePaneZoomState },
     { mods = M.mod, key = "p", action = act.ActivateCommandPalette },
     { mods = M.mod, key = "d", action = act.ShowDebugOverlay },
+    { mods = "LEADER|CTRL", key = "a", action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }) },
     M.split_nav("resize", "CTRL", "LeftArrow", "Right"),
     M.split_nav("resize", "CTRL", "RightArrow", "Left"),
     M.split_nav("resize", "CTRL", "UpArrow", "Up"),
     M.split_nav("resize", "CTRL", "DownArrow", "Down"),
-    M.split_nav("move", "CTRL", "h", "Left"),
-    M.split_nav("move", "CTRL", "j", "Down"),
-    M.split_nav("move", "CTRL", "k", "Up"),
-    M.split_nav("move", "CTRL", "l", "Right"),
+    M.split_nav("move", "LEADER", "h", "Left"),
+    M.split_nav("move", "LEADER", "j", "Down"),
+    M.split_nav("move", "LEADER", "k", "Up"),
+    M.split_nav("move", "LEADER", "l", "Right"),
   }
 end
 
@@ -66,7 +68,7 @@ end
 function M.split_nav(resize_or_move, mods, key, dir)
   local event = "SplitNav_" .. resize_or_move .. "_" .. dir
   wezterm.on(event, function(win, pane)
-    if M.is_nvim(pane) then
+    if M.is_tmux(pane) then
       -- pass the keys through to vim/nvim
       win:perform_action({ SendKey = { key = key, mods = mods } }, pane)
     else
@@ -99,6 +101,10 @@ end
 
 function M.is_nvim(pane)
   return pane:get_user_vars().IS_NVIM == "true" or pane:get_foreground_process_name():find("n?vim")
+end
+
+function M.is_tmux(pane)
+  return pane:get_user_vars().IS_TMUX == "true" or pane:get_foreground_process_name():find("tmux")
 end
 
 return M
