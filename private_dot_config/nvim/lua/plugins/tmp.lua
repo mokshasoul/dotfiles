@@ -3,6 +3,7 @@ return {
   { "justinsgithub/wezterm-types", lazy = true },
   { "LuaCATS/luassert", name = "luassert-types", lazy = true },
   { "LuaCATS/busted", name = "busted-types", lazy = true },
+  { "godlygeek/tabular", lazy = true, cmd = "Tabularize" },
   {
     "folke/lazydev.nvim",
     opts = function(_, opts)

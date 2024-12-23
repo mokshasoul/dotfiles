@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.hostname "apt" "soundcloud-mbp" -}}
+{{-   include "private_dot_config/nvim/lazyvim_work.json" -}}
+{{- else -}}
+{{-   include "private_dot_config/nvim/lazyvim_home.json" -}}
+{{ end -}}

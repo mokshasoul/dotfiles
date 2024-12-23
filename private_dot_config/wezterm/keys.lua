@@ -20,7 +20,7 @@ end)
 ---@param config Config
 function M.setup(config)
   config.disable_default_key_bindings = false
-  config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+  config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
   config.keys = {
     -- Scrollback
     { mods = M.mod, key = "k", action = act.ScrollByPage(-0.5) },
