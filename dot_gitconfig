@@ -1,98 +1,114 @@
 # vim:ft=gitconfig
 [user]
-	name = Charis-Nicolas Georgiou
-	email = cng_it@posteo.net
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXF5yw1750Myuo7id6Wo0jRm6cGzmQ3Ps0GUR/hscdL
-
-[github]
-	user = mokshasoul
-
-[core]
-	editor = nvim -f
-	excludesfile = ~/.gitignore
-	pager = delta
-	# Make `git rebase` safer on macOS.
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
-
-[init]
-	defaultBranch = main
+  name = Charis-Nicolas Georgiou
+  email = cng_it@posteo.net
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXF5yw1750Myuo7id6Wo0jRm6cGzmQ3Ps0GUR/hscdL
 
 [alias]
-	br = branch
-	ci = commit
-	co = checkout
-	df = diff
-	st = status
-	p = pull
-	cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
-	browse = "!gh repo view -w"
+  s = status -s
+  co = checkout
+  p = pull --recurse-submodules
+    # Clone a repository including all submodules.
+  c = clone --recursive
+  # Commit all changes.
+  ca = !git add -A && git commit -av
+  # Switch to a branch, creating it if necessary.
+  go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+  d = diff
+  br = branch
+  ci = commit
+  co = checkout
+  df = diff
+  st = status
+  p = pull
+  cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
+  browse = !"gh repo view -w"
+  prc = !"gh pr create"
+  prl = !"gh pr view --json url | jq -r .url  | pbcopy"
+  prv = !"gh pr view -w"
+
+[github]
+  user = mokshasoul
+
+[core]
+  editor = nvim -f
+  excludesfile = ~/.gitignore
+  pager = delta
+  # Make `git rebase` safer on macOS.
+  # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+  trustctime = false
+
+[init]
+  defaultBranch = main
 
 [color]
-	ui = auto
+  ui = auto
 
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 
 [push]
-	default = simple
-	autoSetupRemote = true
+  default = simple
+  autoSetupRemote = true
 
 [interactive]
-	diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [add.interactive]
-	useBuiltin = false
+  useBuiltin = false
 
 [include]
-	path = $HOME/.config/delta/catppuccin.gitconfig
+  path = $HOME/.config/delta/catppuccin.gitconfig
 
 [delta]
-	navigate = true
-	features = catppuccin
+  navigate = true
+  features = catppuccin
 
 [merge]
-	conflictstyle = zdiff3
+  conflictstyle = zdiff3
 
 [diff]
-	colorMoved = default
-	renames = copies
-	algorithm = histogram
+  colorMoved = default
+  renames = copies
+  algorithm = histogram
 
 [diff "bin"]
-	# Use `hexdump` to diff binary files.
-	textconv = hexdump -v -C
+  # Use `hexdump` to diff binary files.
+  textconv = hexdump -v -C
 
 [gpg]
-	format = ssh
+  format = ssh
 
 [gpg "ssh"]
-	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [rerere]
-	enabled = true
+  enabled = true
 
 [rebase]
-	autoSquash = true
-	autoStash = true
+  autoSquash = true
+  autoStash = true
 
 [commit]
-	verbose = true
-	gpgsign = true
+  verbose = true
+  gpgsign = true
 
 [protocol]
-	version = 2
+  version = 2
 
 [credentials]
-	helper = cache
+  helper = cache
 
 [credential "https://github.com"]
-    helper = !/usr/bin/gh auth git-credential
+  helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-    helper = !/usr/bin/gh auth git-credential
+  helper = !/usr/bin/gh auth git-credential
 
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
