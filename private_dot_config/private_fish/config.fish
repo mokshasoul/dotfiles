@@ -4,7 +4,7 @@ set fish_greeting
 set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_CACHE_HOME; or set -gx XDG_CACHE_HOME "$HOME/.cache"
-set -q XDG_DATA_DIRS; or set --path -gx XDG_DATA_DIRS "/usr/local/share/:/usr/share/"
+set --path -gx XDG_DATA_DIRS $XDG_DATA_DIRS /usr/local/share/ /usr/share/ /opt/homebrew/share/
 set -q WORKSPACE; or set -gx WORKSPACE "$HOME/pws"
 
 # Docker speed-ups
@@ -27,7 +27,9 @@ set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
-
+if test -d /opt/homebrew/opt/gnu-tar/libexec/gnubin
+    fish_add_path --prepend /opt/homebrew/opt/gnu-tar/libexec/gnubin
+end
 if test -z "$SSH_CONNECTION"
     # Native gnome
     # set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
@@ -87,7 +89,6 @@ if type -q gem
     fish_add_path "$GEM_HOME/bin"
 end
 
-
 if status is-login
     # brew is already set using conf.d/brew
     set -gx NVIM_BIN /run/current-system/sw/bin/nvim
@@ -136,7 +137,6 @@ if status is-interactive
     update_theme
 
 end
-
 
 ## Editor abbr
 abbr vim nvim
