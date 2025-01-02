@@ -60,6 +60,7 @@
       libb2
       libffi
       libxml2
+      libmysqlclient
       llvm
       llvmPackages.bintools
       lua
