@@ -1,0 +1,4 @@
+{
+    "Lua.addonManager.enable": true,
+    "Lua.diagnostics.globals": ["hs"]
+}
