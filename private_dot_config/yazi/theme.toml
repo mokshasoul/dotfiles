@@ -6,5 +6,5 @@
 
 
 [flavor]
-use = "catppuccin-latte"
-
+dark = "catppuccin-frappe"
+light = "catppuccin-latte"
