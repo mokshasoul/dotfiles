@@ -68,7 +68,7 @@ if test -d "$HOME/Library/Application Support/Coursier/bin"
 end
 
 if type -q fd
-    set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/'"
+    set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/' -E '.terraform/'"
     set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 end
 
