@@ -89,6 +89,7 @@
       protobuf
       pkg-config
       python311
+      python311Packages.pip
       pyright
       pyenv
       rbenv
@@ -138,7 +139,6 @@
 
       cloc # source code line counter
       github-copilot-cli
-      google-cloud-sdk
       # idris2
 
       jq
