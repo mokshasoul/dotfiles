@@ -16,9 +16,9 @@ config.window_decorations = "RESIZE"
 -- config.color_scheme = "Github Primer Theme"
 -- config.color_scheme = "Google (light) (terminal.sexy)"
 
-config.font = wezterm.font("FiraCode Nerd Font Mono", { weight = 450, stretch = "Normal", style = "Normal" })
+config.font = wezterm.font("CommitMono Nerd Font Propo", { weight = 450, stretch = "Normal", style = "Normal" })
 config.bold_brightens_ansi_colors = "BrightAndBold"
-config.font_size = 16.0
+config.font_size = 17.0
 
 config.quit_when_all_windows_are_closed = true
 config.window_close_confirmation = "NeverPrompt"
