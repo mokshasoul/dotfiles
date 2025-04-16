@@ -1,6 +1,6 @@
 local b = require("utils.background")
 local h = require("utils.helpers")
-local wezterm = require("wezterm") --[[@as Wezterm]]
+local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 local mux = wezterm.mux
 
@@ -12,13 +12,10 @@ require("keys").setup(config)
 -- Use WebGPU
 config.term = "wezterm"
 config.window_decorations = "RESIZE"
--- For example, changing the color scheme:
--- config.color_scheme = "Github Primer Theme"
--- config.color_scheme = "Google (light) (terminal.sexy)"
-
-config.font = wezterm.font("CommitMono Nerd Font Propo", { weight = 450, stretch = "Normal", style = "Normal" })
+config.font = wezterm.font("FiraCode Nerd Font", { weight = 450, stretch = "Normal", style = "Normal" })
+-- config.font = wezterm.font("CommitMono Nerd Font Propo", { weight = 450, stretch = "Normal", style = "Normal" })
 config.bold_brightens_ansi_colors = "BrightAndBold"
-config.font_size = 17.0
+config.font_size = 16.0
 
 config.quit_when_all_windows_are_closed = true
 config.window_close_confirmation = "NeverPrompt"
@@ -34,13 +31,13 @@ local appearance = h.get_appearance
 
 if h.is_dark then
   config.color_scheme = theme
+  config.window_background_opacity = 0.75
   config.set_environment_variables = {
     THEME_FLAVOUR = "mocha",
     OS_APPEARANCE = appearance,
   }
 else
   config.color_scheme = theme
-  config.window_background_opacity = 1
   config.set_environment_variables = {
     THEME_FLAVOUR = "latte",
     OS_APPEARANCE = appearance,
@@ -57,4 +54,4 @@ if wezterm.GLOBAL.appearance ~= appearance then
 end
 
 -- and finally, return the configuration to wezterm
-return config --[[@as Wezterm]]
+return config
