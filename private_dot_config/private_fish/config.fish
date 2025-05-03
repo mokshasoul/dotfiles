@@ -136,6 +136,8 @@ if status is-interactive
     end
     update_theme
 
+    fzf_configure_bindings --directory=\ct
+
 end
 
 ## Editor abbr
@@ -147,6 +149,9 @@ abbr v nvim
 set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --path --prepend $BUN_INSTALL/bin
 
+# Setting PATH for Python 3.12
+# The original version is saved in /Users/moksha/.config/fish/config.fish.pysave
+set -x PATH "/Library/Frameworks/Python.framework/Versions/3.12/bin" "$PATH"
 set -gx PIPX_DEFAULT_PYTHON (which python3)
 
 if test -f "/private/etc/paths.d/hatch"
