@@ -15,7 +15,7 @@ config.window_decorations = "RESIZE"
 config.font = wezterm.font("FiraCode Nerd Font", { weight = 450, stretch = "Normal", style = "Normal" })
 -- config.font = wezterm.font("CommitMono Nerd Font Propo", { weight = 450, stretch = "Normal", style = "Normal" })
 config.bold_brightens_ansi_colors = "BrightAndBold"
-config.font_size = 16.0
+config.font_size = 18.0
 
 config.quit_when_all_windows_are_closed = true
 config.window_close_confirmation = "NeverPrompt"
@@ -31,7 +31,7 @@ local appearance = h.get_appearance
 
 if h.is_dark then
   config.color_scheme = theme
-  config.window_background_opacity = 0.75
+  config.window_background_opacity = 1
   config.set_environment_variables = {
     THEME_FLAVOUR = "mocha",
     OS_APPEARANCE = appearance,
