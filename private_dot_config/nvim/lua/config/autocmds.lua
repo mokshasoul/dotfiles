@@ -9,3 +9,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.b.autoformat = false
   end,
 })
+
+vim.api.nvim_create_user_command("CleanIllegalCharacters", function()
+  vim.cmd("s/[^a-zA-Z0-9.+_]/_/g")
+end, {})
