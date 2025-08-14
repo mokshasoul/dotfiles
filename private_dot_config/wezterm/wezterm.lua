@@ -15,7 +15,7 @@ config.window_decorations = "RESIZE"
 config.font = wezterm.font("FiraCode Nerd Font", { weight = 450, stretch = "Normal", style = "Normal" })
 -- config.font = wezterm.font("CommitMono Nerd Font Propo", { weight = 450, stretch = "Normal", style = "Normal" })
 config.bold_brightens_ansi_colors = "BrightAndBold"
-config.font_size = 18.0
+config.font_size = 20.0
 
 config.quit_when_all_windows_are_closed = true
 config.window_close_confirmation = "NeverPrompt"
