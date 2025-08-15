@@ -4,14 +4,14 @@
   inputs = {
     # Package sets
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     #
     # Env system-management
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
-    darwin.url = "github:LnL7/nix-darwin/nix-darwin-24.11";
+    darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     darwin.inputs.nixpkgs.follows = "nixpkgs-stable";
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
     _1password-shell-plugins.inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -45,7 +45,7 @@
     system = "aarch64-darwin";
     hostname = "fenrir-mbp";
 
-    homeStateVersion = "24.11";
+    homeStateVersion = "25.05";
 
     nixpkgsDefaults = {
       config = {

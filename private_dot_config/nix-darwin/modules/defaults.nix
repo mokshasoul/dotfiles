@@ -24,7 +24,7 @@
   system.defaults.dock = {
     appswitcher-all-displays = true;
     autohide = true;
-    expose-group-by-app = true;
+    expose-group-apps = true;
     mru-spaces = false;
     tilesize = 64;
     # Disable all hot corners

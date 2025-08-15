@@ -96,7 +96,6 @@
       readline
       rsync
       rtmpdump
-      ruby
       sd
       shellcheck
       shfmt
@@ -116,7 +115,6 @@
       vim
       vivid
       wakeonlan
-      xsv
       xh
       yazi
       yq
@@ -142,10 +140,8 @@
       # idris2
 
       jq
-      nodejs
       s3cmd
       stack
-      typescript
 
       comma # run software from without installing it
       nix-output-monitor # get additional information while building packages
