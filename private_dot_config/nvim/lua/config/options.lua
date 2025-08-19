@@ -22,3 +22,6 @@ if handle then
 end
 
 vim.o.bg = PREFERRED_THEME
+
+vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g["python3_host_prog"] = "/Users/moksha/.tool-venv/nvim/.venv/bin/python"
