@@ -14,4 +14,7 @@
 if status is-interactive
     # Theme management
     update_theme
+    
+    # FZF key bindings (needs to be in config.fish where functions are loaded)
+    fzf_configure_bindings --directory=\ct
 end

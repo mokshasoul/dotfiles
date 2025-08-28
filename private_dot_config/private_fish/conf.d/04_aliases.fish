@@ -17,6 +17,12 @@ abbr gd git diff
 
 # lsd wrapper functions (if lsd is available)
 if type -q lsd
+    # Replace default ls with lsd
+    function ls --wraps lsd
+        command lsd $argv
+    end
+    
+    # Additional lsd variants
     function ll --wraps lsd
         command lsd -lFh --icon auto $argv
     end
