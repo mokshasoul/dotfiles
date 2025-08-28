@@ -9,3 +9,5 @@ bun.lockb
 {{- end }}
 .config/nvim/lazyvim_work.json
 .config/nvim/lazyvim_home.json
+package-lock.json
+CLAUDE.md
