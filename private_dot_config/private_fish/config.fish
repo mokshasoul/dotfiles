@@ -112,18 +112,6 @@ if status is-interactive
     end
 
     if type -q brew
-        if test -d "$HOMEBREW_PREFIX/share/fish/completions"
-            if not contains "$HOMEBREW_PREFIX/share/fish/completions" (string split " " $fish_complete_path)
-                set -p fish_complete_path (brew --prefix)/share/fish/completions
-            end
-        end
-
-        if test -d "$HOMEBREW_PREFIX/share/fish/vendor_completions.d"
-            if not contains "$HOMEBREW_PREFIX/share/fish/vendor_completions.d" (string split " " $fish_complete_path)
-                set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
-            end
-        end
-
         fish_add_path (brew --prefix ruby)/bin
     end
 
