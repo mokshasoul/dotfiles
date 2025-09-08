@@ -7,7 +7,7 @@
 return {
   -- Configure LazyVim to load gruvbox
   {
-    "LazyVim/LazyVim",
+    "mokshasoul/LazyVim",
     opts = {
       colorscheme = "catppuccin",
     },
