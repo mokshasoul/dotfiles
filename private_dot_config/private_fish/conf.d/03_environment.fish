@@ -55,12 +55,16 @@ end
 
 # Java (via Coursier)
 set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.24%252B8/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.24_8.tar.gz/jdk-11.0.24+8/Contents/Home"
-
+set -gx HOMEBREW_NO_AUTO_UPDATE 1
 # Login-specific settings
 if status is-login
     # Nix system nvim binary (when available)
     set -l nix_path /run/current-system/sw/bin/nvim
+    set -l brew_path /opt/homebrew/bin/nvim
     if test -e nix_path
         set -gx NVIM_BIN nix_path
+    end
+    if test -e brew_path
+        set -gx NVIM_BIN brew_path
     end
 end
