@@ -104,7 +104,6 @@ in {
     "db-browser-for-sqlite"
     "dbeaver-community"
     "discord@canary"
-    "docker"
     "drawio"
     "dteoh-devdocs"
     "font-fira-code"

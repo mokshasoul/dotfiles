@@ -86,7 +86,6 @@
       php
       pipx
       procs
-      protobuf
       pkg-config
       python311
       python311Packages.pip
@@ -107,6 +106,7 @@
       tflint
       tflint-plugins.tflint-ruleset-aws
       tflint-plugins.tflint-ruleset-google
+      topgrade
       tree
       tree-sitter
       tmux
@@ -142,6 +142,7 @@
       jq
       s3cmd
       stack
+      typescript
 
       comma # run software from without installing it
       nix-output-monitor # get additional information while building packages
