@@ -49,7 +49,7 @@ if wezterm.GLOBAL.appearance ~= appearance then
   wezterm.background_child_process({
     os.getenv("SHELL"), -- /usr/local/bin/fish
     "-c",
-    "set --universal -x OS_APPEARANCE " .. appearance,
+    "set -g -x OS_APPEARANCE " .. appearance,
   })
 end
 

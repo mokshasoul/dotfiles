@@ -50,6 +50,7 @@ function M.setup(config)
     { mods = M.mod, key = "p", action = act.ActivateCommandPalette },
     { mods = M.mod, key = "d", action = act.ShowDebugOverlay },
     { mods = "LEADER|CTRL", key = "a", action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }) },
+    { key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
     M.split_nav("resize", "CTRL", "LeftArrow", "Right"),
     M.split_nav("resize", "CTRL", "RightArrow", "Left"),
     M.split_nav("resize", "CTRL", "UpArrow", "Up"),
