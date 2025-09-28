@@ -4,3 +4,14 @@
 
 [opener]
 play = [{ run = 'open "$@"', orphan = true, for = "macos" }]
+
+[[plugin.prepend_fetchers]]
+id   = "mime"
+name = "*"
+run  = "mime-ext"
+prio = "high"
+
+[[plugin.prepend_preloaders]]
+name = "/Volumes/**"
+run  = "noop"
+
