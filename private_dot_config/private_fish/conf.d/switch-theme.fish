@@ -1,23 +1,21 @@
 function update_theme --on-variable OS_APPEARANCE
     set -f ls_theme catppuccin-latte
+    set -f fish_theme "Catppuccin Latte" # BAT use the same syntax
+    set -f fzf_theme "\
+        --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \
+        --color=fg:#4C4F69,header:#D20F39,info:#8839EF,pointer:#DC8A78 \
+        --color=marker:#7287FD,fg+:#4C4F69,prompt:#8839EF,hl+:#D20F39 \
+        --color=selected-bg:#BCC0CC \
+        --color=border:#9CA0B0,label:#4C4F69
+        --multi"
     if test "$OS_APPEARANCE" = Dark
         set -f ls_theme catppuccin-mocha
-        set -gx BAT_THEME "Catppuccin Mocha"
-        fish_config theme choose "Catppuccin Mocha"
-        set -Ux FZF_DEFAULT_OPTS "\
+        set -f fish_theme "Catppuccin Mocha"
+        set -f fzf_theme "\
         --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
         --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
         --color=selected-bg:#45475a \
-        --multi"
-    else
-        fish_config theme choose "Catppuccin Latte"
-        set -gx BAT_THEME "Catppuccin Latte"
-        set -Ux FZF_DEFAULT_OPTS "\
-        --color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39 \
-        --color=fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78 \
-        --color=marker:#7287fd,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39 \
-        --color=selected-bg:#bcc0cc \
         --multi"
     end
 
@@ -26,4 +24,8 @@ function update_theme --on-variable OS_APPEARANCE
         set -gx LS_THEME $ls_theme
         set -gx LS_COLORS "$(vivid generate $ls_theme)"
     end
+
+    fish_config theme choose $fish_theme
+    set -Ux BAT_THEME $fish_theme
+    set -Ux FZF_DEFAULT_OPTS $fzf_theme
 end
