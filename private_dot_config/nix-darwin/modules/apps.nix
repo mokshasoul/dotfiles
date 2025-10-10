@@ -116,7 +116,6 @@
       vivid
       wakeonlan
       xh
-      yazi
       yq
       yt-dlp
       zellij
