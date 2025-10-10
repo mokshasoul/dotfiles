@@ -34,12 +34,6 @@ if type -q brew
     fish_add_path (brew --prefix ruby)/bin
 end
 
-# Ruby gems
-if type -q gem
-    set -gx GEM_HOME (gem env user_gemhome)
-    fish_add_path "$GEM_HOME/bin"
-end
-
 # Bun JavaScript runtime
 set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --prepend $BUN_INSTALL/bin
@@ -51,4 +45,3 @@ fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.
 if test -f "/private/etc/paths.d/hatch"
     fish_add_path (cat /private/etc/paths.d/hatch)
 end
-
