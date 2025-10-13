@@ -52,3 +52,6 @@ font-style = SemiBold
 font-size = 16
 theme = light:Catppuccin Latte,dark:Catppuccin mocha
 shell-integration = fish
+macos-titlebar-style = hidden
+window-decoration = false
+macos-option-as-alt = true
