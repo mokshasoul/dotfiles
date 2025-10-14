@@ -11,5 +11,6 @@ return {
     opts = {
       colorscheme = "catppuccin",
     },
+    version = false,
   },
 }

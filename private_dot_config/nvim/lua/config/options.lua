@@ -23,6 +23,7 @@ end
 
 vim.o.bg = PREFERRED_THEME
 
+local home = os.getenv("HOME")
+vim.g["python3_host_prog"] = string.format("%s/.tool-venv/nvim/.venv/bin/python", home)
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
-vim.g["python3_host_prog"] = "/Users/moksha/.tool-venv/nvim/.venv/bin/python"
