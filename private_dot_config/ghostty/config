@@ -47,11 +47,14 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
-font-family = FiraCode Nerd Font Mono Ret
-font-style = SemiBold
-font-size = 16
-theme = light:Catppuccin Latte,dark:Catppuccin mocha
-shell-integration = fish
+font-family = FiraCode Nerd Font Mono
+font-style = Ret
+font-size = 16.5
+
 macos-titlebar-style = hidden
-window-decoration = false
 macos-option-as-alt = true
+
+
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+window-theme = system
+window-decoration = false
