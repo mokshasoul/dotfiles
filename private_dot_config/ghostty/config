@@ -58,3 +58,4 @@ macos-option-as-alt = true
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 window-theme = system
 window-decoration = false
+shell-integration-features=cursor,sudo,no-title,ssh-env,ssh-terminfo
