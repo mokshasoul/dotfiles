@@ -8,7 +8,7 @@ function update_theme --on-variable OS_APPEARANCE
         --color=selected-bg:#BCC0CC \
         --color=border:#9CA0B0,label:#4C4F69
         --multi"
-    if test "$OS_APPEARANCE" = Dark
+    if test (string lower "$OS_APPEARANCE") = dark
         set -f ls_theme catppuccin-mocha
         set -f fish_theme "Catppuccin Mocha"
         set -f fzf_theme "\
