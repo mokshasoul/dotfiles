@@ -49,7 +49,7 @@
 # resize-overlay-duration = 4s 200ms
 font-family = FiraCode Nerd Font Mono
 font-style = Ret
-font-size = 18
+font-size = 20
 
 macos-titlebar-style = hidden
 macos-option-as-alt = true

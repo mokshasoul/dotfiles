@@ -56,7 +56,7 @@
 # Disable mouse clicks
 #disable_click = false
 # Built-in themes.  Valid values are "default", "default-light", "gruvbox", "gruvbox-light", "nord", "nord-light"
-#color = "default"
+color = "gruvbox-light"
 # Show memory values in the processes widget as values by default
 #mem_as_value = false
 # Show tree mode by default in the processes widget.
@@ -74,7 +74,7 @@
 # Hides advanced options to stop a process on Unix-like systems.
 #disable_advanced_kill = false
 # Shows GPU(s) memory
-#enable_gpu_memory = false
+enable_gpu_memory = false
 # How much data is stored at once in terms of time.
 #retention = "10m"
 
