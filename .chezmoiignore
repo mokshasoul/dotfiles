@@ -1,3 +1,4 @@
+**/.DS_Store
 node_modules
 package.json
 bun.lockb
@@ -11,3 +12,7 @@ bun.lockb
 .config/nvim/lazyvim_home.json
 package-lock.json
 CLAUDE.md
+.config/yazi/flavors/*
+.config/fish/functions/_*
+.config/tmux/plugins
+.config/bat/themes/*
