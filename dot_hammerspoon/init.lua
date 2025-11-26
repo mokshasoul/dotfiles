@@ -14,18 +14,24 @@ log.i("Initializing")
 
 function audioDeviceCallback(event)
   log.f('audioDeviceCallback: "%s"', event)
-  if event == "dIn " then -- That trailing space is not a mistake
-    local defaultInputDevice = hs.audiodevice.defaultInputDevice()
-    log.f("Input device has changed to %s", defaultInputDevice)
+  if event ~= "dIn" then -- Remove the trailing space, it's a bug
+    return
+  end
 
-    local microphone = hs.audiodevice.findDeviceByUID(MICROPHONE_DEVICE_NAME)
+  local defaultInputDevice = hs.audiodevice.defaultInputDevice()
+  log.f("Input device has changed to %s", defaultInputDevice:name())
+
+  local microphone = hs.audiodevice.findDeviceByUID(MICROPHONE_DEVICE_NAME)
+  if microphone then
+    log.i("Setting microphone to be the default again")
+    microphone:setDefaultInputDevice()
+  else
     local fallback = hs.audiodevice.findDeviceByUID(FALLBACK_DEVICE_NAME)
-    if microphone ~= nil then
-      log.i("Setting microphone to be the default again")
-      microphone:setDefaultInputDevice()
-    else
+    if fallback then
       fallback:setDefaultInputDevice()
-      log.w("Microphone is not connected!")
+      log.w("Microphone is not connected, using fallback")
+    else
+      log.e("Neither microphone nor fallback device found!")
     end
   end
 end
