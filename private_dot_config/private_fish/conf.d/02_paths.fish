@@ -45,3 +45,9 @@ fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.
 if test -f "/private/etc/paths.d/hatch"
     fish_add_path (cat /private/etc/paths.d/hatch)
 end
+
+# >>> JVM installed by coursier >>>
+set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%252B9/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.8_9.tar.gz/jdk-21.0.8+9/Contents/Home"
+# <<< JVM installed by coursier <<<
+
+fish_add_path --path $HOME/.local/bin

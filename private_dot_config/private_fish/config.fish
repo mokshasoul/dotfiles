@@ -22,7 +22,3 @@ if status is-interactive
     # FZF key bindings (needs to be in config.fish where functions are loaded)
     fzf_configure_bindings --directory=\ct
 end
-
-# >>> JVM installed by coursier >>>
-set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%252B9/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.8_9.tar.gz/jdk-21.0.8+9/Contents/Home"
-# <<< JVM installed by coursier <<<
