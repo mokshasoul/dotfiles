@@ -4,18 +4,17 @@
   inputs = {
     # Package sets
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     #
     # Env system-management
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
-    darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+    darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.11";
     darwin.inputs.nixpkgs.follows = "nixpkgs-stable";
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
     _1password-shell-plugins.inputs.nixpkgs.follows = "nixpkgs-stable";
-    _1password-shell-plugins.inputs.flake-utils.follows = "flake-utils";
 
     # Flake utilities
     flake-compat = {
@@ -45,7 +44,7 @@
     system = "aarch64-darwin";
     hostname = "fenrir-mbp";
 
-    homeStateVersion = "25.05";
+    homeStateVersion = "25.11";
 
     nixpkgsDefaults = {
       config = {
