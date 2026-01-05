@@ -6,6 +6,15 @@ if test -d /opt/homebrew/opt/gnu-tar/libexec/gnubin
     fish_add_path --prepend /opt/homebrew/opt/gnu-tar/libexec/gnubin
 end
 
+# uutils path
+if test -d /opt/homebrew/opt/uutils-coreutils/libexec/uubin
+    fish_add_path --prepend /opt/homebrew/opt/uutils-coreutils/libexec/uubin
+end
+
+if test -d /opt/homebrew/opt/coreutils/libexec/gnubin
+    fish_add_path --prepend /opt/homebrew/opt/coreutils/libexec/gnubin
+end
+
 # User binaries
 if test -d "$HOME/bin"
     fish_add_path "$HOME/bin"
@@ -31,19 +40,31 @@ end
 
 # Ruby (via Homebrew)
 if type -q brew
-    fish_add_path (brew --prefix ruby)/bin
+    fish_add_path --path (brew --prefix ruby)/bin
 end
 
 # Bun JavaScript runtime
 set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --prepend $BUN_INSTALL/bin
 
-# Python 3.12 framework
-fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+# Python 3.13 framework
+fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.13/bin"
 
 # Hatch (Python project manager)
 if test -f "/private/etc/paths.d/hatch"
     fish_add_path (cat /private/etc/paths.d/hatch)
+end
+
+set -gx RBENV_SHELL fish
+fish_add_path --prepend '/Users/charis/.rbenv/shims'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/charis/google-cloud-sdk/path.fish.inc' ]
+    builtin source '/Users/charis/google-cloud-sdk/path.fish.inc'
+end
+
+if [ -f "$HOME/.cargo/env.fish" ]
+    builtin source "$HOME/.cargo/env.fish"
 end
 
 # >>> JVM installed by coursier >>>

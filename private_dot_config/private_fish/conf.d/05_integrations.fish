@@ -42,4 +42,8 @@ if status is-interactive
         source ~/.orbstack/shell/init2.fish 2>/dev/null || :
         # set -gx ORBSTACK_SHELL_DIR ~/.orbstack/shell
     end
+
+    if type -q rbenv
+        rbenv init - fish | source
+    end
 end
