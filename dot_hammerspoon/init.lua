@@ -7,9 +7,16 @@
 --
 -- Hammerspoon globals
 hs.loadSpoon("EmmyLua")
+-- inspired/stolen from https://github.com/chrisgrieser/.config/tree/main/hammerspoon
+-- HAMMERSPOON SETTINGS
+--
+hs.autoLaunch(true)
+hs.menuIcon(false)
+hs.automaticallyCheckForUpdates(true)
+hs.window.animationDuration = 0
+
 local MICROPHONE_DEVICE_NAME = "AppleUSBAudioEngine:BLUE MICROPHONE:Blue Snowball :SBIrzW:1"
 local FALLBACK_DEVICE_NAME = "BuiltInMicrophoneDevice"
-
 local log = hs.logger.new("init", "debug")
 log.i("Initializing")
 function AudioDeviceCallback(event)
@@ -43,10 +50,3 @@ hs.audiodevice.watcher.setCallback(AudioDeviceCallback)
 hs.audiodevice.watcher.start()
 
 log.i("Initialized!")
--- inspired/stolen from https://github.com/chrisgrieser/.config/tree/main/hammerspoon
--- HAMMERSPOON SETTINGS
---
-hs.autoLaunch(true)
-hs.menuIcon(false)
-hs.automaticallyCheckForUpdates(true)
-hs.window.animationDuration = 0
