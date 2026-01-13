@@ -54,8 +54,16 @@ if test -z "$SSH_CONNECTION"
 end
 
 # Java (via Coursier)
-set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.24%252B8/OpenJDK11U-jdk_aarch64_mac_hotspot_11.0.24_8.tar.gz/jdk-11.0.24+8/Contents/Home"
-set -gx HOMEBREW_NO_AUTO_UPDATE 1
+# >>> JVM installed by coursier >>>
+set -gx JAVA_HOME "$HOME/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%252B9/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.8_9.tar.gz/jdk-21.0.8+9/Contents/Home"
+# <<< JVM installed by coursier <<<
+set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
+set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
+set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig
+set -gx RBENV_SHELL fish
+# Bun JavaScript runtime
+set -gx BUN_INSTALL "$HOME/.bun"
+
 # Login-specific settings
 if status is-login
     set -l brew_path /opt/homebrew/bin/nvim

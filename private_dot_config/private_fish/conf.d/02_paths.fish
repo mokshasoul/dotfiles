@@ -43,11 +43,9 @@ if type -q brew
     fish_add_path --path (brew --prefix ruby)/bin
 end
 
-# Bun JavaScript runtime
-set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --prepend $BUN_INSTALL/bin
 
-# Python 3.12 framework
+# Python 3 Current framework
 fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/Current/bin"
 
 # Hatch (Python project manager)
@@ -55,27 +53,16 @@ if test -f "/private/etc/paths.d/hatch"
     fish_add_path (cat /private/etc/paths.d/hatch)
 end
 
-set -gx RBENV_SHELL fish
-fish_add_path --prepend '/Users/charis/.rbenv/shims'
+fish_add_path --prepend "$HOME/.rbenv/shims"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/charis/google-cloud-sdk/path.fish.inc' ]
-    builtin source '/Users/charis/google-cloud-sdk/path.fish.inc'
+if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]
+    builtin source "$HOME/google-cloud-sdk/path.fish.inc"
 end
 
 if [ -f "$HOME/.cargo/env.fish" ]
     builtin source "$HOME/.cargo/env.fish"
 end
 
-# >>> JVM installed by coursier >>>
-set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%252B9/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.8_9.tar.gz/jdk-21.0.8+9/Contents/Home"
-# <<< JVM installed by coursier <<<
-
-fish_add_path --path $HOME/.local/bin
-
-set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
-set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
-
-set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig
-
 fish_add_path /opt/homebrew/opt/mysql-client/bin
+fish_add_path --path $HOME/.local/bin

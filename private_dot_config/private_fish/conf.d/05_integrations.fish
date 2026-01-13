@@ -5,11 +5,15 @@
 if status is-interactive
 
     # Pure prompt async configuration
-    set -g async_prompt_functions _pure_prompt_git
+    # set -g async_prompt_functions _pure_prompt_git
 
     # Navi cheatsheet integration
     if type -q navi
         navi widget fish | builtin source
+    end
+
+    if type -q direnv
+        direnv hook fish | builtin source
     end
 
     # Enhanced man pages with bat
@@ -44,6 +48,6 @@ if status is-interactive
     end
 
     if type -q rbenv
-        rbenv init - fish | source
+        rbenv init - fish | builtin source
     end
 end
