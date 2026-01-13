@@ -72,3 +72,10 @@ set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/ad
 # <<< JVM installed by coursier <<<
 
 fish_add_path --path $HOME/.local/bin
+
+set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
+set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
+
+set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig
+
+fish_add_path /opt/homebrew/opt/mysql-client/bin
