@@ -47,8 +47,8 @@ end
 set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path --prepend $BUN_INSTALL/bin
 
-# Python 3.13 framework
-fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/3.13/bin"
+# Python 3.12 framework
+fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/Current/bin"
 
 # Hatch (Python project manager)
 if test -f "/private/etc/paths.d/hatch"
