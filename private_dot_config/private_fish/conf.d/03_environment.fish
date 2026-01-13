@@ -58,12 +58,7 @@ set -gx JAVA_HOME "/Users/moksha/Library/Caches/Coursier/arc/https/github.com/ad
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 # Login-specific settings
 if status is-login
-    # Nix system nvim binary (when available)
-    set -l nix_path /run/current-system/sw/bin/nvim
     set -l brew_path /opt/homebrew/bin/nvim
-    if test -e nix_path
-        set -gx NVIM_BIN nix_path
-    end
     if test -e brew_path
         set -gx NVIM_BIN brew_path
     end
