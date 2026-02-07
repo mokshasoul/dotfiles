@@ -47,11 +47,18 @@
 # # which is explained in the docs for that config option.
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
-font-family = CommitMono Nerd Font Mono
+font-family = "CommitMono Nerd Font Mono"
 font-size = 20
+font-variation = wght=450
+font-variation = wdth=100
+
+font-family-bold = "CommitMono Nerd Font Mono Bold"
+font-variation = wght=800
+
+font-thicken = false
 
 macos-titlebar-style = hidden
-macos-option-as-alt = true
+macos-option-as-alt = left
 
 ## OSC 52 clipboard integration
 clipboard-read = allow

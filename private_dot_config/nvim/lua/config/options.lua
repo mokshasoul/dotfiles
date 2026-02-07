@@ -27,3 +27,8 @@ local home = os.getenv("HOME")
 vim.g["python3_host_prog"] = string.format("%s/.tool-venv/nvim/.venv/bin/python", home)
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
+
+if vim.fn.getenv("TERM_PROGRAM") == "ghostty" then
+  vim.opt.title = true
+  vim.opt.titlestring = "%{fnamemodify(getcwd(), ':t')}"
+end

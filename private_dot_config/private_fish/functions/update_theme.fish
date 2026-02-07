@@ -23,6 +23,10 @@ function update_theme --on-variable OS_APPEARANCE
         set -gx LS_COLORS "$(vivid generate $ls_theme)"
     end
 
-    fish_config theme choose --color-theme=(string lower "$OS_APPEARANCE") "Catppuccin Mocha"
+    if test (string lower "$OS_APPEARANCE") = light
+        fish_config theme choose --color-theme=light "Catppuccin Mocha"
+    else
+        fish_config theme choose "Catppuccin Mocha"
+    end
     set -gx FZF_DEFAULT_OPTS $fzf_theme
 end
