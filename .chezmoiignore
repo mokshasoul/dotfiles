@@ -2,9 +2,7 @@
 node_modules
 package.json
 bun.lockb
-{{ if ne .chezmoi.os "darwin" }}
 .config/nix-darwin/**
-{{ end }}
 {{- if eq .chezmoi.hostname "fenrir-mbp" }}
 .config/fish/functions/shibbo-*.fish
 {{- end }}
@@ -12,6 +10,7 @@ bun.lockb
 .config/nvim/lazyvim_home.json
 package-lock.json
 CLAUDE.md
+AGENTS.md
 .config/yazi/flavors/*
 .config/fish/functions/_*
 .config/tmux/plugins
@@ -20,3 +19,5 @@ CLAUDE.md
 .config/fish/fish_variables
 .config/fish/functions/{fisher,fzf_configure_bindings,fish_title,fish_prompt,fish_mode_prompt}.fish
 .config/fish/conf.d/{_pure_init,fzf,pure}.fish
+.config/lsd/*
+.markdownlint

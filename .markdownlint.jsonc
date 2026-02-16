@@ -1,0 +1,83 @@
+
+// Repository markdownlint configuration
+// Balanced rules for team collaboration and consistency
+{
+  // Enforce consistent heading style (ATX: ###)
+  "MD003": {
+    "style": "atx"
+  },
+
+  // Enforce consistent unordered list marker (-)
+  "MD004": {
+    "style": "dash"
+  },
+
+  // Enforce consistent list indentation (2 spaces)
+  "MD007": {
+    "indent": 2
+  },
+
+  // Allow trailing spaces for intentional line breaks
+  "MD009": {
+    "br_spaces": 2
+  },
+
+  // Disallow hard tabs - enforce spaces
+  "MD010": true,
+
+  // Enforce proper link syntax
+  "MD011": true,
+
+  // Limit consecutive blank lines to 1
+  "MD012": {
+    "maximum": 1
+  },
+
+  // Reasonable line length limit with exceptions for code and tables
+  "MD013": {
+    "line_length": 120,
+    "code_blocks": false,
+    "tables": false,
+    "headings": false
+  },
+
+  // Allow multiple headings with same content (common in structured docs)
+  "MD024": {
+    "siblings_only": true
+  },
+
+  // Enforce single top-level heading per document
+  "MD025": true,
+
+  // Disallow trailing punctuation in headings (except ? ! for questions/emphasis)
+  "MD026": {
+    "punctuation": ".,;:"
+  },
+
+  // Enforce blank lines around fenced code blocks
+  "MD031": true,
+
+  // Enforce blank lines around lists
+  "MD032": true,
+
+  // Allow inline HTML for complex formatting needs
+  "MD033": {
+    "allowed_elements": ["details", "summary", "img", "br", "sub", "sup"]
+  },
+
+  // Enforce angle brackets around bare URLs
+  "MD034": true,
+
+  // Allow files without top-level heading (README fragments, includes)
+  "MD041": false,
+
+  // Enforce consistent emphasis style (*)
+  "MD049": {
+    "style": "asterisk"
+  },
+
+  // Enforce consistent strong style (**)
+  "MD050": {
+    "style": "asterisk"
+  }
+}

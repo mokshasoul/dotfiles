@@ -128,4 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# CLAUDE.md files (automatically generated from AGENTS.md via symlinks)
 CLAUDE.md
+**/CLAUDE.md
+.agents/todo/
