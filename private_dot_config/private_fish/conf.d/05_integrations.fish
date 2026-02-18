@@ -48,6 +48,6 @@ if status is-interactive
     end
 
     if type -q rbenv
-        rbenv init - fish | builtin source
+        rbenv init - --no-rehash fish | builtin source
     end
 end

@@ -6,6 +6,7 @@ bun.lockb
 {{- if eq .chezmoi.hostname "fenrir-mbp" }}
 .config/fish/functions/shibbo-*.fish
 {{- end }}
+.config/nvim/lazyvim.json
 .config/nvim/lazyvim_work.json
 .config/nvim/lazyvim_home.json
 package-lock.json

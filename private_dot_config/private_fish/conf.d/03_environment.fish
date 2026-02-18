@@ -22,6 +22,11 @@ set -gx DOCKER_BUILDKIT 1
 # Development paths
 set -gx GOPATH "$HOME/.go"
 
+# Use GOPATH variable instead of subshell for better performance
+if test -d "$GOPATH/bin"
+    fish_add_path "$GOPATH/bin"
+end
+
 # Editor configuration
 set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
@@ -40,8 +45,7 @@ set -gx NNN_USE_EDITOR 1
 
 # FZF configuration
 if type -q fd
-    set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/' -E '.terraform/'"
-    set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
+    set -gx FZF_CTRL_T_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/' -E '.terraform/'"
 end
 
 # SSH Agent (1Password)
@@ -68,6 +72,6 @@ set -gx BUN_INSTALL "$HOME/.bun"
 if status is-login
     set -l brew_path /opt/homebrew/bin/nvim
     if test -e brew_path
-        set -gx NVIM_BIN brew_path
+        set -gx NVIM_BIN $brew_path
     end
 end

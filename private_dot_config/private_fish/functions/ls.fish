@@ -1,5 +1,7 @@
-if type -qs lsd
-    function ls --wraps lsd
-        command lsd $argv
+function ls --wraps eza
+    if type -qs eza
+        command eza $argv
+    else
+        command ls $argv
     end
 end

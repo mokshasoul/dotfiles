@@ -29,11 +29,6 @@ if test -d "$HOME/.cargo/bin"
     fish_add_path "$HOME/.cargo/bin"
 end
 
-# Use GOPATH variable instead of subshell for better performance
-if test -d "$GOPATH/bin"
-    fish_add_path "$GOPATH/bin"
-end
-
 if test -d "$HOME/Library/Application Support/Coursier/bin"
     fish_add_path "$HOME/Library/Application Support/Coursier/bin"
 end
@@ -53,7 +48,7 @@ if test -f "/private/etc/paths.d/hatch"
     fish_add_path (cat /private/etc/paths.d/hatch)
 end
 
-fish_add_path --prepend "$HOME/.rbenv/shims"
+# fish_add_path --prepend "$HOME/.rbenv/shims"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]

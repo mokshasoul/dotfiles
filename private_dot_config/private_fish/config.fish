@@ -12,7 +12,6 @@
 # Note: All major configuration has been moved to organized conf.d files
 # Add any machine-specific or temporary configuration below if needed
 if status is-interactive
-
     set -l theme_result (osascript -e 'tell application "System Events" to tell appearance preferences to return dark mode' 2>/dev/null)
     if test "$theme_result" = true
         set -gx OS_APPEARANCE Dark

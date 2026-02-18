@@ -17,10 +17,10 @@
 # dialect = "us"
 
 ## enable or disable automatic sync
-# auto_sync = true
+auto_sync = false
 
 ## enable or disable automatic update checks
-# update_check = true
+update_check = false
 
 ## address of the sync server
 # sync_address = "https://api.atuin.sh"
@@ -102,3 +102,15 @@
 # cwd_filter = [
 #   "^/very/secret/area"
 # ]
+
+[theme]
+## Color theme to use for rendering in the terminal.
+## There are some built-in themes, including the base theme ("default"),
+## "autumn" and "marine". You can add your own themes to the "./themes" subdirectory of your
+## Atuin config (or ATUIN_THEME_DIR, if provided) as TOML files whose keys should be one or
+## more of AlertInfo, AlertWarn, AlertError, Annotation, Base, Guidance, Important, and
+## the string values as lowercase entries from this list:
+##    https://ogeon.github.io/docs/palette/master/palette/named/index.html
+## If you provide a custom theme file, it should be  called "NAME.toml" and the theme below
+## should be the stem, i.e. `theme = "NAME"` for your chosen NAME.
+name = "catppuccin-latte-flamingo"
