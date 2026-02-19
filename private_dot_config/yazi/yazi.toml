@@ -9,9 +9,21 @@ edit = [{ run = '$EDITOR "$@"', block = true, for = "unix" }]
 [open]
 prepend_rules = [{ mime = "text/*", use = "edit" }]
 
+[[plugin.prepend_fetchers]]
+id   = "mime"
+url  = "local://*"
+run  = "mime-ext.local"
+prio = "high"
+
+[[plugin.prepend_fetchers]]
+id   = "mime"
+url  = "remote://*"
+run  = "mime-ext.remote"
+prio = "high"
+
 [plugin]
 prepend_preloaders = [
-  { name = "/Volumes/**", run = "noop" },
+  { name = "/Volumes/seagate", run = "noop" },
   # Replace magick, image, video with mediainfo
   { mime = "{audio,video,image}/*", run = "mediainfo" },
   { mime = "application/subrip", run = "mediainfo" },
@@ -22,11 +34,11 @@ prepend_preloaders = [
 # Just add file's MIME type to `previewers`, `preloaders` above.
 # https://mediaarea.net/en/MediaInfo/Support/Formats
 prepend_previewers = [
-  { name = "/Volumes/**", run = "noop" },
+  { name = "/Volumes/seagate", run = "noop" },
+  {mime = "application/apple-plist", run = 'piper -- plutil -p "$1"' },
   { mime = "{audio,video,image}/*", run = "mediainfo" },
   { mime = "application/subrip", run = "mediainfo" },
   { mime = "application/postscript", run = "mediainfo" },
-  { name = "*.plist", run = 'piper -- plutil -p "$1"' },
 ]
 
 # For a large file like Adobe Illustrator, Adobe Photoshop, etc

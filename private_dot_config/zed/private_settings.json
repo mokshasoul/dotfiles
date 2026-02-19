@@ -7,6 +7,22 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "terminal": {
+    "font_weight": 450.0,
+    "font_size": 18.0,
+    "font_family": "CommitMono"
+  },
+  "edit_predictions": {
+    "provider": "copilot",
+    "mode": "subtle"
+  },
+  "disable_ai": false,
+  "audio": {
+    "experimental.auto_microphone_volume": false,
+    "experimental.auto_speaker_volume": false,
+    "experimental.denoise": false,
+    "experimental.legacy_audio_compatible": false
+  },
   "agent": {
     "use_modifier_to_send": true
   },
