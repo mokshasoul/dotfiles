@@ -9,6 +9,9 @@
   - [Key files](#key-files)
   - [Guidelines](#guidelines)
     - [Configuration Management](#configuration-management)
+    - [Theme System](#theme-system)
+    - [Git Configuration](#git-configuration)
+    - [Fish Development Tools](#fish-development-tools)
     - [Making Changes](#making-changes)
     - [Best Practices](#best-practices)
   - [Development Workflow](#development-workflow)
@@ -19,7 +22,7 @@ This document provides context and instructions for AI coding agents working wit
 
 ## Overview
 
-This is a **personal dotfiles repository** for macOS and Linux, managed with [chezmoi](https://chezmoi.io).
+This is a **personal dotfiles repository** for MacOS and Linux, managed with [chezmoi](https://chezmoi.io).
 
 It contains configuration files, shell scripts, and automation for setting up and maintaining a development environment.
 
@@ -60,8 +63,8 @@ If available follow googles style guides for these languages, but never add comm
 - **Neovim**: LazyVim-based configuration in `private_dot_config/nvim/`
 - **Tmux**: Customized with plugins and catppuccin theme
 - **Hammerspoon**: Lua-based macOS automation scripts
-- _Wezterm_: Used to be the ond terminal we used, but now using _Ghostty_
-- _Ghostty_: Primary terminal configuration under `private_dot_config/ghostty/`
+- *Wezterm*: Used to be the primary terminal we used, but now using *Ghostty*
+- *Ghostty*: Primary terminal configuration under `private_dot_config/ghostty/`
 
 ### Theme System
 
@@ -88,7 +91,7 @@ If available follow googles style guides for these languages, but never add comm
 
 1. **Template Files**: When editing `.tmpl` files, preserve Go template syntax (e.g., `{{ .chezmoi.* }}`)
 1. **Shell Scripts**: Follow existing shell script conventions (fish & bash shell)
-1. \*_Environment Updates_: When we add paths to fish ensure that we
+1. \**Environment Updates*: When we add paths to fish ensure that we
    update the relevant files for `bash` and `zsh` to make those
    tools available under those shell environments.
 1. **Testing**: Use `chezmoi diff` to preview changes before applying
@@ -98,11 +101,11 @@ If available follow googles style guides for these languages, but never add comm
 ### Best Practices
 
 - **Preserve existing structure**: Don't reorganize files \*without explicit request
-- **Maintain compatibility**: Changes should work on macOS and Unix systems
+- **Maintain compatibility**: Changes should work on MacOS and Unix systems
 - **Template variables**: Use chezmoi template variables when appropriate
 - **Idempotency**: Scripts should be safe to run multiple times
 - **Error handling**: Fail gracefully when writing scripts
-- **Comments**: Never add comments
+- **Comments**: Add comments where necessary never remove user comments
 
 ## Development Workflow
 
