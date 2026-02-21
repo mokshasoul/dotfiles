@@ -35,10 +35,15 @@ end
 
 # Ruby (via Homebrew)
 if command -q brew
-    fish_add_path --path (brew --prefix ruby)/bin
+    set -l ruby_prefix (brew --prefix ruby 2>/dev/null)
+    if test -d "$ruby_prefix/bin"
+        fish_add_path $ruby_prefix/bin
+    end
 end
 
-fish_add_path --prepend $BUN_INSTALL/bin
+if test -d "$BUN_INSTALL/bin"
+    fish_add_path --prepend $BUN_INSTALL/bin
+end
 
 # Hatch (Python project manager)
 if test -f "/private/etc/paths.d/hatch"
@@ -54,7 +59,9 @@ if [ -f "$HOME/.cargo/env.fish" ]
     builtin source "$HOME/.cargo/env.fish"
 end
 
-fish_add_path /opt/homebrew/opt/mysql-client/bin
+if test -d /opt/homebrew/opt/mysql-client/bin
+    fish_add_path /opt/homebrew/opt/mysql-client/bin
+end
 
 # Development paths
 set -gx GOPATH "$HOME/.go"

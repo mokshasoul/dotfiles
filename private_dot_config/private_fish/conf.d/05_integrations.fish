@@ -4,9 +4,6 @@
 # Only run integrations in interactive shell sessions
 if status is-interactive
 
-    # Pure prompt async configuration
-    # set -g async_prompt_functions _pure_prompt_git
-
     # Navi cheatsheet integration
     if command -q navi
         navi widget fish | builtin source

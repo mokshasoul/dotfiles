@@ -45,10 +45,7 @@ if test -z "$SSH_CONNECTION"
     end
 end
 
-# Java (via Coursier)
-# >>> JVM installed by coursier >>>
-set -gx JAVA_HOME "$HOME/Library/Caches/Coursier/arc/https/github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%252B9/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.8_9.tar.gz/jdk-21.0.8+9/Contents/Home"
-# <<< JVM installed by coursier <<<
+set -gx JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
 set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
 set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
 set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig

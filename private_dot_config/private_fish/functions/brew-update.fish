@@ -1,10 +1,9 @@
 function brew-update
     brew -v update
-    brew upgrade --force-bottle
     brew upgrade
     brew cleanup --prune 60
     brew doctor
-    npm-check -g -u
-    # Remove nix
-    # nix flake update --flake $HOME/.config/nix-darwin
+    if command -q npm-check
+        npm-check -g -u
+    end
 end

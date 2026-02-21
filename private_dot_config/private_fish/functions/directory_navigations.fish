@@ -1,13 +1,4 @@
-# Navigation
-function ..
-    cd ..
-end
-function ...
-    cd ../..
-end
-function ....
-    cd ../../..
-end
-function .....
-    cd ../../../..
-end
+abbr --add .. cd ..
+abbr --add ... cd ../..
+abbr --add .... cd ../../..
+abbr --add ..... cd ../../../..

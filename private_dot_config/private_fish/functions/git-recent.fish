@@ -7,6 +7,6 @@ function git-recent -d "show recent branches to select from"
 
     set -l branches (git branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]')
     set -l branch (echo "$branches" | fzf --ansi)
-    set -l branch (echo "$branch" | awk '{print $1}' | tr -d '*')
-    echo "$branch"
+    set -l selected_branch (echo "$branch" | awk '{print $1}' | tr -d '*')
+    git checkout "$selected_branch"
 end
