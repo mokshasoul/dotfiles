@@ -17,6 +17,7 @@ AGENTS.md
 .config/tmux/plugins
 .config/bat/themes/*
 .config/fish/fish_plugins
+.config/fish/completions/*
 .config/fish/fish_variables
 .config/fish/functions/{fisher,fzf_configure_bindings,fish_title,fish_prompt,fish_mode_prompt}.fish
 .config/fish/conf.d/{_pure_init,fzf,pure}.fish
