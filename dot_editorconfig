@@ -19,35 +19,40 @@ indent_style = space
 indent_size = 2
 
 
-# shfmt options
-[[shell]]
-indent_style = space
-indent_size = 2
-binary_next_line = true
-switch_case_indent = true
-
-
-[*.ps1]
+[*.fish]
 indent_style = space
 indent_size = 2
 
 
-[{.vimrc,*.vim}]
+[*.{lua,.luacheckrc}]
 indent_style = space
 indent_size = 2
 
-
-[{*.lua,.luacheckrc}]
-indent_style = space
-indent_size = 2
 
 [*.py]
 indent_style = space
 indent_size = 4
 
+
+[*.toml]
+indent_style = space
+indent_size = 2
+
+
+[*.tmpl]
+indent_style = space
+indent_size = 2
+
+
+[*.nix]
+indent_style = space
+indent_size = 2
+
+
 [Makefile]
 indent_style = tab
 indent_size = 4
 
-[*.{json,yml}]
+
+[*.{json,yml,yaml}]
 indent_size = 2
