@@ -23,3 +23,5 @@ AGENTS.md
 .config/fish/conf.d/{_pure_init,fzf,pure}.fish
 .config/lsd/*
 .markdownlint
+.agents
+.config/fish/themes

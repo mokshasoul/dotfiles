@@ -32,7 +32,7 @@ set -gx NNN_FCOLORS 030304020705050801060301
 set -gx NNN_USE_EDITOR 1
 
 # FZF configuration
-if type -q fd
+if command -q fd
     set -gx FZF_CTRL_T_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/' -E '.terraform/'"
 end
 

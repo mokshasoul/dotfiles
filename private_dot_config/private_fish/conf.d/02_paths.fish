@@ -34,7 +34,7 @@ if test -d "$HOME/Library/Application Support/Coursier/bin"
 end
 
 # Ruby (via Homebrew)
-if type -q brew
+if command -q brew
     fish_add_path --path (brew --prefix ruby)/bin
 end
 

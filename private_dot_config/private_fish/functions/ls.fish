@@ -1,5 +1,5 @@
 function ls --wraps eza
-    if type -qs eza
+    if command -q eza
         command eza $argv
     else
         command ls $argv
