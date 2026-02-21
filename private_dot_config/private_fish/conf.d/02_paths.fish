@@ -40,15 +40,10 @@ end
 
 fish_add_path --prepend $BUN_INSTALL/bin
 
-# Python 3 Current framework
-fish_add_path --path --prepend "/Library/Frameworks/Python.framework/Versions/Current/bin"
-
 # Hatch (Python project manager)
 if test -f "/private/etc/paths.d/hatch"
     fish_add_path (cat /private/etc/paths.d/hatch)
 end
-
-# fish_add_path --prepend "$HOME/.rbenv/shims"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]
@@ -60,4 +55,17 @@ if [ -f "$HOME/.cargo/env.fish" ]
 end
 
 fish_add_path /opt/homebrew/opt/mysql-client/bin
-fish_add_path --path $HOME/.local/bin
+
+# Development paths
+set -gx GOPATH "$HOME/.go"
+
+# Use GOPATH variable instead of subshell for better performance
+if test -d "$GOPATH/bin"
+    fish_add_path "$GOPATH/bin"
+end
+
+# Python 3 Current framework
+fish_add_path --move --prepend "/Library/Frameworks/Python.framework/Versions/Current/bin"
+if test -d "$HOME/.orbstack/shell/bin"
+    fish_add_path "$HOME/.orbstack/shell/bin"
+end

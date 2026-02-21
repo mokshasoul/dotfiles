@@ -15,18 +15,6 @@ set -q WORKSPACE; or set -gx WORKSPACE "$HOME/pws"
 set -gx LANG en_IE.UTF-8
 set -gx LC_ALL en_IE.UTF-8
 
-# Docker optimizations
-set -gx COMPOSE_DOCKER_CLI_BUILD 1
-set -gx DOCKER_BUILDKIT 1
-
-# Development paths
-set -gx GOPATH "$HOME/.go"
-
-# Use GOPATH variable instead of subshell for better performance
-if test -d "$GOPATH/bin"
-    fish_add_path "$GOPATH/bin"
-end
-
 # Editor configuration
 set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
@@ -67,11 +55,4 @@ set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig
 set -gx RBENV_SHELL fish
 # Bun JavaScript runtime
 set -gx BUN_INSTALL "$HOME/.bun"
-
-# Login-specific settings
-if status is-login
-    set -l brew_path /opt/homebrew/bin/nvim
-    if test -e brew_path
-        set -gx NVIM_BIN $brew_path
-    end
-end
+set -gx ORBSTACK_SHELL_DIR "$HOME/.orbstack/shell"

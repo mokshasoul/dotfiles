@@ -8,11 +8,11 @@ if status is-interactive
     # set -g async_prompt_functions _pure_prompt_git
 
     # Navi cheatsheet integration
-    if type -q navi
+    if command -q navi
         navi widget fish | builtin source
     end
 
-    if type -q direnv
+    if command -q direnv
         direnv hook fish | builtin source
     end
 
@@ -22,7 +22,7 @@ if status is-interactive
     end
 
     # Shell history with Atuin
-    if type -q atuin
+    if command -q atuin
         atuin init fish | builtin source
     end
 
@@ -31,23 +31,19 @@ if status is-interactive
         test -e "$HOME/.iterm2_shell_integration.fish"; and builtin source "$HOME/.iterm2_shell_integration.fish"
     end
 
-    if type -q fnm
+    if command -q fnm
         fnm env --use-on-cd --shell fish | builtin source
     end
 
-    if type -q zoxide
+    if command -q zoxide
         zoxide init fish | builtin source
     end
 
-    # Added by OrbStack: command-line tools and integration
-    # This won't be added again if you remove it.
     if test -d ~/.orbstack/shell
-        # set -gx PATH ~/.orbstack/shell/bin $PATH
-        builtin source ~/.orbstack/shell/init2.fish 2>/dev/null || :
-        # set -gx ORBSTACK_SHELL_DIR ~/.orbstack/shell
+        fish_add_path -aP $HOME/.orbstack/bin
     end
 
-    if type -q rbenv
-        rbenv init - --no-rehash fish | builtin source
+    if command -q rbenv
+        fish_add_path --move --prepend "$HOME/.rbenv/shims/"
     end
 end
