@@ -104,6 +104,8 @@
   version = 2
 
 [credentials]
+  # Generic fallback for non-GitHub hosts; GitHub/Gist use gh CLI above.
+  # SSH commit signing is handled separately via 1Password (see [gpg "ssh"]).
   helper = cache
 
 [credential "https://github.com"]

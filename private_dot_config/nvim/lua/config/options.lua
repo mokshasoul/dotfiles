@@ -8,16 +8,31 @@ if vim.g.neovide then
 end
 PREFERRED_THEME = "light"
 
-local handle = io.popen(
-  "osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode' 2>/dev/null"
-)
+local uname = io.popen("uname -s")
+local system = uname and uname:read("*a"):gsub("%s+", "") or ""
+if uname then uname:close() end
 
-if handle then
-  local result = handle:read("*a")
-  handle:close()
-
-  if result and result:match("true") then
-    PREFERRED_THEME = "dark" -- Dark theme
+if system == "Darwin" then
+  local handle = io.popen(
+    "osascript -e 'tell application \"System Events\" to tell appearance preferences to get dark mode' 2>/dev/null"
+  )
+  if handle then
+    local result = handle:read("*a")
+    handle:close()
+    if result and result:match("true") then
+      PREFERRED_THEME = "dark"
+    end
+  end
+elseif system == "Linux" then
+  local handle = io.popen(
+    "gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null"
+  )
+  if handle then
+    local result = handle:read("*a")
+    handle:close()
+    if result and result:match("dark") then
+      PREFERRED_THEME = "dark"
+    end
   end
 end
 

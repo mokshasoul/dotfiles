@@ -34,7 +34,7 @@ window-decoration = false
 ## OSC 52 clipboard integration
 clipboard-read = allow
 clipboard-write = allow
-# THESE ARE THE DEFUALTS
+# THESE ARE THE DEFAULTS
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
 cursor-style=block
 # QUAKE
