@@ -318,7 +318,7 @@ zstyle ':completion:*' special-dirs true
 #stty erase "^?"
 
 ## you want to automatically use a bigger font on big terminals?
-if [[ "${TERM}" == "([Exa]term*|wezterm)" ]] && [[ "$LINES" -ge 50 ]] && [[ "$COLUMNS" -ge 100 ]] && [[ -z "$SSH_CONNECTION" ]] ; then
+if [[ "$TERM" == [Exa]term* ]] && [[ "$LINES" -ge 50 ]] && [[ "$COLUMNS" -ge 100 ]] && [[ -z "$SSH_CONNECTION" ]] ; then
    large
 fi
 

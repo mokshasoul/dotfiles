@@ -6,7 +6,7 @@
 --   https://www.hammerspoon.org/docs/hs.audiodevice.watcher.html
 --
 -- Hammerspoon globals
-hs.loadSpoon("EmmyLua")
+pcall(function() hs.loadSpoon("EmmyLua") end)
 -- inspired/stolen from https://github.com/chrisgrieser/.config/tree/main/hammerspoon
 -- HAMMERSPOON SETTINGS
 --
@@ -15,15 +15,15 @@ hs.menuIcon(false)
 hs.automaticallyCheckForUpdates(true)
 hs.window.animationDuration = 0
 
-local MICROPHONE_DEVICE_NAME = "AppleUSBAudioEngine:BLUE MICROPHONE:Blue Snowball :SBIrzW:1"
+local MICROPHONE_DEVICE_NAME = "Blue Snowball"
 local FALLBACK_DEVICE_NAME = "BuiltInMicrophoneDevice"
 local log = hs.logger.new("init", "debug")
 log.i("Initializing")
 function AudioDeviceCallback(event)
   log.f('audioDeviceCallback: "%s"', event)
-  -- if event ~= "dIn" then
-  --   return
-  -- end
+  if event ~= "dIn" then
+    return
+  end
 
   local defaultInputDevice = hs.audiodevice.defaultInputDevice()
 
@@ -31,7 +31,7 @@ function AudioDeviceCallback(event)
     log.f("Input device has changed to %s", defaultInputDevice:name())
   end
 
-  local microphone = hs.audiodevice.findDeviceByUID(MICROPHONE_DEVICE_NAME)
+  local microphone = hs.audiodevice.findInputByName(MICROPHONE_DEVICE_NAME)
   if microphone ~= nil then
     log.i("Setting microphone to be the default again")
     microphone:setDefaultInputDevice()

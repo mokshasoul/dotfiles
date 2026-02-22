@@ -23,6 +23,7 @@ prio = "high"
 
 [plugin]
 prepend_preloaders = [
+  # Machine-specific: suppress previewing on external Seagate drive (slow HDD); harmless if drive absent
   { name = "/Volumes/seagate", run = "noop" },
   # Replace magick, image, video with mediainfo
   { mime = "{audio,video,image}/*", run = "mediainfo" },
@@ -34,6 +35,7 @@ prepend_preloaders = [
 # Just add file's MIME type to `previewers`, `preloaders` above.
 # https://mediaarea.net/en/MediaInfo/Support/Formats
 prepend_previewers = [
+  # Machine-specific: suppress previewing on external Seagate drive (slow HDD); harmless if drive absent
   { name = "/Volumes/seagate", run = "noop" },
   {mime = "application/apple-plist", run = 'piper -- plutil -p "$1"' },
   { mime = "{audio,video,image}/*", run = "mediainfo" },

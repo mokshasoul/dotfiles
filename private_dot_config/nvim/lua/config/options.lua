@@ -24,7 +24,10 @@ end
 vim.o.bg = PREFERRED_THEME
 
 local home = os.getenv("HOME")
-vim.g["python3_host_prog"] = string.format("%s/.tool-venv/nvim/.venv/bin/python", home)
+local venv_python = string.format("%s/.tool-venv/nvim/.venv/bin/python", home)
+if vim.fn.executable(venv_python) == 1 then
+  vim.g["python3_host_prog"] = venv_python
+end
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 
