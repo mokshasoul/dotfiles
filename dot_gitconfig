@@ -17,10 +17,7 @@
   d = diff
   br = branch
   ci = commit
-  co = checkout
-  df = diff
   st = status
-  p = pull
   cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
   browse = !"gh repo view -w"
   prc = !"gh pr create"
