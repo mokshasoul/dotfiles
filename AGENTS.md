@@ -116,9 +116,10 @@ When helping with this repository:
 3. **Preserve templates**: Keep `{{ }}` syntax intact
 4. **Test safely**: Use `--dry-run` flagsw
 5. **TODO Lists**: Create task specific TODO lists for any larger changes to
-   ensure all steps are covered in the directory `.agents/todo/`
+   ensure all steps are covered in the directory `.agents/todo/` together with the
+   date and topic
 
 ## Questions?
 
-- [Chezmoi.io docs](https://chezmoi.io)
+- [chezmoi.io docs](https://chezmoi.io)
 - [fish shell docs](https://fishshell.com/docs/current/index.html)
