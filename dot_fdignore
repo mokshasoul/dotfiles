@@ -1,7 +1,6 @@
 # vim:filetype=gitignore:tw=80:et
 
 **/.wine
-# **/.local/share
 **/.cache
 **/.npm
 **/.local/lib
@@ -9,7 +8,6 @@
 **/.config/Slack
 **/.oh-my-zsh/plugins
 **/.git
-**/.github
 **/.zsh_sessions/
 **/.config/nvim/backup
 **/.config/nvim/undo

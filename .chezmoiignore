@@ -28,3 +28,9 @@ AGENTS.md
 .config/yazi/plugins
 .config/yazi/flavors
 .config/yazi/package.toml
+.config/zed/.tmp*
+.config/zed/.tmp
+.config/zed/conversations
+.config/zed/embeddings
+.config/zed/prompts
+.config/wezterm/colors
