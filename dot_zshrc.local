@@ -352,7 +352,9 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export PATH="$PATH:$HOME/.local/bin"
 source /Users/moksha/.config/broot/launcher/bash/br
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#
 ## END OF FILE #################################################################
