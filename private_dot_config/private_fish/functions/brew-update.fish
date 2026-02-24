@@ -1,4 +1,4 @@
-function brew-update
+function brew-update -d "update, upgrade, and clean homebrew packages"
     brew -v update
     brew upgrade
     brew cleanup --prune 60
