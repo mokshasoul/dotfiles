@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# shellcheck source-path=/Users/moksha
+[ -f ~/.fzf.bash ] && source "${HOME}/.fzf.bash"
+[ -f ~/.cargo/env ] && source "${HOME}/.cargo/env"
+[ -f ~/.config/broot/launcher/bash/br ] && source /Users/moksha/.config/broot/launcher/bash/br
+#
+# interactive
+case $- in
+  *i*) ;;
+  *) return ;;
+esac
+# env vars
+export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$NPM_CONFIG_PREFIX/bin:$TFENV/bin:$XDG_DATA_HOME/nvim/mason/bin:$PATH
+export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
+export MANWIDTH=999
+export EDITOR=nvim -f
+export VISUAL=nvim -f
+
+PATH="/opt/homebrew/opt/gnu-time/libexec/gnubin:$PATH"
+#vi: set ft=bash
