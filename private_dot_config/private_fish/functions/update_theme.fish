@@ -1,4 +1,4 @@
-function update_theme --on-variable OS_APPEARANCE
+function update_theme -d "apply catppuccin theme based on OS_APPEARANCE variable" --on-variable OS_APPEARANCE
     set -f ls_theme catppuccin-latte
     set -f fzf_theme "\
         --color=bg+:#CCD0DA,bg:#EFF1F5,spinner:#DC8A78,hl:#D20F39 \

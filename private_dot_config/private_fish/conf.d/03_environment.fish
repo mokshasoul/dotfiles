@@ -16,13 +16,13 @@ set -gx LANG en_IE.UTF-8
 set -gx LC_ALL en_IE.UTF-8
 
 # Editor configuration
-set -gx EDITOR (which nvim)
+set -gx EDITOR (command -v nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 
 # Tool-specific environment variables
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
-set -gx PIPX_DEFAULT_PYTHON (which python3)
+set -gx PIPX_DEFAULT_PYTHON (command -v python3)
 
 # nnn file manager configuration
 # Theme: https://github.com/catppuccin/catppuccin/discussions/1955

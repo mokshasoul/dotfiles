@@ -1,8 +1,12 @@
 {
-  "outputStyle": "Explanatory",
   "permissions": {
     "allow": [
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
-  }
+  },
+  "outputStyle": "Explanatory",
+  "prefersReducedMotion": true,
+  "spinnerTipsEnabled": false
 }
