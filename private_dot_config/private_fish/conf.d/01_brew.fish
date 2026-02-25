@@ -1,13 +1,12 @@
 if test -d /opt/homebrew/bin
-    set --global --export HOMEBREW_PREFIX /opt/homebrew
+    set -gx HOMEBREW_PREFIX /opt/homebrew
+    set -gx HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
+    set -gx HOMEBREW_REPOSITORY $HOMEBREW_PREFIX
 
-    set --global --export HOMEBREW_CELLAR /opt/homebrew/Cellar
+    set -gx HOMEBREW_BAT 7
+    set -gx HOMEBREW_NO_AUTO_UPDATE 1
 
-    set --global --export HOMEBREW_REPOSITORY /opt/homebrew
-    set --global --export HOMEBREW_BAT 7
-    set --global --export HOMEBREW_NO_AUTO_UPDATE 1
-
-    fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
+    fish_add_path $HOMEBREW_PREFIX/bin HOMEBREW_PREFIX/sbin
 
     if test -n "$MANPATH[1]"
         set --global --export --path MANPATH '' $MANPATH

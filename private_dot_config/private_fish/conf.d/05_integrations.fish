@@ -14,7 +14,7 @@ if status is-interactive
     end
 
     # Enhanced man pages with bat
-    if type -q sh; and type -q sed; and type -q bat
+    if command -q sh; and command -q sed; and command -q bat
         set -x MANPAGER "sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
     end
 
