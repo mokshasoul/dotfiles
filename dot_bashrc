@@ -1,20 +1,117 @@
 #!/usr/bin/env bash
 # shellcheck source-path=/Users/moksha
+
 [ -f ~/.fzf.bash ] && source "${HOME}/.fzf.bash"
 [ -f ~/.cargo/env ] && source "${HOME}/.cargo/env"
-[ -f ~/.config/broot/launcher/bash/br ] && source /Users/moksha/.config/broot/launcher/bash/br
-#
-# interactive
+[ -f ~/.config/broot/launcher/bash/br ] && source "${HOME}/.config/broot/launcher/bash/br"
+
+# interactive only from here
 case $- in
   *i*) ;;
   *) return ;;
 esac
-# env vars
-export PATH=/usr/sbin:/usr/local/sbin:$HOME/.local/bin:$CARGO_HOME/bin:$GOPATH/bin:$NPM_CONFIG_PREFIX/bin:$TFENV/bin:$XDG_DATA_HOME/nvim/mason/bin:$PATH
-export MANPAGER='nvim --cmd ":lua vim.g.noplugins=1" +Man!'
-export MANWIDTH=999
-export EDITOR=nvim -f
-export VISUAL=nvim -f
 
-PATH="/opt/homebrew/opt/gnu-time/libexec/gnubin:$PATH"
+# XDG base dirs
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+# Homebrew
+if [[ -d /opt/homebrew/bin ]]; then
+  export HOMEBREW_PREFIX=/opt/homebrew
+  export HOMEBREW_CELLAR=$HOMEBREW_PREFIX/Cellar
+  export HOMEBREW_REPOSITORY=$HOMEBREW_PREFIX
+  export HOMEBREW_BAT=7
+  export HOMEBREW_NO_AUTO_UPDATE=1
+  export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
+  export MANPATH="$HOMEBREW_PREFIX/share/man:${MANPATH:-}"
+  export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
+fi
+
+# Core PATH additions (mirrors fish 02_paths.fish order)
+[[ -d /opt/homebrew/opt/gnu-tar/libexec/gnubin ]] && export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
+[[ -d /opt/homebrew/opt/gnu-time/libexec/gnubin ]] && export PATH="/opt/homebrew/opt/gnu-time/libexec/gnubin:$PATH"
+[[ -d "$HOME/bin" ]]        && export PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+
+# Coursier (Scala/Java tooling)
+[[ -d "$HOME/Library/Application Support/Coursier/bin" ]] && \
+  export PATH="$HOME/Library/Application Support/Coursier/bin:$PATH"
+
+# Ruby (brew-managed)
+if command -v brew &>/dev/null; then
+  ruby_prefix=$(brew --prefix ruby 2>/dev/null)
+  [[ -d "$ruby_prefix/bin" ]] && export PATH="$ruby_prefix/bin:$PATH"
+fi
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+[[ -d "$BUN_INSTALL/bin" ]] && export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Hatch (from /private/etc/paths.d/hatch if present)
+[[ -f /private/etc/paths.d/hatch ]] && export PATH="$(cat /private/etc/paths.d/hatch):$PATH"
+
+# mysql-client
+[[ -d /opt/homebrew/opt/mysql-client/bin ]] && export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# Go
+export GOPATH="$HOME/.go"
+[[ -d "$GOPATH/bin" ]] && export PATH="$GOPATH/bin:$PATH"
+
+# OrbStack
+export ORBSTACK_SHELL_DIR="$HOME/.orbstack/shell"
+[[ -d "$ORBSTACK_SHELL_DIR/bin" ]] && export PATH="$ORBSTACK_SHELL_DIR/bin:$PATH"
+
+# Mason (Neovim LSP tools)
+[[ -d "$XDG_DATA_HOME/nvim/mason/bin" ]] && export PATH="$XDG_DATA_HOME/nvim/mason/bin:$PATH"
+
+# System paths
+export PATH="/usr/sbin:/usr/local/sbin:$PATH"
+
+# Google Cloud SDK
+[[ -f "$HOME/google-cloud-sdk/path.bash.inc" ]] && source "$HOME/google-cloud-sdk/path.bash.inc"
+[[ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]] && source "$HOME/google-cloud-sdk/completion.bash.inc"
+
+# Locale
+export LANG=en_IE.UTF-8
+export LC_ALL=en_IE.UTF-8
+
+# Editor
+EDITOR=$(command -v nvim)
+export EDITOR
+export VISUAL=$EDITOR
+export SUDO_EDITOR=$EDITOR
+
+# Pager
+export MANWIDTH=999
+if command -v bat &>/dev/null; then
+  export MANPAGER="sh -c 'sed -e s/.\\x08//g | bat -l man -p'"
+fi
+
+# Environment
+export WORKSPACE="${WORKSPACE:-$HOME/pws}"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null) && export JAVA_HOME
+
+# mysql-client compile flags
+if [[ -d /opt/homebrew/opt/mysql-client ]]; then
+  export LDFLAGS="-L/opt/homebrew/opt/mysql-client/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/mysql-client/include"
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig"
+fi
+
+# 1Password SSH agent
+[[ -S "$HOME/.1password/agent.sock" ]] && export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+
+# pipx
+PIPX_DEFAULT_PYTHON=$(command -v python3) && export PIPX_DEFAULT_PYTHON
+
+# Tool integrations (interactive only)
+command -v direnv &>/dev/null && eval "$(direnv hook bash)"
+command -v atuin  &>/dev/null && eval "$(atuin init bash)"
+command -v fnm    &>/dev/null && eval "$(fnm env --use-on-cd --shell bash)"
+command -v rbenv  &>/dev/null && eval "$(rbenv init - bash)"
+command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
+
 #vi: set ft=bash
