@@ -3,28 +3,31 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [opener]
-play = [{ run = 'open "$@"', orphan = true, for = "macos" }]
+play = [{ run = 'mpv "$@"', orphan = true }]
 edit = [{ run = '$EDITOR "$@"', block = true, for = "unix" }]
 
 [open]
-prepend_rules = [{ mime = "text/*", use = "edit" }]
+prepend_rules = [
+  { mime = "text/*", use = "edit" },
+  { mime = "video/*", use = "play" },
+]
 
 [[plugin.prepend_fetchers]]
-id   = "mime"
-url  = "local://*"
-run  = "mime-ext.local"
+id = "mime"
+url = "local://*"
+run = "mime-ext.local"
 prio = "high"
 
 [[plugin.prepend_fetchers]]
-id   = "mime"
-url  = "remote://*"
-run  = "mime-ext.remote"
+id = "mime"
+url = "remote://*"
+run = "mime-ext.remote"
 prio = "high"
 
 [plugin]
 prepend_preloaders = [
   # Machine-specific: suppress previewing on external Seagate drive (slow HDD); harmless if drive absent
-  { name = "/Volumes/seagate", run = "noop" },
+  { url = "/Volumes/seagate", run = "noop" },
   # Replace magick, image, video with mediainfo
   { mime = "{audio,video,image}/*", run = "mediainfo" },
   { mime = "application/subrip", run = "mediainfo" },
@@ -36,8 +39,8 @@ prepend_preloaders = [
 # https://mediaarea.net/en/MediaInfo/Support/Formats
 prepend_previewers = [
   # Machine-specific: suppress previewing on external Seagate drive (slow HDD); harmless if drive absent
-  { name = "/Volumes/seagate", run = "noop" },
-  {mime = "application/apple-plist", run = 'piper -- plutil -p "$1"' },
+  { url = "/Volumes/seagate", run = "noop" },
+  { mime = "application/apple-plist", run = 'piper -- plutil -p "$1"' },
   { mime = "{audio,video,image}/*", run = "mediainfo" },
   { mime = "application/subrip", run = "mediainfo" },
   { mime = "application/postscript", run = "mediainfo" },
