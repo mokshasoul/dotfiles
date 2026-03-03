@@ -16,12 +16,12 @@ hs.automaticallyCheckForUpdates(true)
 hs.window.animationDuration = 0
 
 local MICROPHONE_DEVICE_NAME = "Blue Snowball"
-local FALLBACK_DEVICE_NAME = "BuiltInMicrophoneDevice"
+local FALLBACK_DEVICE_NAME = "MacBook Pro Microphone"
 local log = hs.logger.new("init", "debug")
 log.i("Initializing")
 function AudioDeviceCallback(event)
   log.f('audioDeviceCallback: "%s"', event)
-  if event ~= "dIn" then
+  if event ~= "dIn " then
     return
   end
 
@@ -37,7 +37,7 @@ function AudioDeviceCallback(event)
     microphone:setDefaultInputDevice()
   else
     log.i("Microphone is not connected, using fallback")
-    local fallback = hs.audiodevice.findDeviceByUID(FALLBACK_DEVICE_NAME)
+    local fallback = hs.audiodevice.findInputByName(FALLBACK_DEVICE_NAME)
     if fallback ~= nil then
       fallback:setDefaultInputDevice()
     else
