@@ -93,7 +93,7 @@ cleanup = true
 # this will be ignored if the binary is built without self update support
 #
 # available also via setting the environment variable TOPGRADE_NO_SELF_UPGRADE)
-# no_self_update = true
+no_self_update = false
 
 # Extra tracing filter directives
 # These are prepended to the `--log-filter` argument
@@ -139,19 +139,19 @@ cleanup = true
 # For the BrewCask step
 # If `Repo Cask Upgrade` exists, then use the `-a` option.
 # Otherwise, use the `--greedy` option.
-greedy_cask = true
+greedy_cask = false
 
 # For the BrewCask step
 # If `Repo Cask Upgrade` does not exist, then use the `--greedy_latest` option.
 # NOTE: the above entry `greedy_cask` contains this entry, though you can enable
 # both of them, they won't clash with each other.
-greedy_latest = true
+greedy_latest = false
 
 # For the BrewCask step
 # If `Repo Cask Upgrade` does not exist, then use the `--greedy_auto_updates` option.
 # NOTE: the above entry `greedy_cask` contains this entry, though you can enable
 # both of them, they won't clash with each other.
-# greedy_auto_updates = true
+greedy_auto_updates = false
 
 # For the BrewFormula step
 # Execute `brew autoremove` after the step.
