@@ -1,10 +1,11 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+#:schema /Users/moksha/.config/taplo/yazi.json
 
 [opener]
 play = [{ run = 'mpv "$@"', orphan = true }]
 edit = [{ run = '$EDITOR "$@"', block = true, for = "unix" }]
+
 
 [open]
 prepend_rules = [
@@ -12,19 +13,13 @@ prepend_rules = [
   { mime = "video/*", use = "play" },
 ]
 
-[[plugin.prepend_fetchers]]
-id = "mime"
-url = "local://*"
-run = "mime-ext.local"
-prio = "high"
-
-[[plugin.prepend_fetchers]]
-id = "mime"
-url = "remote://*"
-run = "mime-ext.remote"
-prio = "high"
 
 [plugin]
+prepend_fetchers = [
+  { id = "mime", url = "local://*", run = "mime-ext.local", prio = "high" },
+  { id = "mime", url = "remote://*", run = "mime-ext.remote", prio = "high" },
+]
+prepend_spotters = [{ url = "video/*", run = "spot-video" }]
 prepend_preloaders = [
   # Machine-specific: suppress previewing on external Seagate drive (slow HDD); harmless if drive absent
   { url = "/Volumes/seagate", run = "noop" },
