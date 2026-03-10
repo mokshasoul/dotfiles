@@ -138,7 +138,7 @@ tmp
 .config/lsd
 .config/macmon.json
 .config/massren
-.config/mpv
+.config/mpv/watch_later
 .config/neofetch
 .config/nix-darwin/**
 .config/nnn
@@ -162,7 +162,7 @@ tmp
 .config/fish/functions/_*
 .config/fish/functions/{fisher,fzf_configure_bindings,fish_title,fish_prompt,fish_mode_prompt}.fish
 .config/fish/conf.d/{_pure_init,fzf,pure}.fish
-{{- if eq .chezmoi.hostname "fenrir-mbp" }}
+{{- if eq .chezmoi.hostname "fenrir" }}
 .config/fish/functions/shibbo-*.fish
 {{- end }}
 
