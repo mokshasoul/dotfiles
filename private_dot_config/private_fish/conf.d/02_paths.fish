@@ -29,10 +29,6 @@ if test -d "$HOME/.cargo/bin"
     fish_add_path "$HOME/.cargo/bin"
 end
 
-if test -d "$HOME/Library/Application Support/Coursier/bin"
-    fish_add_path "$HOME/Library/Application Support/Coursier/bin"
-end
-
 # Ruby (via Homebrew)
 if command -q brew
     set -l ruby_prefix (brew --prefix ruby 2>/dev/null)

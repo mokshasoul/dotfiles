@@ -43,4 +43,8 @@ if status is-interactive
     if command -q rbenv
         fish_add_path --move --prepend "$HOME/.rbenv/shims/"
     end
+
+    if command -q mise
+        mise activate fish | builtin source
+    end
 end
