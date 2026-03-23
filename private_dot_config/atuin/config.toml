@@ -46,6 +46,7 @@ workspaces = false
 ## the accepted values are identical to those of "filter_mode"
 ## leave unspecified to use same mode set in "filter_mode"
 filter_mode_shell_up_key_binding = "directory"
+search_mode = "daemon-fuzzy"
 
 ## which search mode to use when atuin is invoked from a shell up-key binding
 ## the accepted values are identical to those of "search_mode"
@@ -114,3 +115,10 @@ filter_mode_shell_up_key_binding = "directory"
 ## If you provide a custom theme file, it should be  called "NAME.toml" and the theme below
 ## should be the stem, i.e. `theme = "NAME"` for your chosen NAME.
 name = "catppuccin-latte-flamingo"
+
+[ai]
+enabled = true
+
+[daemon]
+enabled = true
+autostart = true

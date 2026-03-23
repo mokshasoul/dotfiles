@@ -67,6 +67,10 @@ if test -d "$GOPATH/bin"
     fish_add_path "$GOPATH/bin"
 end
 
+if command -q xcode-select
+    fish_add_path (xcode-select -p)
+end
+
 # Python 3 Current framework
 fish_add_path --move --prepend "/Library/Frameworks/Python.framework/Versions/Current/bin"
 if test -d "$HOME/.orbstack/shell/bin"

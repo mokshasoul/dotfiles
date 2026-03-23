@@ -10,7 +10,9 @@ PREFERRED_THEME = "light"
 
 local uname = io.popen("uname -s")
 local system = uname and uname:read("*a"):gsub("%s+", "") or ""
-if uname then uname:close() end
+if uname then
+  uname:close()
+end
 
 if system == "Darwin" then
   local handle = io.popen(
@@ -24,9 +26,7 @@ if system == "Darwin" then
     end
   end
 elseif system == "Linux" then
-  local handle = io.popen(
-    "gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null"
-  )
+  local handle = io.popen("gsettings get org.gnome.desktop.interface color-scheme 2>/dev/null")
   if handle then
     local result = handle:read("*a")
     handle:close()
@@ -39,7 +39,7 @@ end
 vim.o.bg = PREFERRED_THEME
 
 local home = os.getenv("HOME")
-local venv_python = string.format("%s/.tool-venv/nvim/.venv/bin/python", home)
+local venv_python = string.format("%s/.tool-venv/nvim/bin/python3", home)
 if vim.fn.executable(venv_python) == 1 then
   vim.g["python3_host_prog"] = venv_python
 end

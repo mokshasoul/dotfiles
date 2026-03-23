@@ -6,7 +6,7 @@
 --   https://www.hammerspoon.org/docs/hs.audiodevice.watcher.html
 --
 -- Hammerspoon globals
-pcall(function() hs.loadSpoon("EmmyLua") end)
+-- pcall(function() hs.loadSpoon("EmmyLua") end)
 -- inspired/stolen from https://github.com/chrisgrieser/.config/tree/main/hammerspoon
 -- HAMMERSPOON SETTINGS
 --

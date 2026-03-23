@@ -50,6 +50,7 @@ It contains configuration files, shell scripts, and automation for setting up an
 Always update your knowledge on the most recent meta for all the languages defined here:
 
 - `fish`
+- `zsh`
 - `bash`
 - `lua`
 - `toml`
@@ -61,10 +62,10 @@ If available follow googles style guides for these languages, but never add comm
 - **Nix Darwin**: This is not used anymore, but was previously used only on work machine (`soundcloud-mbp`) via `private_dot_config/nix-darwin/flake.nix`
 - **Fish Shell**: Primary shell with extensive customization in `private_dot_config/private_fish/`
 - **Neovim**: LazyVim-based configuration in `private_dot_config/nvim/`
-- **Tmux**: Customized with plugins and catppuccin theme
-- **Hammerspoon**: Lua-based macOS automation scripts
-- *Wezterm*: Used to be the primary terminal we used, but now using *Ghostty*
-- *Ghostty*: Primary terminal configuration under `private_dot_config/ghostty/`
+- **tmux**: Customized with plugins and Catppuccin theme
+- **Hammerspoon**: lua-based macOS automation scripts
+- **Wezterm**: Used to be the primary terminal we used, but now using **Ghostty**
+- **Ghostty**: Primary terminal configuration under `private_dot_config/ghostty/`
 
 ### Theme System
 
@@ -77,21 +78,21 @@ If available follow googles style guides for these languages, but never add comm
 ### Git Configuration
 
 - Uses commitizen with cz-git for conventional commits
-- Run `git cz` or `npx cz` for guided commit creation
-- Different configs for work and home machine
+- Run `git cz` or `npx cz` or `bunx cz` for guided commit creation. `bun`` is preferred over`npm`
+- Different configuration files for work and home machine
 
 ### Fish Development Tools
 
 - **fish-lsp** - Language server for fish shell validation and IDE support
-  - Installed via Homebrew: `/opt/homebrew/bin/fish-lsp`
-  - Configured in Neovim LSP: `/private_dot_config/nvim/lua/plugins/lsp.lua`
+  - Installed via `homebrew`: `/opt/homebrew/bin/fish-lsp`
+  - Configured in `neovim` LSP: `/private_dot_config/nvim/lua/plugins/lsp.lua`
   - Provides syntax checking, completion, and validation for fish files
 
 ### Making Changes
 
 1. **Template Files**: When editing `.tmpl` files, preserve Go template syntax (e.g., `{{ .chezmoi.* }}`)
 1. **Shell Scripts**: Follow existing shell script conventions (fish & bash shell)
-1. \**Environment Updates*: When we add paths to fish ensure that we
+1. **Environment Updates**: When we add paths and environment variables to `fish` ensure that we
    update the relevant files for `bash` and `zsh` to make those
    tools available under those shell environments.
 1. **Testing**: Use `chezmoi diff` to preview changes before applying
@@ -100,7 +101,7 @@ If available follow googles style guides for these languages, but never add comm
 
 ### Best Practices
 
-- **Preserve existing structure**: Don't reorganize files \*without explicit request
+- **Preserve existing structure**: Don't reorganize files without an explicit request
 - **Maintain compatibility**: Changes should work on MacOS and Unix systems
 - **Template variables**: Use chezmoi template variables when appropriate
 - **Idempotency**: Scripts should be safe to run multiple times

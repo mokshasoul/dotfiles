@@ -36,6 +36,10 @@ if command -q fd
     set -gx FZF_CTRL_T_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/' -E '.terraform/'"
 end
 
+if command -q gh
+    set -gx GITHUB_PERSONAL_ACCESS_TOKEN (gh auth token)
+end
+
 # SSH Agent (1Password)
 if test -z "$SSH_CONNECTION"
     if test -e "$HOME/.1password/agent.sock"

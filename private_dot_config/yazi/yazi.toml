@@ -15,14 +15,10 @@ prepend_rules = [
 
 
 [plugin]
-prepend_fetchers = [
-  { id = "mime", url = "local://*", run = "mime-ext.local", prio = "high" },
-  { id = "mime", url = "remote://*", run = "mime-ext.remote", prio = "high" },
-]
-prepend_spotters = [{ url = "video/*", run = "spot-video" }]
+prepend_spotters = [{ mime = "video/*", run = "spot-video" }]
 prepend_preloaders = [
   # Machine-specific: suppress previewing on external Seagate drive (slow HDD); harmless if drive absent
-  { url = "/Volumes/seagate", run = "noop" },
+  { url = "/Volumes/seagate/*", run = "noop" },
   # Replace magick, image, video with mediainfo
   { mime = "{audio,video,image}/*", run = "mediainfo" },
   { mime = "application/subrip", run = "mediainfo" },
@@ -34,11 +30,11 @@ prepend_preloaders = [
 # https://mediaarea.net/en/MediaInfo/Support/Formats
 prepend_previewers = [
   # Machine-specific: suppress previewing on external Seagate drive (slow HDD); harmless if drive absent
-  { url = "/Volumes/seagate", run = "noop" },
-  { mime = "application/apple-plist", run = 'piper -- plutil -p "$1"' },
+  { url = "/Volumes/seagate/*", run = "noop" },
   { mime = "{audio,video,image}/*", run = "mediainfo" },
   { mime = "application/subrip", run = "mediainfo" },
   { mime = "application/postscript", run = "mediainfo" },
+  { mime = "application/apple-plist", run = 'piper -- plutil -p "$1"' },
 ]
 
 # For a large file like Adobe Illustrator, Adobe Photoshop, etc
@@ -46,3 +42,9 @@ prepend_previewers = [
 # https://yazi-rs.github.io/docs/configuration/yazi#tasks
 [tasks]
 image_alloc = 1073741824 # = 1024*1024*1024 = 1024MB
+
+[preview]
+# Change them to your desired values
+image_delay = 0
+max_width = 1024
+max_height = 768
