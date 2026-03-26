@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck source-path=/Users/moksha
 
+[ -d "$HOME/.sc-tools" ] && source "$HOME/.sc-tools/dotfiles/env.bash" #sc-tools-setup
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"

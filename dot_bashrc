@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 # shellcheck source-path=/Users/moksha
 
-[ -f ~/.fzf.bash ] && source "${HOME}/.fzf.bash"
 [ -f ~/.cargo/env ] && source "${HOME}/.cargo/env"
-[ -f ~/.config/broot/launcher/bash/br ] && source "${HOME}/.config/broot/launcher/bash/br"
 
 # interactive only from here
 case $- in
-  *i*) ;;
-  *) return ;;
+*i*) ;;
+*) return ;;
 esac
 
 # XDG base dirs
@@ -31,12 +29,12 @@ fi
 # Core PATH additions (mirrors fish 02_paths.fish order)
 [[ -d /opt/homebrew/opt/gnu-tar/libexec/gnubin ]] && export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 [[ -d /opt/homebrew/opt/gnu-time/libexec/gnubin ]] && export PATH="/opt/homebrew/opt/gnu-time/libexec/gnubin:$PATH"
-[[ -d "$HOME/bin" ]]        && export PATH="$HOME/bin:$PATH"
+[[ -d "$HOME/bin" ]] && export PATH="$HOME/bin:$PATH"
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
 # Coursier (Scala/Java tooling)
-[[ -d "$HOME/Library/Application Support/Coursier/bin" ]] && \
+[[ -d "$HOME/Library/Application Support/Coursier/bin" ]] &&
   export PATH="$HOME/Library/Application Support/Coursier/bin:$PATH"
 
 # Ruby (brew-managed)
@@ -109,9 +107,10 @@ PIPX_DEFAULT_PYTHON=$(command -v python3) && export PIPX_DEFAULT_PYTHON
 
 # Tool integrations (interactive only)
 command -v direnv &>/dev/null && eval "$(direnv hook bash)"
-command -v atuin  &>/dev/null && eval "$(atuin init bash)"
-command -v fnm    &>/dev/null && eval "$(fnm env --use-on-cd --shell bash)"
-command -v rbenv  &>/dev/null && eval "$(rbenv init - bash)"
+command -v atuin &>/dev/null && eval "$(atuin init bash)"
+command -v fnm &>/dev/null && eval "$(fnm env --use-on-cd --shell bash)"
+command -v rbenv &>/dev/null && eval "$(rbenv init - bash)"
 command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
+command -v fzf &>/dev/null && eval "$(fzf --bash)"
 
 #vi: set ft=bash
