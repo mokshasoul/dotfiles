@@ -14,8 +14,8 @@
 # reloaded while running; some only apply to new windows and others may require
 # a full restart to take effect.
 ## Font
-font-family = "CommitMono Nerd Font Propo"
-font-family-bold = "CommitMono Nerd Font Propo Bold"
+font-family = "CommitMono Nerd Font Mono"
+font-family-bold = "CommitMono Nerd Font Mono Bold"
 font-size = 18
 font-thicken = true
 
@@ -27,10 +27,10 @@ macos-option-as-alt = left
 
 
 
-theme = light:Tomorrow,dark:Catppuccin Mocha
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 maximize = false
 window-theme = system
-window-decoration = false
+window-decoration = none
 ## OSC 52 clipboard integration
 clipboard-read = allow
 clipboard-write = allow
