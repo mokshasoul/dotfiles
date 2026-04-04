@@ -12,10 +12,19 @@
 pre_sudo = true
 
 # Sudo command to be used
-# sudo_command = "sudo"
+sudo_command = "sudo"
 
 # Disable specific steps - same options as the command line flag
-disable = ["bun", "emacs", "cargo", "chezmoi",  "containers", "pipx", "composer"]
+disable = [
+  "bun",
+  "emacs",
+  "cargo",
+  "chezmoi",
+  "containers",
+  "pipx",
+  "composer",
+  "brew_cask",
+]
 
 # [am, android_studio, app_man, aqua, asdf, atom, audit, auto_cpufreq, bin,
 # bob, brew_cask, brew_formula, bun, bun_packages, cargo, certbot, chezmoi,
@@ -217,9 +226,7 @@ fetch_head = true
 max_concurrency = 5
 
 # Additional git repositories to pull
-repos = [
-    "~/pws/github/*",
-]
+repos = []
 
 # Don't pull the predefined git repos
 pull_predefined = false

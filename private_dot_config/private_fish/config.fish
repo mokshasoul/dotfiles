@@ -12,7 +12,10 @@
 # Note: All major configuration has been moved to organized conf.d files
 # Add any machine-specific or temporary configuration below if needed
 if status is-interactive
-    set -l theme_result (osascript -e 'tell application "System Events" to tell appearance preferences to return dark mode' 2>/dev/null)
+    set theme_result false
+    if command -q osascript
+        set theme_result (osascript -e 'tell application "System Events" to tell appearance preferences to return dark mode')
+    end
     if test "$theme_result" = true
         set -gx OS_APPEARANCE Dark
     else
@@ -20,5 +23,4 @@ if status is-interactive
     end
     # FZF key bindings (needs to be in config.fish where functions are loaded)
     fzf_configure_bindings --directory=\ct
-    update_theme
 end

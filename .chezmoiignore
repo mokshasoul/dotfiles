@@ -133,7 +133,6 @@ tmp
 .config/gitui
 .config/htop
 .config/jgit
-.config/lazygit
 .config/lf/scope-lf-wrapper.sh
 .config/lsd
 .config/macmon.json
@@ -151,7 +150,6 @@ tmp
 .config/wireshark
 .config/xnviewmp
 .config/yarn
-.config/zellij
 .config/zsh
 
 # Fish shell (generated / plugin files)
@@ -162,9 +160,7 @@ tmp
 .config/fish/functions/_*
 .config/fish/functions/{fisher,fzf_configure_bindings,fish_title,fish_prompt,fish_mode_prompt}.fish
 .config/fish/conf.d/{_pure_init,fzf,pure}.fish
-{{- if eq .chezmoi.hostname "fenrir" }}
 .config/fish/functions/shibbo-*.fish
-{{- end }}
 
 # Neovim (generated)
 .config/nvim/lazy-lock.json
@@ -173,7 +169,7 @@ tmp
 .config/nvim/lazyvim_home.json
 
 # Yazi (plugins / themes)
-.config/yazi/flavors/*
+.config/yazi/flavors
 .config/yazi/plugins
 .config/yazi/package.toml
 
@@ -198,4 +194,4 @@ tmp
 .hammerspoon/Spoons/EmmyLua.spoon
 
 # Bat (themes — managed separately)
-.config/bat/themes/*
+.config/bat/themes

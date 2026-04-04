@@ -6,7 +6,7 @@ if test -d /opt/homebrew/bin
     set -gx HOMEBREW_BAT 7
     set -gx HOMEBREW_NO_AUTO_UPDATE 1
 
-    fish_add_path $HOMEBREW_PREFIX/bin HOMEBREW_PREFIX/sbin
+    fish_add_path $HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin
 
     if test -n "$MANPATH[1]"
         set --global --export --path MANPATH '' $MANPATH

@@ -54,6 +54,4 @@ set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
 set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
 set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig
 set -gx RBENV_SHELL fish
-# Bun JavaScript runtime
-set -gx BUN_INSTALL "$HOME/.bun"
 set -gx ORBSTACK_SHELL_DIR "$HOME/.orbstack/shell"

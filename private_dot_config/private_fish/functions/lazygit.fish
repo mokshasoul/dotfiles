@@ -1,7 +1,8 @@
 function lazygit -d "lazygit with theme-aware config" --wraps lazygit
-    set -f conf_file "$HOME/.config/lazygit/config.yml"
+    set -f conf_dir "$HOME/.config/lazygit"
+    set -f color_file "$conf_dir/dark.yml"
     if test (string lower "$OS_APPEARANCE") = light
-        set -f conf_file "$HOME/.config/lazygit/config-light.yml"
+        set -f color_file "$conf_dir/light.yml"
     end
-    command lazygit --use-config-file $conf_file
+    command lazygit --use-config-file $color_file $argv
 end

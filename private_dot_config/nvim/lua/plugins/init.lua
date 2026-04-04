@@ -9,7 +9,7 @@ return {
   {
     "mokshasoul/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "catppuccin-nvim",
     },
     version = false,
   },

@@ -37,8 +37,11 @@ if command -q brew
     end
 end
 
+# Bun JavaScript runtime
+set -gx BUN_INSTALL "$HOME/.bun"
 if test -d "$BUN_INSTALL/bin"
-    fish_add_path --prepend $BUN_INSTALL/bin
+    # prepend or not :hmm:
+    fish_add_path $BUN_INSTALL/bin
 end
 
 # Hatch (Python project manager)

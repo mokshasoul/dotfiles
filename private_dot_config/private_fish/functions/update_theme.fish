@@ -23,6 +23,6 @@ function update_theme -d "apply catppuccin theme based on OS_APPEARANCE variable
         set -gx LS_COLORS (vivid generate $ls_theme)
     end
 
-    fish_config theme choose "Catppuccin Mocha"
+    fish_config theme choose catppuccin-mocha
     set -gx FZF_DEFAULT_OPTS $fzf_theme
 end
