@@ -117,7 +117,7 @@ search_mode = "daemon-fuzzy"
 name = "catppuccin-latte-flamingo"
 
 [ai]
-enabled = true
+enabled = false
 
 [daemon]
 enabled = true
