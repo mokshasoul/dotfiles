@@ -16,21 +16,23 @@
 ## Font
 font-family = "CommitMono Nerd Font Mono"
 font-family-bold = "CommitMono Nerd Font Mono Bold"
-font-size = 18
+font-size = 17
 font-thicken = true
+minimum-contrast = 2
 
 
 
 # MacOS
 macos-titlebar-style = hidden
+macos-window-buttons = hidden
 macos-option-as-alt = left
+macos-window-shadow = false
+window-colorspace = display-p3
 
 
 
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 maximize = false
-window-theme = system
-window-decoration = none
 ## OSC 52 clipboard integration
 clipboard-read = allow
 clipboard-write = allow
