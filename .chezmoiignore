@@ -195,3 +195,7 @@ tmp
 
 # Bat (themes — managed separately)
 .config/bat/themes
+
+{{- if eq .chezmoi.hostname "soundcloud-mbp" }}
+.gitconfig
+{{- end }}
