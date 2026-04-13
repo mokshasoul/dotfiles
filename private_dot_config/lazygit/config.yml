@@ -64,7 +64,8 @@ gui:
   switchToFilesAfterStashApply: true
   switchTabsWithPanelJumpKeys: false
 git:
-  pagers: []
+  pagers:
+    - externalDiffCommand: difft --color=always
   commit:
     signOff: false
     autoWrapCommitMessage: true

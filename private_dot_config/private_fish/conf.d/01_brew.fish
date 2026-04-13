@@ -9,7 +9,7 @@ if test -d /opt/homebrew/bin
     fish_add_path $HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin
 
     if test -n "$MANPATH[1]"
-        set --global --export --path MANPATH '' $MANPATH
+        set --global --export --path MANPATH
     end
 
     if not contains "$HOMEBREW_PREFIX/share/info" $INFOPATH

@@ -10,7 +10,7 @@
       "mcp__claude_ai_Context7__query-docs"
     ]
   },
-  "outputStyle": "Explanatory",
+  "outputStyle": "default",
   "spinnerTipsEnabled": false,
   "prefersReducedMotion": true
 }

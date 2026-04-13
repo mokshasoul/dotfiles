@@ -133,3 +133,4 @@ dist
 CLAUDE.md
 **/CLAUDE.md
 .agents/todo/
+.claude/settings.local.json

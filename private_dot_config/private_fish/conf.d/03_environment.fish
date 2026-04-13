@@ -8,7 +8,7 @@ set fish_greeting
 set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_CACHE_HOME; or set -gx XDG_CACHE_HOME "$HOME/.cache"
-set --path -gx XDG_DATA_DIRS $XDG_DATA_DIRS /usr/local/share/ /usr/share/ /opt/homebrew/share/
+set -x --path XDG_DATA_DIRS $XDG_DATA_DIRS
 set -q WORKSPACE; or set -gx WORKSPACE "$HOME/pws"
 
 # Locale settings

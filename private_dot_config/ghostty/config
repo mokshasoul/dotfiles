@@ -16,9 +16,9 @@
 ## Font
 font-family = "CommitMono Nerd Font Mono"
 font-family-bold = "CommitMono Nerd Font Mono Bold"
-font-size = 17
+font-size = 18
 font-thicken = true
-minimum-contrast = 2
+minimum-contrast = 1.5
 
 
 
@@ -38,7 +38,7 @@ clipboard-read = allow
 clipboard-write = allow
 # THESE ARE THE DEFAULTS
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
-cursor-style=block
+cursor-style=
 # QUAKE
 keybind = global:cmd+shift+backquote=toggle_quick_terminal
 # CLAUDE
