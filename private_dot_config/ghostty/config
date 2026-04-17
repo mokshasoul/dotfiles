@@ -23,23 +23,23 @@ minimum-contrast = 1.5
 
 
 # MacOS
+window-decoration = none
 macos-titlebar-style = hidden
 macos-window-buttons = hidden
 macos-option-as-alt = left
 macos-window-shadow = false
+macos-non-native-fullscreen = visible-menu
+maximize = false
 window-colorspace = display-p3
 
 
 
 theme = light:Catppuccin Latte,dark:Catppuccin Mocha
-maximize = false
 ## OSC 52 clipboard integration
 clipboard-read = allow
 clipboard-write = allow
 # THESE ARE THE DEFAULTS
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
-cursor-style=
-# QUAKE
-keybind = global:cmd+shift+backquote=toggle_quick_terminal
+cursor-style=block
 # CLAUDE
 keybind = shift+enter=text:\x1b\r

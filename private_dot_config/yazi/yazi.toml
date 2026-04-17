@@ -13,6 +13,10 @@ prepend_rules = [
   { mime = "video/*", use = "play" },
 ]
 
+[[plugin.prepend_fetchers]]
+id = "ffmpeg_stats"
+url = "*"
+run = "ffmpeg-stats"
 
 [plugin]
 prepend_spotters = [{ mime = "video/*", run = "spot-video" }]

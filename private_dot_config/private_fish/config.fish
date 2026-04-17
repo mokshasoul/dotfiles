@@ -12,15 +12,7 @@
 # Note: All major configuration has been moved to organized conf.d files
 # Add any machine-specific or temporary configuration below if needed
 if status is-interactive
-    set is_dark false
-    set theme Light
-    if command -q osascript
-        set is_dark (osascript -e 'tell application "System Events" to tell appearance preferences to return dark mode')
-    end
-    if test $is_dark = true
-        set theme Dark
-    end
-    set -gx --no-event OS_APPEARANCE $theme
+    fish_config theme choose catppuccin-mocha
     update_theme
     # FZF key bindings (needs to be in config.fish where functions are loaded)
     fzf_configure_bindings --directory=\ct

@@ -1,20 +1,6 @@
 # PATH management
 # This file handles all PATH additions for various tools and languages
 
-# GNU tar (prefer over BSD tar)
-if test -d /opt/homebrew/opt/gnu-tar/libexec/gnubin
-    fish_add_path --prepend /opt/homebrew/opt/gnu-tar/libexec/gnubin
-end
-
-# uutils path
-if test -d /opt/homebrew/opt/uutils-coreutils/libexec/uubin
-    fish_add_path --prepend /opt/homebrew/opt/uutils-coreutils/libexec/uubin
-end
-
-if test -d /opt/homebrew/opt/coreutils/libexec/gnubin
-    fish_add_path --prepend /opt/homebrew/opt/coreutils/libexec/gnubin
-end
-
 # User binaries
 if test -d "$HOME/bin"
     fish_add_path "$HOME/bin"
@@ -41,7 +27,7 @@ end
 set -gx BUN_INSTALL "$HOME/.bun"
 if test -d "$BUN_INSTALL/bin"
     # prepend or not :hmm:
-    fish_add_path $BUN_INSTALL/bin
+    fish_add_path "$BUN_INSTALL/bin"
 end
 
 # Hatch (Python project manager)
