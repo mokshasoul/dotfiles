@@ -13,7 +13,7 @@
 # Add any machine-specific or temporary configuration below if needed
 if status is-interactive
     fish_config theme choose catppuccin-mocha
-    update_theme
+    theme_update
     # FZF key bindings (needs to be in config.fish where functions are loaded)
     fzf_configure_bindings --directory=\ct
 end
