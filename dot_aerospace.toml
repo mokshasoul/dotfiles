@@ -198,12 +198,12 @@ alt-shift-k = ["join-with up", "mode main"]
 alt-shift-l = ["join-with right", "mode main"]
 
 [workspace-to-monitor-force-assignment]
-t = "main"  # Monitor sequence number from left to right. 1-based indexing
 w = "main"  # Main monitor
-1 = "built-in"  # Non-main monitor in case when there are only two monitors
-2 = "built-in"  # Case insensitive regex substring
-3 = "main"  # Non-main monitor in case when there are only two monitors
-4 = "main"  # Case insensitive regex substring
+0 = "main"
+1 = "main"  # Non-main monitor in case when there are only two monitors
+2 = "main"  # Case insensitive regex substring
+3 = "built-in"  # Non-main monitor in case when there are only two monitors
+4 = "built-in"  # Case insensitive regex substring
 
 [[on-window-detected]]
 if.app-id = "com.runningwithcrayons.Alfred-Preferences"
@@ -256,3 +256,8 @@ run = ["move-node-to-workspace 1"]
 [[on-window-detected]]
 if.app-id = "com.apple.shortcuts"
 run = ["move-node-to-workspace 1"]
+
+[[on-window-detected]]
+if.app-id = "com.jetbrains.intellij"
+run = ["layout floating", "move-node-to-workspace 2"]
+
