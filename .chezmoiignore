@@ -196,6 +196,8 @@ tmp
 # Bat (themes — managed separately)
 .config/bat/themes
 
+.config/fish/conf.d/_api_keys.fish
+
 {{- if eq .email "charis.georgiou@soundcloud.com" }}
 .gitconfig
 {{- end }}
