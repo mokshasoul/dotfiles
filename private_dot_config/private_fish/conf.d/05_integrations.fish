@@ -15,7 +15,7 @@ if status is-interactive
 
     # Enhanced man pages with bat
     if command -q bat
-        set -gx MANPAGER "bat -plman"
+        set -gx MANPAGER "bat -plman --color never"
     end
 
     # Shell history with Atuin
