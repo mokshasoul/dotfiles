@@ -1,0 +1,4 @@
+[install]
+# minimum age config
+minimumReleaseAge = 604800                                # seconds
+minimumReleaseAgeExcludes = ["@types/node", "typescript"]
