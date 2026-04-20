@@ -26,7 +26,11 @@
   "agent": {
     "use_modifier_to_send": true
   },
-  "icon_theme": "Catppuccin Mocha",
+  "icon_theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
   "base_keymap": "VSCode",
   "theme": {
     "mode": "system",
