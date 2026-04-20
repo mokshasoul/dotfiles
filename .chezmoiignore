@@ -118,7 +118,6 @@ tmp
 .config/aerospace
 .config/atuin/themes
 .config/bat/after_update_theme.sh
-.config/chezmoi
 .config/claude
 .config/com.add0n.native_client
 .config/configstore
@@ -138,6 +137,7 @@ tmp
 .config/macmon.json
 .config/massren
 .config/mpv/watch_later
+.config/mpv/scripts
 .config/neofetch
 .config/nix-darwin/**
 .config/nnn
@@ -199,5 +199,6 @@ tmp
 .config/fish/conf.d/_api_keys.fish
 
 {{- if eq .email "charis.georgiou@soundcloud.com" }}
+.config/nvim/lua/plugins/ai.lua
 .gitconfig
 {{- end }}
