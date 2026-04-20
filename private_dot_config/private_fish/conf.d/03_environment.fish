@@ -8,7 +8,7 @@ set fish_greeting
 set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_CACHE_HOME; or set -gx XDG_CACHE_HOME "$HOME/.cache"
-set -x --path XDG_DATA_DIRS $XDG_DATA_DIRS
+set -q XDG_DATA_DIRS; or set -gx --path XDG_DATA_DIRS
 set -q WORKSPACE; or set -gx WORKSPACE "$HOME/pws"
 
 # Locale settings
@@ -24,34 +24,23 @@ set -gx SUDO_EDITOR $EDITOR
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 set -gx PIPX_DEFAULT_PYTHON (command -v python3)
 
-# nnn file manager configuration
-# Theme: https://github.com/catppuccin/catppuccin/discussions/1955
-set -gx NNN_OPTS Ae
-set -gx NNN_COLORS "#04020301;4231"
-set -gx NNN_FCOLORS 030304020705050801060301
-set -gx NNN_USE_EDITOR 1
-
-# FZF configuration
-if command -q fd
-    set -gx FZF_CTRL_T_COMMAND "fd --type f --hidden -E bundles/ -E '.git/' -E '.cache/' -E '.terraform/'"
-end
-
 if command -q gh
     set -gx GITHUB_PERSONAL_ACCESS_TOKEN (gh auth token)
 end
 
 # SSH Agent (1Password)
 if test -z "$SSH_CONNECTION"
-    if test -e "$HOME/.1password/agent.sock"
-        # on OSX run this first:
-        # mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
-        set -x SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
+    if not test -e "$HOME/.1password/agent.sock"
+        if fish_in_macos_terminal
+            mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
+        end
+        set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
     end
 end
 
-set -gx JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
-set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
-set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
-set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig
+fish_in_macos_terminal; and set -gx JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
+# set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
+# set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
+# set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig
 set -gx RBENV_SHELL fish
 set -gx ORBSTACK_SHELL_DIR "$HOME/.orbstack/shell"

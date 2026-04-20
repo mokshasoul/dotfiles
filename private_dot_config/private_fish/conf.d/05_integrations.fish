@@ -14,8 +14,8 @@ if status is-interactive
     end
 
     # Enhanced man pages with bat
-    if command -q sh; and command -q sed; and command -q bat
-        set -x MANPAGER "sh -c 'sed -e s/.\\\\x08//g | bat -l man -p'"
+    if command -q bat
+        set -gx MANPAGER "bat -plman"
     end
 
     # Shell history with Atuin
