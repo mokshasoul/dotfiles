@@ -7,7 +7,7 @@
 [alias]
   s = status -s
   co = checkout
-  p = pull --recurse-submodules
+  p = pull --rebase
     # Clone a repository including all submodules.
   c = clone --recursive
   # Commit all changes.
