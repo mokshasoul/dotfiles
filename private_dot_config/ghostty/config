@@ -16,9 +16,9 @@
 ## Font
 font-family = "CommitMono Nerd Font Mono"
 font-family-bold = "CommitMono Nerd Font Mono Bold"
-font-size = 18
+font-size = 20
 font-thicken = true
-minimum-contrast = 1.5
+minimum-contrast = 2
 
 
 
@@ -38,8 +38,6 @@ theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 ## OSC 52 clipboard integration
 clipboard-read = allow
 clipboard-write = allow
-# THESE ARE THE DEFAULTS
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo,path
-cursor-style=block
 # CLAUDE
 keybind = shift+enter=text:\x1b\r
