@@ -202,3 +202,9 @@ tmp
 .config/nvim/lua/plugins/ai.lua
 .gitconfig
 {{- end }}
+{{- if eq .chezmoi.os "linux" }}
+.aerospace.toml
+.config/borders
+.config/fish/conf.d/01_brew.fish
+.hammerspoon
+{{- end }}
