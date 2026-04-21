@@ -11,7 +11,7 @@ config-version = 2
 # sketchybar has a built-in detection of already running process,
 # so it won't be run twice on AeroSpace restart
 after-startup-command = [
-  "exec-and-forget /opt/homebrew/opt/borders/bin/borders",
+  "exec-and-forget /opt/homebrew/bin/borders",
 ]
 
 # Notify Sketchybar about workspace change
@@ -58,7 +58,7 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "t", "w"]
+persistent-workspaces = ["0", "1", "2", "3", "w"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -79,12 +79,12 @@ preset = "qwerty"
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 4
-inner.vertical = 4
+inner.horizontal = 2
+inner.vertical = 2
+outer.right = 4
 outer.left = 4
 outer.bottom = 4
 outer.top = 4
-outer.right = 4
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -126,10 +126,11 @@ cmd-h = []  # Disable "hide application"
 cmd-alt-h = []  # Disable "hide others"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-h = "focus --boundaries-action wrap-around-the-workspace left"
-alt-j = "focus --boundaries-action wrap-around-the-workspace down"
-alt-k = "focus --boundaries-action wrap-around-the-workspace up"
-alt-l = "focus --boundaries-action wrap-around-the-workspace right"
+
+alt-h = "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left"
+alt-j = "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down"
+alt-k = "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up"
+alt-l = "focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-shift-h = "move left"
@@ -138,6 +139,7 @@ alt-shift-k = "move up"
 alt-shift-l = "move right"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-0 = "workspace 0"
 alt-1 = "workspace 1"
 alt-2 = "workspace 2"
 alt-3 = "workspace 3"
@@ -145,11 +147,12 @@ alt-4 = "workspace 4"
 alt-w = "workspace w"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = "move-node-to-workspace 1"
-alt-shift-2 = "move-node-to-workspace 2"
-alt-shift-3 = "move-node-to-workspace 3"
-alt-shift-4 = "move-node-to-workspace 4"
-alt-shift-w = "move-node-to-workspace w"
+alt-shift-0 = "move-node-to-workspace --focus-follows-window 0"
+alt-shift-1 = "move-node-to-workspace --focus-follows-window 1"
+alt-shift-2 = "move-node-to-workspace --focus-follows-window 2"
+alt-shift-3 = "move-node-to-workspace --focus-follows-window 3"
+alt-shift-4 = "move-node-to-workspace --focus-follows-window 4"
+alt-shift-w = "move-node-to-workspace --focus-follows-window w"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-backtick = "exec-and-forget aerospace focus-back-and-forth || aerospace workspace-back-and-forth"
@@ -160,10 +163,11 @@ alt-shift-tab = "move-workspace-to-monitor --wrap-around next"
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-space = "mode leader"
 alt-shift-space = "layout floating tiling"
+alt-shift-c = "reload-config"
 
 [mode.leader.binding]
-esc = ["mode main"]
-enter = ["reload-config", "mode main"]
+enter = "mode main"
+esc = "mode main"
 r = ["mode resize"]
 s = ["mode service"]
 h = ["layout h_tiles tiling", "mode main"]
@@ -174,12 +178,12 @@ f = [
 ]  # Toggle between floating and tiling layout
 
 [mode.resize.binding]
+enter = "mode main"
+esc = "mode main"
 l = "resize smart +50"
 h = "resize smart -50"
 k = "resize height -50"
 j = "resize height +50"
-enter = "mode main"
-esc = "mode main"
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -192,14 +196,13 @@ esc = "mode main"
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 # s = ['layout sticky tiling', 'mode main']
 
-alt-shift-h = ["join-with left", "mode main"]
-alt-shift-j = ["join-with down", "mode main"]
-alt-shift-k = ["join-with up", "mode main"]
-alt-shift-l = ["join-with right", "mode main"]
+alt-shift-h = ["join-with left"]
+alt-shift-j = ["join-with down"]
+alt-shift-k = ["join-with up"]
+alt-shift-l = ["join-with right"]
 
 [workspace-to-monitor-force-assignment]
 w = "main"  # Main monitor
-0 = "main"
 1 = "main"  # Non-main monitor in case when there are only two monitors
 2 = "main"  # Case insensitive regex substring
 3 = "built-in"  # Non-main monitor in case when there are only two monitors
@@ -216,48 +219,41 @@ run = ["layout floating"]  # The callback it
 # Floating Windows
 # Toggl and Cyberduck both always open in Overflow but are floating
 [[on-window-detected]]
-if.app-name-regex-substring = ".*mpv.*|.*Messages|.*Finder|.*raycast|.*karabiner|.*colorslurp|.*ice|.*shottr|.*dropbox|.*keka|.*toggl|Cyberduck|Preview|.*[Pp]icture.*in.*[Pp]icture|.*Safari"
+if.app-name-regex-substring = "1Password|mpv|Messages|.*Finder|.*keka|.*Preview.*|.*[Pp]icture.*in.*[Pp]icture"
 run = "layout floating"
 
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
-run = "move-node-to-workspace 1"  # mnemonics T - Terminal
+run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = "org.mozilla.firefox"
 run = "move-node-to-workspace w"  # mnemonics w - web
 
-# Workspace #1 Main
 [[on-window-detected]]
 if.app-id = "com.apple.finder"
-run = ["layout floating", "move-node-to-workspace 1"]
-check-further-callbacks = true
+run = "layout floating"
 
 [[on-window-detected]]
 if.app-id = "com.1password.1password"
-run = ["layout floating", "move-node-to-workspace 1"]
+run = ["layout floating", "move-node-to-workspace 0"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
-run = ["layout floating", "move-node-to-workspace 1"]
+run = ["layout floating", "move-node-to-workspace 3"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.ActivityMonitor"
-run = ["move-node-to-workspace 1"]
+run = ["layout floating", "move-node-to-workspace 4", "workspace 4"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.systempreferences"
-run = ["layout floating", "move-node-to-workspace 1"]
-
-[[on-window-detected]]
-if.app-id = "com.apple.finder"
-run = ["move-node-to-workspace 1"]
+run = "layout floating"
 
 [[on-window-detected]]
 if.app-id = "com.apple.shortcuts"
-run = ["move-node-to-workspace 1"]
+run = "layout floating"
 
 [[on-window-detected]]
 if.app-id = "com.jetbrains.intellij"
-run = ["layout floating", "move-node-to-workspace 2"]
-
+run = ["layout floating", "move-node-to-workspace --focus-follows-window 2"]
