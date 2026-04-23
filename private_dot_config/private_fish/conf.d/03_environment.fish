@@ -34,8 +34,8 @@ if test -z "$SSH_CONNECTION"
         if fish_in_macos_terminal
             mkdir -p ~/.1password && ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
         end
-        set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
     end
+    set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
 end
 
 fish_in_macos_terminal; and set -gx JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
