@@ -197,6 +197,8 @@ tmp
 .config/bat/themes
 
 .config/fish/conf.d/_api_keys.fish
+.config/fish/conf.d/99_*
+.config/fish/conf.d/sc-tools.fish
 
 {{- if eq .email "charis.georgiou@soundcloud.com" }}
 .config/nvim/lua/plugins/ai.lua

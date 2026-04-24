@@ -114,7 +114,7 @@ search_mode = "daemon-fuzzy"
 ##    https://ogeon.github.io/docs/palette/master/palette/named/index.html
 ## If you provide a custom theme file, it should be  called "NAME.toml" and the theme below
 ## should be the stem, i.e. `theme = "NAME"` for your chosen NAME.
-name = "catppuccin-latte-flamingo"
+# name = "catppuccin-latte-flamingo"
 
 [ai]
 enabled = false
