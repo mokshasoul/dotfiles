@@ -7,8 +7,4 @@
 --theme=auto:system
 --theme-light="Catppuccin Latte"
 --theme-dark="Catppuccin Mocha"
-
-# Uncomment the following line if you are using less version >= 551 and want to
-# enable mouse scrolling support in `bat` when running inside tmux. This might
-# disable text selection, unless you press shift.
---pager="less -r --mouse"
+--pager="less -R --use-color --mouse"
