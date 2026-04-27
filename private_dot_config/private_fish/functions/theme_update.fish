@@ -1,15 +1,15 @@
-function theme_update -d "apply catppuccin theme based on OS_APPEARANCE variable" --on-event fish_terminal_color_theme
+function theme_update -d "apply catppuccin theme based on OS_APPEARANCE variable"
     if not status is-interactive
         exit
     end
     set -f is_dark false
     set -f ls_theme catppuccin-latte
-    set -gx --no-event OS_APPEARANCE $theme
+    set -gx OS_APPEARANCE Light
     if command -q osascript
         set -f is_dark (osascript -e 'tell application "System Events" to tell appearance preferences to return dark mode')
     end
     if test $is_dark = true
-        set -gx --no-event OS_APPEARANCE $theme
+        set -gx OS_APPEARANCE Dark
         set -f ls_theme catppuccin-mocha
     end
 
