@@ -147,12 +147,12 @@ alt-4 = "workspace 4"
 alt-w = "workspace w"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-0 = "move-node-to-workspace --focus-follows-window 0"
-alt-shift-1 = "move-node-to-workspace --focus-follows-window 1"
-alt-shift-2 = "move-node-to-workspace --focus-follows-window 2"
-alt-shift-3 = "move-node-to-workspace --focus-follows-window 3"
-alt-shift-4 = "move-node-to-workspace --focus-follows-window 4"
-alt-shift-w = "move-node-to-workspace --focus-follows-window w"
+alt-shift-0 = "move-node-to-workspace 0"
+alt-shift-1 = "move-node-to-workspace 1"
+alt-shift-2 = "move-node-to-workspace 2"
+alt-shift-3 = "move-node-to-workspace 3"
+alt-shift-4 = "move-node-to-workspace 4"
+alt-shift-w = "move-node-to-workspace w"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-backtick = "exec-and-forget aerospace focus-back-and-forth || aerospace workspace-back-and-forth"
@@ -203,10 +203,11 @@ alt-shift-l = ["join-with right"]
 
 [workspace-to-monitor-force-assignment]
 w = "main"  # Main monitor
+0 = "secondary"
 1 = "main"  # Non-main monitor in case when there are only two monitors
 2 = "main"  # Case insensitive regex substring
-3 = "built-in"  # Non-main monitor in case when there are only two monitors
-4 = "built-in"  # Case insensitive regex substring
+3 = "secondary"  # Non-main monitor in case when there are only two monitors
+4 = "secondary"  # Case insensitive regex substring
 
 [[on-window-detected]]
 if.app-id = "com.runningwithcrayons.Alfred-Preferences"
