@@ -2,6 +2,7 @@
 # This file sets up all environment variables and global settings
 
 # Disable fish greeting
+set -gx SHELL $__fish_bin_dir/fish
 set fish_greeting
 
 # XDG Base Directory Specification
