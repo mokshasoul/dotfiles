@@ -111,12 +111,11 @@ outer.top = 4
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # You can uncomment the following lines to open up terminal with alt + enter shortcut
 # (like in i3)
-# alt-enter = '''exec-and-forget osascript -e '
-# tell application "Terminal"
-#     do script
-#     activate
-# end tell'
-# '''
+alt-enter = '''exec-and-forget osascript -e '
+tell application "Ghostty"
+    new window
+end tell'
+'''
 
 alt-ctrl-enter = "fullscreen"
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -188,18 +187,15 @@ j = "resize height +50"
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-r = ["flatten-workspace-tree", "mode main"]  # reset layout
-backspace = ["close-all-windows-but-current", "mode main"]
 enter = "mode main"
 esc = "mode main"
+backspace = ["close-all-windows-but-current", "mode main"]
+r = ["flatten-workspace-tree", "mode main"]  # reset layout
 
-# sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-# s = ['layout sticky tiling', 'mode main']
-
-alt-shift-h = ["join-with left"]
-alt-shift-j = ["join-with down"]
-alt-shift-k = ["join-with up"]
-alt-shift-l = ["join-with right"]
+alt-shift-h = ["join-with left", "mode main"]
+alt-shift-j = ["join-with down", "mode main"]
+alt-shift-k = ["join-with up", "mode main"]
+alt-shift-l = ["join-with right", "mode main"]
 
 [workspace-to-monitor-force-assignment]
 w = "main"  # Main monitor
@@ -211,16 +207,16 @@ w = "main"  # Main monitor
 
 [[on-window-detected]]
 if.app-id = "com.runningwithcrayons.Alfred-Preferences"
-run = ["layout floating"]  # The callback it
+run = "layout floating"  # The callback it
 
 [[on-window-detected]]
 if.app-id = "com.colliderli.iina"
-run = ["layout floating"]  # The callback it
+run = ["layout floating", "move-node-to-workspace 4"]  # The callback it
 
 # Floating Windows
 # Toggl and Cyberduck both always open in Overflow but are floating
 [[on-window-detected]]
-if.app-name-regex-substring = "1Password|mpv|Messages|.*Finder|.*keka|.*Preview.*|.*[Pp]icture.*in.*[Pp]icture"
+if.app-name-regex-substring = "1Password|mpv|Messages|.*Finder|.*keka|.*Preview.*|.*[Pp]icture.*in.*[Pp]icture|"
 run = "layout floating"
 
 [[on-window-detected]]
@@ -241,11 +237,11 @@ run = ["layout floating", "move-node-to-workspace 0"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
-run = ["layout floating", "move-node-to-workspace 3"]
+run = ["layout tiling", "move-node-to-workspace 3"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.ActivityMonitor"
-run = ["layout floating", "move-node-to-workspace 4", "workspace 4"]
+run = ["layout floating", "move-node-to-workspace 4"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.systempreferences"
