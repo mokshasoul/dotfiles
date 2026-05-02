@@ -167,8 +167,9 @@ alt-shift-c = "reload-config"
 [mode.leader.binding]
 enter = "mode main"
 esc = "mode main"
+backspace = ["flatten-workspace-tree", "mode main"]  # reset layout
+q = ["close-all-windows-but-current", "mode main"]
 r = ["mode resize"]
-s = ["mode service"]
 h = ["layout h_tiles tiling", "mode main"]
 v = ["layout v_tiles tiling", "mode main"]
 f = [
@@ -183,19 +184,10 @@ l = "resize smart +50"
 h = "resize smart -50"
 k = "resize height -50"
 j = "resize height +50"
-
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-[mode.service.binding]
-enter = "mode main"
-esc = "mode main"
-backspace = ["close-all-windows-but-current", "mode main"]
-r = ["flatten-workspace-tree", "mode main"]  # reset layout
-
-alt-shift-h = ["join-with left", "mode main"]
-alt-shift-j = ["join-with down", "mode main"]
-alt-shift-k = ["join-with up", "mode main"]
-alt-shift-l = ["join-with right", "mode main"]
+alt-shift-h = ["join-with left"]
+alt-shift-j = ["join-with down"]
+alt-shift-k = ["join-with up"]
+alt-shift-l = ["join-with right"]
 
 [workspace-to-monitor-force-assignment]
 w = "main"  # Main monitor
@@ -218,10 +210,6 @@ run = ["layout floating", "move-node-to-workspace 4"]  # The callback it
 [[on-window-detected]]
 if.app-name-regex-substring = "1Password|mpv|Messages|.*Finder|.*keka|.*Preview.*|.*[Pp]icture.*in.*[Pp]icture|"
 run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.mitchellh.ghostty"
-run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 if.app-id = "org.mozilla.firefox"
