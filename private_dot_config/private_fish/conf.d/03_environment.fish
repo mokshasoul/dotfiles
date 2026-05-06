@@ -38,8 +38,9 @@ if test -z "$SSH_CONNECTION"
     end
     set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
 end
-
-fish_in_macos_terminal; and set -gx JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
+if test -e /usr/libexec/java_home
+    set -gx JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
+end
 # set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
 # set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
 # set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig

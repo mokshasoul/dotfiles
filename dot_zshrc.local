@@ -40,6 +40,7 @@ fi
 ## Now, we'll give a few examples of what you might want to use in your
 ## .zshrc.local file (just copy'n'paste and uncomment it there):
 
+export BROWSER='open'
 ## Prompt theme extension ##
 
 # Virtualenv support
@@ -58,7 +59,7 @@ zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host p
 #bindkey -M menuselect 'l' vi-forward-char         # right
 #bindkey -M menuselect 'j' vi-down-line-or-history # bottom
 
-## set command prediction from history, see 'man 1 zshcontrib'
+## set command prediction from history, see 'man 2 zshcontrib'
 #zrcautoload predict-on    && \
 #zle -N predict-on         && \
 #zle -N predict-off        && \
@@ -369,7 +370,6 @@ if [[ -d /opt/homebrew/bin ]]; then
 fi
 
 # Core PATH additions
-[[ -d /opt/homebrew/opt/gnu-tar/libexec/gnubin ]] && export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
 [[ -d "$HOME/bin" ]]        && export PATH="$HOME/bin:$PATH"
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 [[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
@@ -412,7 +412,6 @@ export LC_ALL=en_IE.UTF-8
 
 # Editor
 EDITOR=$(command -v nvim)
-VISUAL=$EDITOR
 export EDITOR
 export VISUAL=$EDITOR
 export SUDO_EDITOR=$EDITOR
@@ -438,9 +437,6 @@ fi
 # 1Password SSH agent
 [[ -S "$HOME/.1password/agent.sock" ]] && export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 
-# pipx
-PIPX_DEFAULT_PYTHON=$(command -v python3) && export PIPX_DEFAULT_PYTHON
-
 # Tool integrations
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 command -v atuin  &>/dev/null && eval "$(atuin init zsh)"
@@ -450,5 +446,4 @@ command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-exec fish --interactive
 ## END OF FILE #################################################################

@@ -1,6 +1,3 @@
-# The template does not set any default options, since Ghostty ships
-# with sensible defaults for all options. Users should only need to set
-# options that they want to change from the default.
 #
 # Run `ghostty +show-config --default --docs` to view a list of
 # all available config options and their default values.
@@ -19,7 +16,7 @@ font-family-bold = "CommitMono Nerd Font Mono Bold"
 font-size = 20
 font-thicken = true
 minimum-contrast = 2
-command="/opt/homebrew/bin/fish --interactive"
+
 
 
 

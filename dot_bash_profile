@@ -1,5 +1,37 @@
 #!/usr/bin/env bash
 # shellcheck source-path=/Users/moksha
+# Homebrew
+if [[ -d /opt/homebrew/bin ]]; then
+	export HOMEBREW_PREFIX="/opt/homebrew"
+	export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+	export HOMEBREW_REPOSITORY="/opt/homebrew"
+	eval "$(/usr/bin/env PATH_HELPER_ROOT="/opt/homebrew" /usr/libexec/path_helper -s)"
+	[ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}"
+	export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
+fi
 
-[ -d "$HOME/.sc-tools" ] && source "$HOME/.sc-tools/dotfiles/env.bash" #sc-tools-setup
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+is_interactive() { [[ $- == *i* ]]; }
+
+if is_interactive; then
+
+	# If we're running in interactive mode, look for fish, and exec if it exists.
+
+	FISH=$(which fish)
+
+	if [[ -x "$FISH" ]]; then
+		# If bash was invoked with -c 'command' (e.g., Android Studio's printenv),
+		# pass the command to fish so it runs in fish's environment after fish config.
+		# See https://youtrack.jetbrains.com/articles/SUPPORT-A-1727/Shell-Environment-Loading
+		if grep -qv 'fish' /proc/$PPID/comm && [[ ${SHLVL} == [1,2] ]]; then
+			exec $FISH -i
+		fi
+		if [[ -n "${BASH_EXECUTION_STRING-}" ]]; then
+			exec env SHELL="$FISH" "$FISH" -i -c "$BASH_EXECUTION_STRING"
+		else
+			exec env SHELL="$FISH" "$FISH" -i
+		fi
+	fi
+fi
+
+# If we reach here, fish wasn't found. Source bashrc for PATH and environment setup.
+[[ -r "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
