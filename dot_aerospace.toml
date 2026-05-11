@@ -192,7 +192,6 @@ alt-shift-k = ["join-with up"]
 alt-shift-l = ["join-with right"]
 
 [workspace-to-monitor-force-assignment]
-w = "main"  # Main monitor
 0 = "secondary"
 1 = "main"  # Non-main monitor in case when there are only two monitors
 2 = "main"  # Case insensitive regex substring

@@ -15,7 +15,7 @@ font-family = "CommitMono Nerd Font Mono"
 font-family-bold = "CommitMono Nerd Font Mono Bold"
 font-size = 20
 font-thicken = true
-minimum-contrast = 2
+minimum-contrast = 1.5
 
 
 
@@ -29,7 +29,6 @@ macos-window-shadow = false
 macos-non-native-fullscreen = visible-menu
 mouse-hide-while-typing = true
 maximize = false
-window-colorspace = display-p3
 quit-after-last-window-closed=true
 
 

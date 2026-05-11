@@ -21,6 +21,7 @@ disable = [
   "chezmoi",
   "containers",
   "pipx",
+  "pip3",
   "composer",
   "brew_cask",
 ]
