@@ -2,15 +2,13 @@
 # This file sets up all environment variables and global settings
 
 # Disable fish greeting
-set -gx SHELL $__fish_bin_dir/fish
 set fish_greeting
 
 # XDG Base Directory Specification
 set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_CACHE_HOME; or set -gx XDG_CACHE_HOME "$HOME/.cache"
-set -q XDG_DATA_DIRS; or set -gx --path XDG_DATA_DIRS
-set -q WORKSPACE; or set -gx WORKSPACE "$HOME/pws"
+set -q WORKSPACE; or set -gx WORKSPACE "$HOME/pws.noindex"
 
 # Locale settings
 set -gx LANG en_IE.UTF-8
@@ -23,7 +21,6 @@ set -gx SUDO_EDITOR $EDITOR
 
 # Tool-specific environment variables
 set -gx RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
-set -gx PIPX_DEFAULT_PYTHON (command -v python3)
 
 if command -q gh
     set -gx GITHUB_PERSONAL_ACCESS_TOKEN (gh auth token)
@@ -38,11 +35,13 @@ if test -z "$SSH_CONNECTION"
     end
     set -gx SSH_AUTH_SOCK "$HOME/.1password/agent.sock"
 end
-if test -e /usr/libexec/java_home
-    set -gx JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
-end
-# set -gx LDFLAGS -L/opt/homebrew/opt/mysql-client/lib
-# set -gx CPPFLAGS -I/opt/homebrew/opt/mysql-client/include
-# set -gx PKG_CONFIG_PATH /opt/homebrew/opt/mysql-client/lib/pkgconfig
+
 set -gx RBENV_SHELL fish
-set -gx ORBSTACK_SHELL_DIR "$HOME/.orbstack/shell"
+if fish_in_macos_terminal
+    # Development paths
+    set -gx GOPATH "$HOME/.go"
+    if test -e /usr/libexec/java_home
+        set -gx JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
+    end
+    set -gx ORBSTACK_SHELL_DIR "$HOME/.orbstack/shell"
+end
