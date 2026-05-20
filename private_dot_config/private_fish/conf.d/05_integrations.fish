@@ -22,6 +22,10 @@ if status is-interactive
     if command -q atuin
         atuin init fish | builtin source
     end
+    #
+    if [ -f "$HOME/google-cloud-sdk/path.fish.inc" ]
+        builtin source "$HOME/google-cloud-sdk/path.fish.inc"
+    end
 
     # iTerm2 shell integration
     if test "$TERM_PROGRAM" = "iTerm.app"
@@ -41,10 +45,13 @@ if status is-interactive
     end
 
     if command -q rbenv
-        fish_add_path --move --prepend "$HOME/.rbenv/shims/"
+        fish_add_path "$HOME/.rbenv/shims/"
+    end
+    if command -q gh
+        set -gx GITHUB_PERSONAL_ACCESS_TOKEN (gh auth token)
     end
 
     if command -q mise
-        mise activate fish | builtin source
+        command mise activate fish | builtin source
     end
 end
