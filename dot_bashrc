@@ -90,11 +90,11 @@ fi
 PIPX_DEFAULT_PYTHON=$(command -v python3) && export PIPX_DEFAULT_PYTHON
 
 # Tool integrations (interactive only)
-command -v direnv &>/dev/null && eval "$(direnv hook bash)"
-command -v atuin &>/dev/null && eval "$(atuin init bash)"
-command -v fnm &>/dev/null && eval "$(fnm env --use-on-cd --shell bash)"
-command -v rbenv &>/dev/null && eval "$(rbenv init - bash)"
-command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
-command -v fzf &>/dev/null && eval "$(fzf --bash)"
+command -q direnv && eval "$(direnv hook bash)"
+command -q atuin && eval "$(atuin init bash)"
+command -q fnm && eval "$(fnm env --use-on-cd --shell bash)"
+command -q rbenv && eval "$(rbenv init - bash)"
+command -q zoxide && eval "$(zoxide init bash)"
+command -q fzf && eval "$(fzf --bash)"
 
 #vi: set ft=bash

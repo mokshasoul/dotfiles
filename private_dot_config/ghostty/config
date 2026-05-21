@@ -22,7 +22,7 @@ minimum-contrast = 1.5
 
 # MacOS
 window-decoration = none
-macos-titlebar-style = hidden
+# macos-titlebar-style = hidden
 macos-window-buttons = hidden
 macos-option-as-alt = left
 macos-window-shadow = false

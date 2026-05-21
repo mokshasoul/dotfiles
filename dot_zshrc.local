@@ -418,12 +418,12 @@ export SUDO_EDITOR=$EDITOR
 
 # Pager
 export MANWIDTH=999
-if command -v bat &>/dev/null; then
+if command -q bat; then
   export MANPAGER="sh -c 'sed -e s/.\\x08//g | bat -l man -p'"
 fi
 
 # Environment
-export WORKSPACE="${WORKSPACE:-$HOME/pws}"
+export WORKSPACE="$HOME/pws.noindex"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null) && export JAVA_HOME
 
@@ -438,12 +438,27 @@ fi
 [[ -S "$HOME/.1password/agent.sock" ]] && export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 
 # Tool integrations
-command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
-command -v atuin  &>/dev/null && eval "$(atuin init zsh)"
-command -v fnm    &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
-command -v rbenv  &>/dev/null && eval "$(rbenv init - zsh)"
-command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
+command -q direnv &>/dev/null && eval "$(direnv hook zsh)"
+command -q atuin  &>/dev/null && eval "$(atuin init zsh)"
+command -q fnm    &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
+command -q rbenv  &>/dev/null && eval "$(rbenv init - zsh)"
+command -q zoxide &>/dev/null && eval "$(zoxide init zsh)"
+
+export GPG_TTY=$(tty)
+
+[ -d "$HOME/.sc-tools" ] && source "$HOME/.sc-tools/dotfiles/env.zsh" #sc-tools-setup
+
+# Google-SDK
+[ -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ] && source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+[ -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" ] &&     source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+
+#
+export ANDROID_NDK_HOME="/usr/local/share/android-ndk"
+
+[ -f /usr/libexec/java_home ] && export JAVA_HOME=$(/usr/libexec/java_home)
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /Users/charis/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script
 ## END OF FILE #################################################################
