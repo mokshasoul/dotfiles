@@ -29,7 +29,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 32
+accordion-padding = 64
 
 # Possible values: tiles|accordion
 default-root-container-layout = "tiles"
@@ -114,8 +114,8 @@ tell application "Ghostty"
     new window
 end tell'
 '''
-cmd-h = [] # Disable "hide application"
-cmd-alt-h = [] # Disable "hide others"
+cmd-h = []  # Disable "hide application"
+cmd-alt-h = []  # Disable "hide others"
 
 alt-ctrl-enter = "fullscreen"
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -148,7 +148,7 @@ alt-2 = "workspace 2"
 alt-3 = "workspace 3"
 alt-4 = "workspace 4"
 alt-m = "workspace M"
-alt-t = "workspace T" # T like trash
+alt-t = "workspace T"  # T like trash
 alt-w = "workspace w"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
@@ -175,7 +175,7 @@ alt-shift-c = "reload-config"
 [mode.leader.binding]
 enter = "mode main"
 esc = "mode main"
-backspace = ["flatten-workspace-tree", "mode main"] # reset layout
+backspace = ["flatten-workspace-tree", "mode main"]  # reset layout
 q = ["close-all-windows-but-current", "mode main"]
 r = ["mode resize"]
 h = ["layout h_tiles tiling", "mode main"]
@@ -183,7 +183,7 @@ v = ["layout v_tiles tiling", "mode main"]
 f = [
   "layout floating tiling",
   "mode main",
-] # Toggle between floating and tiling layout
+]  # Toggle between floating and tiling layout
 
 [mode.resize.binding]
 enter = "mode main"
@@ -199,41 +199,41 @@ alt-shift-l = ["join-with right"]
 
 [workspace-to-monitor-force-assignment]
 0 = "secondary"
-1 = "main"      # Non-main monitor in case when there are only two monitors
-2 = "main"      # Case insensitive regex substring
-3 = "secondary" # Non-main monitor in case when there are only two monitors
-4 = "secondary" # Case insensitive regex substring
-T = "secondary"
-M = "secondary"
+1 = "main"  # Non-main monitor in case when there are only two monitors
+2 = "main"  # Case insensitive regex substring
+3 = "secondary"  # Non-main monitor in case when there are only two monitors
+4 = "secondary"  # Case insensitive regex substring
+
+[[on-window-detected]]
+check-further-callbacks = true
+run = "layout floating"
 
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
 run = ["layout tiling", "move-node-to-workspace --focus-follows-window 1"]
 
 [[on-window-detected]]
-if.app-id = "com.runningwithcrayons.Alfred-Preferences"
-run = "layout floating"                                 # The callback it
-
-[[on-window-detected]]
 if.app-id = "com.tinyspeck.slackmacgap"
 run = "move-node-to-workspace T"
 
 [[on-window-detected]]
+# TODO:  Quick Access — 1Password --> float no workspace
+if.app-id = "com.1password.1password"
+if.window-title-regex-substring = "(quick access|lock screen)"
+run = "layout floating"
+
+[[on-window-detected]]
 if.app-id = "com.colliderli.iina"
-run = ["layout floating", "move-node-to-workspace M"]
+run = "move-node-to-workspace M"
 
 [[on-window-detected]]
 if.app-name-regex-substring = "(firefox|google chrome)"
-run = "move-node-to-workspace w"                        # mnemonics w - web
-
-[[on-window-detected]]
-if.app-id = "com.apple.finder"
-run = "layout floating"
+run = ["layout h_tiles", "move-node-to-workspace w"]  # mnemonics w - web
 
 [[on-window-detected]]
 # TODO:  Quick Access — 1Password --> float no workspace
 if.app-id = "com.1password.1password"
-run = "layout floating"
+run = "move-node-to-workspace 0"
 
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
@@ -245,21 +245,8 @@ run = ["layout tiling", "move-node-to-workspace M"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.ActivityMonitor"
-run = ["layout floating", "move-node-to-workspace 0"]
-
-[[on-window-detected]]
-if.app-id = "com.apple.systempreferences"
-run = "layout floating"
-
-[[on-window-detected]]
-if.app-id = "com.apple.shortcuts"
-run = "layout floating"
+run = "move-node-to-workspace 0"
 
 [[on-window-detected]]
 if.app-id = "com.jetbrains.intellij"
-run = ["layout floating", "move-node-to-workspace --focus-follows-window 2"]
-
-# Floating Windows
-[[on-window-detected]]
-if.app-name-regex-substring = "(mpv|keka|preview|picture.*in.*picture|betterdisplay)"
-run = "layout floating"
+run = "move-node-to-workspace --focus-follows-window 2"
