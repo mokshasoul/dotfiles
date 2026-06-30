@@ -229,6 +229,10 @@ run = ["layout tiling", "move-node-to-workspace T"]
 if.app-id = "com.tinyspeck.slackmacgap"
 run = "move-node-to-workspace T"
 
+[[on-window-detected]]
+if.app-id = "com.microsoft.teams2"
+run = ["layout tiling", "move-node-to-workspace T"]
+
 
 # Utilities
 [[on-window-detected]]
