@@ -452,6 +452,7 @@ command -v rbenv  &>/dev/null && eval "$(rbenv init - zsh)"
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
 
 
+[[ -f "$HOME/.safe-chain/scripts/init-posix.sh" ]] && source $HOME/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ## END OF FILE #################################################################
