@@ -54,4 +54,9 @@ if status is-interactive
     if command -q mise
         command mise activate fish | builtin source
     end
+
+    set -l safechain "$HOME/.safe-chain/scripts/init-fish.fish"
+    if test -f $safechain
+        builtin source $safechain
+    end
 end
