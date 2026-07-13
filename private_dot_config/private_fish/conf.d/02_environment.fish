@@ -3,7 +3,6 @@
 
 # Disable fish greeting
 set -gx SHELL $__fish_bin_dir/fish
-set fish_greeting
 
 # XDG Base Directory Specification
 set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"

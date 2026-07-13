@@ -56,7 +56,7 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["0", "1", "3", "w"]
+persistent-workspaces = ["0", "1", "3", "W"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -221,7 +221,7 @@ run = ["layout tiling", "move-node-to-workspace --focus-follows-window 1"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = "(firefox|google chrome)"
-run = ["layout h_tiles", "move-node-to-workspace w"]
+run = ["layout h_tiles", "move-node-to-workspace W"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.dt.Xcode"
@@ -248,7 +248,7 @@ run = ["layout tiling h_tiles", "move-node-to-workspace T"]
 # Utilities
 [[on-window-detected]]
 if.app-id = "com.1password.1password"
-run = "move-node-to-workspace 0"
+run = "move-node-to-workspace --focus-follows-window 0"
 
 [[on-window-detected]]
 if.app-id = "com.apple.ActivityMonitor"

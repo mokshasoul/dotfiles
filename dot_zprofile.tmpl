@@ -9,24 +9,3 @@ if [[ -z "$LANG" ]]; then
 	export LANG='en_IE.UTF-8'
 fi
 
-{{ if stat "/opt/homebrew/bin/brew" -}}
-fpath+=("{{ output "/opt/homebrew/bin/brew" "--prefix" | trim }}/share/zsh/site-functions")
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ end -}}
-
-FISH=$(which fish)
-if [[ -x $FISH ]]; then
-  exec env SHELL="$FISH" "$FISH" -i
-fi
-
-#
-# Paths
-#
-
-# Ensure path arrays do not contain duplicates.
-# typeset -gU cdpath fpath mailpath path
-
-[ -d "$HOME/.sc-tools" ] && source "$HOME/.sc-tools/dotfiles/env.zsh" #sc-tools-setup
-source ~/.zshrc
-

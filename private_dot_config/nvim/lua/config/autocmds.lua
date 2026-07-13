@@ -4,5 +4,5 @@
 --
 
 vim.api.nvim_create_user_command("CleanIllegalCharacters", function()
-  vim.cmd("s/[^a-zA-Z0-9.+_]/_/g")
+  vim.cmd("%s/[^a-zA-Z0-9.+_]/_/g")
 end, {})
