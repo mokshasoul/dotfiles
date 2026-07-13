@@ -6,7 +6,8 @@ case $- in
 *i*) ;;
 *) return ;;
 esac
-
+echo "Loading interactive configuration"
+export SHELL="/bin/bash"
 # XDG base dirs
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
@@ -22,12 +23,12 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 # Coursier (Scala/Java tooling)
 [[ -d "$HOME/Library/Application Support/Coursier/bin" ]] &&
-  export PATH="$HOME/Library/Application Support/Coursier/bin:$PATH"
+	export PATH="$HOME/Library/Application Support/Coursier/bin:$PATH"
 
 # Ruby (brew-managed)
 if command -v brew &>/dev/null; then
-  ruby_prefix=$(brew --prefix ruby 2>/dev/null)
-  [[ -d "$ruby_prefix/bin" ]] && export PATH="$ruby_prefix/bin:$PATH"
+	ruby_prefix=$(brew --prefix ruby 2>/dev/null)
+	[[ -d "$ruby_prefix/bin" ]] && export PATH="$ruby_prefix/bin:$PATH"
 fi
 
 # Bun
@@ -68,7 +69,7 @@ export SUDO_EDITOR=$EDITOR
 # Pager
 export MANWIDTH=999
 if command -v bat &>/dev/null; then
-  export MANPAGER="sh -c 'sed -e s/.\\x08//g | bat -l man -p'"
+	export MANPAGER="sh -c 'sed -e s/.\\x08//g | bat -l man -p'"
 fi
 
 # Environment
@@ -78,9 +79,9 @@ JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null) && export JAVA_HOME
 
 # mysql-client compile flags
 if [[ -d /opt/homebrew/opt/mysql-client ]]; then
-  export LDFLAGS="-L/opt/homebrew/opt/mysql-client/lib"
-  export CPPFLAGS="-I/opt/homebrew/opt/mysql-client/include"
-  export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig"
+	export LDFLAGS="-L/opt/homebrew/opt/mysql-client/lib"
+	export CPPFLAGS="-I/opt/homebrew/opt/mysql-client/include"
+	export PKG_CONFIG_PATH="/opt/homebrew/opt/mysql-client/lib/pkgconfig"
 fi
 
 # 1Password SSH agent
