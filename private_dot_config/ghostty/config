@@ -39,7 +39,6 @@ clipboard-read = allow
 clipboard-write = allow
 copy-on-select = clipboard
 # pew
-shell-integration=detect
 shell-integration-features = no-cursor,sudo,ssh-terminfo,ssh-env
 # CLAUDE
 keybind = shift+enter=text:\x1b\r

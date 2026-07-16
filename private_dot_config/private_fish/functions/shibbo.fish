@@ -5,9 +5,9 @@ function shibbo -d "manage shibboleth secrets"
     end
     switch $argv[1]
         case edit
-            sc shibboleth edit $argv[2..]
+            command sc shibboleth edit $argv[2..]
         case show
-            sc shibboleth decrypt $argv[2..]
+            command sc shibboleth decrypt $argv[2..]
         case '*'
             echo "usage: shibbo edit|show [args]"
             return 1

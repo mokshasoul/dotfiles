@@ -59,4 +59,8 @@ if status is-interactive
     if test -f $safechain
         builtin source $safechain
     end
+
+    if set -q GHOSTTY_RESOURCES_DIR
+        source $GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
+    end
 end
