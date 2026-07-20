@@ -20,14 +20,14 @@
 ## /etc/zsh/zshrc was installed as ~/.zshrc.global and
 ## ~/.zshrc.local does not exist yet.
 if [ -r ~/.zshrc -a -r ~/.zshrc.global -a ! -r ~/.zshrc.local ] ; then
-    printf '-!-\n'
-    printf '-!- Looks like you are using the old zshrc layout of grml.\n'
-    printf '-!- Please read the notes in the grml-zsh-refcard, being'
-    printf '-!- available at: http://grml.org/zsh/\n'
-    printf '-!-\n'
-    printf '-!- If you just want to get rid of this warning message execute:\n'
-    printf '-!-        touch ~/.zshrc.local\n'
-    printf '-!-\n'
+  printf '-!-\n'
+  printf '-!- Looks like you are using the old zshrc layout of grml.\n'
+  printf '-!- Please read the notes in the grml-zsh-refcard, being'
+  printf '-!- available at: http://grml.org/zsh/\n'
+  printf '-!-\n'
+  printf '-!- If you just want to get rid of this warning message execute:\n'
+  printf '-!-        touch ~/.zshrc.local\n'
+  printf '-!-\n'
 fi
 
 # {{ if stat "/opt/homebrew/bin/brew" -}}
@@ -52,9 +52,9 @@ typeset -gU cdpath fpath mailpath path
 
 ## Settings for umask
 if (( EUID == 0 )); then
-   umask 002
+  umask 002
 else
-   umask 022
+  umask 022
 fi
 
 ## Now, we'll give a few examples of what you might want to use in your
@@ -66,7 +66,7 @@ export BROWSER='open'
 # Virtualenv support
 
 function virtual_env_prompt () {
-   REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+  REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
 grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
 zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs percent
@@ -81,10 +81,10 @@ zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host p
 
 ## set command prediction from history, see 'man 2 zshcontrib'
 zrcautoload predict-on    && \
-zle -N predict-on         && \
-zle -N predict-off        && \
-bindkey "^X^Z" predict-on && \
-bindkey "^Z" predict-off
+  zle -N predict-on         && \
+  zle -N predict-off        && \
+  bindkey "^X^Z" predict-on && \
+  bindkey "^Z" predict-off
 
 ## press ctrl-q to quote line:
 #mquote () {
@@ -150,8 +150,8 @@ setopt histignorealldups
 ## compsys related snippets ##
 
 ## changed completer settings
-#zstyle ':completion:*' completer _complete _correct _approximate
-#zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' completer _complete _correct _approximate
+zstyle ':completion:*' expand prefix suffix
 
 ## another different completer setting: expand shell aliases
 #zstyle ':completion:*' completer _expand_alias _complete _approximate
@@ -307,9 +307,9 @@ alias -g T='|tail'
 
 ## Memory overview
 memusage() {
-   ps aux | awk '{if (NR > 1) print $5;
-                  if (NR > 2) print "+"}
-                  END { print "p" }' | dc
+  ps aux | awk '{if (NR > 1) print $5;
+  if (NR > 2) print "+"}
+  END { print "p" }' | dc
 }
 
 ## print hex value of a number
@@ -340,7 +340,7 @@ memusage() {
 
 ## you want to automatically use a bigger font on big terminals?
 if [[ "$TERM" == [Exa]term* ]] && [[ "$LINES" -ge 50 ]] && [[ "$COLUMNS" -ge 100 ]] && [[ -z "$SSH_CONNECTION" ]] ; then
-   large
+  large
 fi
 
 ## Some quick Perl-hacks aka /useful/ oneliner
@@ -444,13 +444,21 @@ fi
 # 1Password SSH agent
 [[ -S "$HOME/.1password/agent.sock" ]] && export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 
+if [[ -d $GHOSTTY_RESOURCES_DIR ]]; then
+  source ${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration
+fi
 # Tool integrations
 command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 command -v atuin  &>/dev/null && eval "$(atuin init zsh)"
 command -v fnm    &>/dev/null && eval "$(fnm env --use-on-cd --shell zsh)"
 command -v rbenv  &>/dev/null && eval "$(rbenv init - zsh)"
 command -v zoxide &>/dev/null && eval "$(zoxide init zsh)"
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
+  autoload -Uz compinit
+  compinit
+fi
 
 [[ -f "$HOME/.safe-chain/scripts/init-posix.sh" ]] && source $HOME/.safe-chain/scripts/init-posix.sh # Safe-chain Zsh initialization script
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

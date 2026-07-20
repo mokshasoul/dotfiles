@@ -16,7 +16,8 @@ font-family-bold = "CommitMono Nerd Font Mono Bold"
 font-size = 20
 font-thicken = true
 minimum-contrast = 1.25
-
+# channel
+auto-update-channel = tip
 
 
 

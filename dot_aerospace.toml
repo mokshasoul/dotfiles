@@ -1,26 +1,19 @@
-# Place a copy of this config to ~/.aerospace.toml
-# After that, you can edit ~/.aerospace.toml to your liking
-
-# Config version for compatibility and deprecations
-# Fallback value (if you omit the key): config-version = 1
+start-at-login = true
 config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-# Run Sketchybar together with AeroSpace
-# sketchybar has a built-in detection of already running process,
-# so it won't be run twice on AeroSpace restart
-after-startup-command = ["exec-and-forget /opt/homebrew/bin/borders"]
+after-startup-command = [
+  "exec-and-forget /opt/homebrew/bin/borders",
+  # "exec-and-forget /opt/homebrew/bin/sketchybar"
+]
 
 # Notify Sketchybar about workspace change
-# exec-on-workspace-change = [
-#   "/bin/bash",
-#   "-c",
-#   "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
-# ]
-
-# Start AeroSpace at login
-start-at-login = true
+exec-on-workspace-change = [
+  # "/bin/bash",
+  # "-c",
+  # "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
+]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -29,7 +22,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 64
+accordion-padding = 32
 
 # Possible values: tiles|accordion
 default-root-container-layout = "tiles"
@@ -56,7 +49,7 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["0", "1", "3", "W"]
+persistent-workspaces = ["1", "W", "2", "3", "4", "M", "T", "0"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -77,12 +70,12 @@ preset = "qwerty"
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 4
-inner.vertical = 4
-outer.right = 4
-outer.left = 4
-outer.bottom = 4
-outer.top = 4
+inner.horizontal = 12
+inner.vertical = 12
+outer.right = 12
+outer.left = 12
+outer.bottom = 8
+outer.top = 8
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -107,39 +100,32 @@ outer.top = 4
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-# You can uncomment the following lines to open up terminal with alt + enter shortcut
-# (like in i3)
-alt-enter = '''exec-and-forget osascript -e '
-tell application "Ghostty"
-    new window
-end tell'
-'''
+alt-enter = "exec-and-forget open -n /Applications/Ghostty.app"
+alt-g = "exec-and-forget open -a Finder.app"
 cmd-h = []  # Disable "hide application"
 cmd-alt-h = []  # Disable "hide others"
 
-alt-ctrl-enter = "fullscreen"
+alt-ctrl-enter = "fullscreen --no-outer-gaps"
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = "layout tiles horizontal vertical"
 alt-comma = "layout accordion horizontal vertical"
 
 # Smart resize
-alt-minus = "resize smart -50"
-alt-equal = "resize smart +50"
-alt-shift-minus = "resize smart-opposite -50"
-alt-shift-equal = "resize smart-opposite +50"
+alt-shift-minus = "resize smart -50"
+alt-shift-equal = "resize smart +50"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 
-alt-h = "focus --boundaries-action wrap-around-the-workspace dfs-next"
-alt-j = "focus --boundaries-action wrap-around-the-workspace dfs-next"
-alt-k = "focus --boundaries-action wrap-around-the-workspace dfs-prev"
-alt-l = "focus --boundaries-action wrap-around-the-workspace dfs-prev"
+alt-h = "focus --wrap-around left"
+alt-j = "focus --wrap-around down"
+alt-k = "focus --wrap-around up"
+alt-l = "focus --wrap-around right"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-alt-shift-h = "move left"
-alt-shift-j = "move down"
-alt-shift-k = "move up"
-alt-shift-l = "move right"
+alt-shift-h = "move --boundaries-action stop left"
+alt-shift-j = "move --boundaries-action stop down"
+alt-shift-k = "move --boundaries-action stop up"
+alt-shift-l = "move --boundaries-action stop right"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-0 = "workspace 0"
@@ -205,23 +191,38 @@ alt-shift-l = ["join-with right"]
 4 = "secondary"  # Case insensitive regex substring
 
 # Workarounds
+
 [[on-window-detected]]
 check-further-callbacks = true
-run = "layout floating"
+run = ["layout vertical", "layout tiling"]
 
 [[on-window-detected]]
 if.app-id = "com.1password.1password"
-if.window-title-regex-substring = "(quick access|lock screen)"
-run = "layout floating"
+if.window-title-regex-substring = ".*(quick access|lock screen).*"
+run = "layout vertical"
 
 # Workspace
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
-run = ["layout tiling", "move-node-to-workspace --focus-follows-window 1"]
+run = [
+  "layout tiling",
+  "layout tiles vertical",
+  "move-node-to-workspace --focus-follows-window 1"
+]
+
+[[on-window-detected]]
+if.app-id = "com.apple.Safari"
+if.window-title-regex-substring = "personal"
+run = ["layout tiling v_tiles", "move-node-to-workspace W"]
+
+[[on-window-detected]]
+if.app-id = "com.apple.Safari"
+if.window-title-regex-substring = "dirtybiz"
+run = ["layout tiling v_accordion", "move-node-to-workspace M"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = "(firefox|google chrome)"
-run = ["layout h_tiles", "move-node-to-workspace W"]
+run = ["layout tiling vertical", "move-node-to-workspace W"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.dt.Xcode"
@@ -230,11 +231,11 @@ run = "move-node-to-workspace --focus-follows-window 2"
 # Media
 [[on-window-detected]]
 if.app-id = "com.brave.Browser"
-run = ["layout tiling v_tiles", "move-node-to-workspace M"]
+run = ["layout tiling v_accordion", "move-node-to-workspace M"]
 
 [[on-window-detected]]
 if.app-id = "com.apple.TV"
-run = ["layout tiling v_tiles", "move-node-to-workspace M"]
+run = ["layout tiling v_accordion", "move-node-to-workspace M"]
 
 [[on-window-detected]]
 if.app-id = "com.colliderli.iina"
@@ -243,7 +244,7 @@ run = "move-node-to-workspace M"
 # Messaging
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
-run = ["layout tiling h_tiles", "move-node-to-workspace T"]
+run = ["layout tiling v_tiles", "move-node-to-workspace T"]
 
 # Utilities
 [[on-window-detected]]
